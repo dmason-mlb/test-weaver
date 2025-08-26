@@ -26,6 +26,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+secrets
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -122,3 +123,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+zen_precommit.changeset

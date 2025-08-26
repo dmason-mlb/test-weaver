@@ -1,0 +1,39 @@
+# Core Dependencies
+qdrant-client
+crewai
+crewai-tools
+langchain
+langchain-community
+openai
+mistralai
+
+# Vector and ML
+sentence-transformers
+numpy
+scikit-learn
+
+# MLB Integration
+pydantic
+fastapi
+
+# External Search
+linkup-sdk
+requests
+
+# Testing
+pytest
+pytest-asyncio
+pytest-mock
+pytest-cov
+
+# Utilities
+python-dotenv
+pyyaml
+loguru
+rich
+
+# Development
+black
+isort
+flake8
+mypy
