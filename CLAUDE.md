@@ -22,8 +22,9 @@ This is the Intelligent Test Case Generator for Server-Driven UI, built for the 
 ```
 
 This will:
-- Create a virtual environment
-- Install dependencies
+- Create a virtual environment (`venv/`)
+- Install dependencies from `requirements.txt`
+- Copy `.env.example` to `.env` (update with API keys)
 - Start Docker services (Qdrant, Neo4j, Redis)
 - Run the first failing test to begin TDD
 
@@ -38,7 +39,7 @@ docker-compose down
 
 Services:
 - Qdrant: localhost:6333 (vector database)
-- Neo4j: localhost:7474/7687 (auth: neo4j/hackathon2025)
+- Neo4j: localhost:7474/7687 (graph database)
 - Redis: localhost:6379 (caching)
 
 ## Test-Driven Development Process
@@ -63,6 +64,12 @@ pytest tests/ --lf
 pytest -m unit        # Unit tests
 pytest -m integration # Integration tests
 pytest -m hackathon   # Hackathon demo tests
+
+# Development tools
+black src/ tests/     # Format code
+isort src/ tests/     # Sort imports  
+flake8 src/ tests/    # Lint code
+mypy src/             # Type check
 ```
 
 ### TDD Implementation Rules
@@ -75,11 +82,21 @@ pytest -m hackathon   # Hackathon demo tests
 
 ## Architecture
 
+The project follows a layered architecture with vector-based pattern matching:
+
+### Core Components
+- `ServerDrivenUIVectorStore`: Main vector store implementation using Qdrant
+- `CrewAI Agents`: Multi-agent system for test generation orchestration
+- `Pattern Extractors`: Extract reusable patterns from UI schemas
+- `Similarity Search`: Find similar test patterns using vector embeddings
+- `External Search`: Linkup integration for broader test pattern discovery
+
 ### Source Structure
 - `src/vector_store.py`: Core Qdrant vector storage implementation
-- `src/agents/`: CrewAI agents for different aspects of test generation
+- `src/agents/`: CrewAI agents for different aspects of test generation  
 - `src/mlb_integration/`: MLB-specific server-driven UI integration
 - `src/schemas/`: Data schemas for UI components and test cases
+- `src/pipeline.py`: Main orchestration pipeline (CLI entry point)
 
 ### Test Structure
 Sequential test files (run in order):
@@ -102,18 +119,21 @@ The system generates tests for MLB's server-driven UI components:
 - My Daily Story personalization features
 - GraphQL API responses from Fastball Gateway
 
+Test generation covers: Happy Path, Edge Cases, Error Handling, Performance, Accessibility
+
 ## Configuration
 
 - `config/hackathon_config.yaml`: Project and partner configuration
-- `pytest.ini`: Test configuration with coverage requirements
-- `docker_compose.yml`: Required services configuration
+- `pytest.ini`: Test configuration with coverage requirements (80% minimum)
+- `docker-compose.yml`: Required services configuration
+- `.env`: API keys (copy from `.env.example`)
 
 ## Installation
 
-The project uses setuptools with entry point:
+The project uses setuptools with CLI entry point:
 ```bash
 pip install -e .
-test-gen  # CLI entry point
+test-gen  # CLI entry point -> src.pipeline:main
 ```
 
-Dependencies are managed in `requirements.txt` and automatically installed during setup.
+Dependencies managed via `requirements.in` -> `requirements.txt` (pip-compiled)
