@@ -23,7 +23,7 @@ def test_my_daily_story_component_not_supported():
 
 def test_server_driven_ui_version_mismatch():
     """Test that version mismatches between Android and iOS are detected"""
-    from src.mlb_integration import CrossPlatformValidator
+    from src.mlb_integration import CrossPlatformValidator, VersionError
     
     validator = CrossPlatformValidator()
     android_schema = {"version": "2.1.0", "components": []}
