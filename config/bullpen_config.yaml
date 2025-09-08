@@ -1,0 +1,54 @@
+mlb:
+  gateway: "Bullpen Gateway"
+  base_url: "https://bullpen-gateway-svc.mlbinfra.com"
+  
+  screens:
+    - name: "Gameday"
+      endpoint: "/api/gameday/v1"
+      type: "WebView"
+      platforms: ["ios", "android"]
+      
+    - name: "Scoreboard"
+      endpoint: "/api/scoreboard/v1"
+      type: "Mixed"
+      platforms: ["ios", "android"]
+      
+    - name: "Browse"
+      endpoint: "/api/browse/v1"
+      type: "Native"
+      platforms: ["ios", "android"]
+      
+    - name: "Team Page"
+      endpoint: "/api/team/v1"
+      type: "Native"
+      platforms: ["ios", "android"]
+
+test_patterns:
+  authentication:
+    - "Bearer token validation"
+    - "Session expiry handling"
+    - "Cookie authentication for WebView"
+    
+  layout:
+    - "Wide layout rendering"
+    - "Compact layout rendering"
+    - "SingleColumnLayout validation"
+    - "MultipleSectionsPlacement"
+    
+  webview:
+    - "URL accessibility"
+    - "Pull-to-refresh functionality"
+    - "JavaScript bridge communication"
+    - "Domain blocking"
+    
+  analytics:
+    - "Screen load tracking"
+    - "User interaction tracking"
+    - "Error event capture"
+
+coverage_targets:
+  authentication: 100  # Critical
+  layout: 90
+  webview: 95
+  analytics: 85
+  performance: 80

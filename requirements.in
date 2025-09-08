@@ -15,6 +15,7 @@ scikit-learn
 # MLB Integration
 pydantic
 fastapi
+streamlit
 
 # External Search
 linkup-sdk

@@ -1,0 +1,16 @@
+General
+Request URL:https://bullpen-gateway-svc.mlbinfra.com/api/teamPage/v1?teamId=114&hideScores=false&lang=en
+Request Method:GET
+Status Code:200
+Remote Address::80
+
+Request Headers
+Accept-Encoding:gzip
+Accept-Language:en
+Connection:Keep-Alive
+Content-Type:application/json
+Mlb-Ecid:53405223863849907946670517621477603203
+Mlb-Mobile-Uid:e36a85aa-eac5-4f61-ab3b-42d27ba90255
+Mlb-Timezone:America/Chicago
+Mlb-User-Logged-In:true
+User-Agent:com.bamnetworks.mobile.android.gameday.atbat/25.17.0.18 (Android 15;en_US;SM-S938U1;Build/AP3A.240905.015.A2)

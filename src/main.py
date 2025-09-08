@@ -1,73 +1,120 @@
 """
 Main entry point for the Intelligent Test Case Generator.
-Showcases all Qdrant Hackathon partner technologies.
+Generates tests for MLB's actual SDUI screens: Scoreboard, Browse, Team Page, and Gameday.
 """
 
 import asyncio
+import json
 from pathlib import Path
 from rich.console import Console
 from rich.table import Table
 from loguru import logger
+import httpx
 
 from src.pipeline import TestGenerationPipeline
-from src.mlb_integration import MLBSchemaLoader
+from src.bullpen_integration import BullpenGatewayParser
 from src.reporting import TestReportGenerator
 
 console = Console()
 
-async def generate_tests_for_mlb_app(schema_path: str):
-    """Generate comprehensive test suite for MLB server-driven UI."""
+# MLB's actual SDUI screens
+MLB_SDUI_SCREENS = {
+    "gameday": {
+        "slug": "Gameday-ios",
+        "endpoint": "/api/gameday/v1",
+        "params": {"gamepk": "776580", "game_view": "live"}
+    },
+    "scoreboard": {
+        "slug": "Scoreboard-ios",
+        "endpoint": "/api/scoreboard/v1",
+        "params": {"date": "2025-01-27"}
+    },
+    "browse": {
+        "slug": "Browse-ios", 
+        "endpoint": "/api/browse/v1",
+        "params": {"category": "video"}
+    },
+    "team": {
+        "slug": "TeamPage-ios",
+        "endpoint": "/api/team/v1",
+        "params": {"teamId": "147"}  # Yankees
+    }
+}
+
+async def generate_tests_for_mlb_sdui(screen_name: str, request_file: str, response_file: str):
+    """Generate tests for real MLB SDUI screens from Bullpen Gateway."""
     
-    console.print("[bold blue]🚀 MLB Intelligent Test Generator[/bold blue]")
-    console.print("[yellow]Powered by Qdrant, CrewAI, Mistral AI, and Linkup[/yellow]\n")
+    console.print(f"[bold blue]⚾ MLB Test Generator - {screen_name.upper()} Screen[/bold blue]")
+    console.print("[yellow]Analyzing Bullpen Gateway SDUI Response[/yellow]\n")
     
-    # Initialize pipeline with partner technologies
+    # Load real request and response data
+    with open(request_file, 'r') as f:
+        request_data = parse_request_file(f.read())
+    
+    with open(response_file, 'r') as f:
+        response_data = json.load(f)
+    
+    # Initialize pipeline
     pipeline = TestGenerationPipeline(
-        config="config/hackathon_config.yaml",
+        config="config/bullpen_config.yaml",
         verbose=True
     )
     
-    # Load MLB server-driven UI schema
-    console.print("[cyan]Loading MLB UI Schema...[/cyan]")
-    schema = MLBSchemaLoader.load_from_file(schema_path)
+    # Parse Bullpen Gateway structure
+    console.print("[cyan]📋 Parsing Bullpen Gateway Response Structure...[/cyan]")
+    parsed_structure = BullpenGatewayParser.parse_sdui_response(
+        response_data,
+        request_data
+    )
     
-    # Generate tests using multi-agent system
-    console.print("[cyan]🤖 Activating CrewAI Agents...[/cyan]")
-    tests = await pipeline.generate_tests_for_ui(schema)
+    # Generate tests for each component type
+    tests = []
     
-    # Display results
-    display_results(tests)
+    # Test WebView sections (like Gameday)
+    if has_webview_sections(parsed_structure):
+        console.print("[cyan]🌐 Generating WebView tests...[/cyan]")
+        webview_tests = await pipeline.generate_webview_tests(parsed_structure)
+        tests.extend(webview_tests)
     
-    # Export to multiple formats
-    export_tests(tests, schema['screen'])
+    # Test layout structures
+    console.print("[cyan]📐 Generating Layout tests...[/cyan]")
+    layout_tests = await pipeline.generate_layout_tests(parsed_structure)
+    tests.extend(layout_tests)
+    
+    # Test authentication requirements
+    console.print("[cyan]🔐 Generating Authentication tests...[/cyan]")
+    auth_tests = await pipeline.generate_auth_tests(request_data['headers'])
+    tests.extend(auth_tests)
+    
+    # Display and export results
+    display_test_results(tests, screen_name)
+    export_tests_for_platform(tests, screen_name, request_data['platform'])
     
     return tests
 
-def display_results(tests):
-    """Display generated tests in a beautiful table."""
-    table = Table(title="Generated Test Cases")
-    table.add_column("Test Name", style="cyan")
-    table.add_column("Type", style="magenta")
-    table.add_column("Coverage", style="green")
-    table.add_column("Complexity", style="yellow")
+def parse_request_file(content: str):
+    """Parse the request file format into structured data."""
+    lines = content.strip().split('\n')
+    request_data = {
+        'url': '',
+        'method': '',
+        'headers': {},
+        'platform': 'ios'  # Default, will be detected
+    }
     
-    for test in tests:
-        table.add_row(
-            test['name'],
-            test['type'],
-            f"{test['coverage']}%",
-            test['complexity']
-        )
+    for line in lines:
+        if line.startswith('Request URL:'):
+            request_data['url'] = line.split('Request URL:')[1].strip()
+            # Detect platform from URL
+            if '-ios' in request_data['url']:
+                request_data['platform'] = 'ios'
+            elif '-android' in request_data['url']:
+                request_data['platform'] = 'android'
+        elif line.startswith('Request Method:'):
+            request_data['method'] = line.split('Request Method:')[1].strip()
+        elif ':' in line and not line.startswith('Status Code') and not line.startswith('Remote Address'):
+            # Parse headers
+            key, value = line.split(':', 1)
+            request_data['headers'][key.strip()] = value.strip()
     
-    console.print(table)
-
-if __name__ == "__main__":
-    # Run with sample MLB schemas
-    schemas = [
-        "examples/sample_ui_schemas/my_daily_story.json",
-        "examples/sample_ui_schemas/stadium_navigator.json",
-        "examples/sample_ui_schemas/login_screen.json"
-    ]
-    
-    for schema in schemas:
-        asyncio.run(generate_tests_for_mlb_app(schema))
+    return request_data

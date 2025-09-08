@@ -10,7 +10,7 @@ test-weaver/
 ├── config/
 │   ├── __init__.py
 │   ├── settings.py
-│   └── hackathon_config.yaml
+│   └── bullpen_config.yaml
 │
 ├── src/
 │   ├── __init__.py
@@ -31,9 +31,9 @@ test-weaver/
 │   │   ├── edge_case_hunter.py
 │   │   └── test_writer.py
 │   │
-│   ├── mlb_integration/
+│   ├── bullpen_integration/
 │   │   ├── __init__.py
-│   │   ├── fastball_gateway_parser.py
+│   │   ├── bullpen_gateway_parser.py
 │   │   ├── mds_component_analyzer.py
 │   │   └── cross_platform_validator.py
 │   │
@@ -53,7 +53,7 @@ test-weaver/
 │   ├── test_6_edge_case_discovery.py
 │   ├── test_7_external_search.py
 │   ├── test_8_pipeline_integration.py
-│   ├── test_9_mlb_integration.py
+│   ├── test_9_bullpen_integration.py
 │   └── test_10_output_generation.py
 │
 ├── examples/

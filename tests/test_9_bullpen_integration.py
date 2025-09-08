@@ -1,9 +1,9 @@
 import pytest
 
-# test_9_mlb_integration.py
+# test_9_bullpen_integration.py
 def test_graphql_schema_parsing_failure():
     """Test that invalid GraphQL schema from Fastball Gateway is rejected"""
-    from src.mlb_integration import FastballGatewayParser
+    from src.bullpen_integration import FastballGatewayParser
     
     parser = FastballGatewayParser()
     invalid_schema = "not a valid graphql schema"
@@ -13,7 +13,7 @@ def test_graphql_schema_parsing_failure():
 
 def test_my_daily_story_component_not_supported():
     """Test that unsupported MDS components are flagged"""
-    from src.mlb_integration import MDSComponentAnalyzer
+    from src.bullpen_integration import MDSComponentAnalyzer
     
     analyzer = MDSComponentAnalyzer()
     component = {"type": "3d_stadium_view", "data": {}}
@@ -23,7 +23,7 @@ def test_my_daily_story_component_not_supported():
 
 def test_server_driven_ui_version_mismatch():
     """Test that version mismatches between Android and iOS are detected"""
-    from src.mlb_integration import CrossPlatformValidator, VersionError
+    from src.bullpen_integration import CrossPlatformValidator, VersionError
     
     validator = CrossPlatformValidator()
     android_schema = {"version": "2.1.0", "components": []}

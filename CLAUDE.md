@@ -94,7 +94,7 @@ The project follows a layered architecture with vector-based pattern matching:
 ### Source Structure
 - `src/vector_store.py`: Core Qdrant vector storage implementation
 - `src/agents/`: CrewAI agents for different aspects of test generation  
-- `src/mlb_integration/`: MLB-specific server-driven UI integration
+- `src/bullpen_integration/`: MLB Bullpen Gateway integration
 - `src/schemas/`: Data schemas for UI components and test cases
 - `src/pipeline.py`: Main orchestration pipeline (CLI entry point)
 
@@ -108,7 +108,7 @@ Sequential test files (run in order):
 6. `test_6_edge_case_discovery.py` - Discover edge cases in UI components
 7. `test_7_external_search.py` - Linkup integration for external test patterns
 8. `test_8_pipeline_integration.py` - Full pipeline orchestration
-9. `test_9_mlb_integration.py` - MLB-specific server-driven UI testing
+9. `test_9_bullpen_integration.py` - MLB Bullpen Gateway integration testing
 10. `test_10_output_generation.py` - Generate final test output
 
 ## MLB Context
@@ -123,7 +123,7 @@ Test generation covers: Happy Path, Edge Cases, Error Handling, Performance, Acc
 
 ## Configuration
 
-- `config/hackathon_config.yaml`: Project and partner configuration
+- `config/bullpen_config.yaml`: Bullpen Gateway configuration
 - `pytest.ini`: Test configuration with coverage requirements (80% minimum)
 - `docker-compose.yml`: Required services configuration
 - `.env`: API keys (copy from `.env.example`)

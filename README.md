@@ -142,7 +142,7 @@ This project follows strict TDD with sequential numbered tests:
 6. `test_6_edge_case_discovery.py` - Edge case detection
 7. `test_7_external_search.py` - Linkup integration
 8. `test_8_pipeline_integration.py` - Full pipeline
-9. `test_9_mlb_integration.py` - MLB-specific testing
+9. `test_9_bullpen_integration.py` - MLB Bullpen Gateway integration testing
 10. `test_10_output_generation.py` - Test output generation
 
 ## Project Structure
@@ -151,7 +151,7 @@ This project follows strict TDD with sequential numbered tests:
 test-weaver/
 ├── src/                     # Source code
 │   ├── agents/             # CrewAI agents (UI validator, API analyzer)
-│   ├── mlb_integration/    # MLB-specific components
+│   ├── bullpen_integration/    # MLB Bullpen Gateway integration
 │   ├── schemas/            # Data schemas for UI and tests
 │   ├── vector_store.py     # Qdrant vector storage
 │   ├── pipeline.py         # Test generation pipeline

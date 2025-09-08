@@ -1,0 +1,26 @@
+Request URL:https://bullpen-gateway-svc-npd.mlbinfra.com/api/browse/v1?slug=sdui-browse-menu-3.0&lang=en&favTeamId=114
+Request Method:GET
+Status Code:200
+Remote Address::80
+
+Request Headers
+Accept:*/*
+Accept-Encoding:gzip, deflate, br
+Accept-Language:en
+Authorization:Bearer: eyJraWQiOiJzMmlWQkF1bUpCMkpvdGx3WGhGbFJrbW9qNE14dGY4bnd0M1NXVzR3Z2RBIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULkxiRFVqaG5zbWUwYzRjczFjVVMzTTVZTVZ6cllYbzlWMHRtb21Xc3RkRzgub2FyNXkwZXU1aEVuNEhJSlEzNTciLCJpc3MiOiJodHRwczovL2lkcy5tbGIuY29tL29hdXRoMi9hdXMxbTA4OHlLMDdub0JmaDM1NiIsImF1ZCI6ImFwaTovL21sYl9kZWZhdWx0IiwiaWF0IjoxNzU2MzIxMDE1LCJleHAiOjE3NTY0MDc0MTUsImNpZCI6IjBvYTRnemdtdGFRT1hXb0V1MzU2IiwidWlkIjoiMDB1MnI4emVzZWhucGxkMDgzNTciLCJzY3AiOlsiZW1haWwiLCJvZmZsaW5lX2FjY2VzcyIsInByb2ZpbGUiLCJvcGVuaWQiLCJ3ZWJfc2Vzc2lvbiJdLCJhdXRoX3RpbWUiOjE3NTYzMjEwMTUsInN1YiI6InR2eWVhcmx5QGdtYWlsLmNvbSIsImlwaWQiOiIiLCJtbGJfZW50aXRsZW1lbnQiOnRydWUsImd1aWQiOiIiLCJlbWFpbCI6InR2eWVhcmx5QGdtYWlsLmNvbSJ9.YZoUPCUF-A-zmedauy5LY2hTqYuz0EyPrWN1YOjnrObnYrMqKDx1KzjyzY7_pIuSCYgT2fArIkAV686Azm-fAZ2Z0Qx_8vERukPeunpNDrNq2hveZ8dQiwGCwnAKx-8b0Ty2niiHcsp9aPfp9zjM2M40j1E4DTh2xRztx6GU1ONw1bRbLXzAJPOEK6AoLLKjMy4aTyFNnpZNgWGPWn81n54xIcuYAt5x3O0tQYCjts2VtOIAIru_x64Y0jDN4gshP0uirk6XlgYBv37UWSiDpMwzmKnFn7Z2pcHa4UayWWwQIp1qdj5FvMqEbkHgRQEAEVKm1T_Mj9w7Ui2tSEAZkw
+Baggage:session.id=fb2f2fa1-8951-49ae-a347-2c7b76bdb0ea
+Connection:keep-alive
+Content-Type:application/json
+Mlb-Ecid:61697239480593465535450370602177152895
+Mlb-Geolocation:{"lat":37.780227,"lon":-122.396733,"zip":"94107"}
+Mlb-Mobile-Uid:38C5C9F0-8A2C-4323-8E93-88D84CB5DE1E
+Mlb-Timezone:US/Eastern
+Mlb-User-Logged-In:true
+Traceparent:00-68af562800000000f0eb0b8a1082e4b4-67d818fd9d2d9b22-01
+Tracestate:dd=o:rum;p:67d818fd9d2d9b22;s:1
+User-Agent:MLB/25.17.0.38/iPhone
+X-Datadog-Origin:rum
+X-Datadog-Parent-Id:7482758258418883362
+X-Datadog-Sampling-Priority:1
+X-Datadog-Tags:_dd.p.tid=68af562800000000
+X-Datadog-Trace-Id:17359981876240114868

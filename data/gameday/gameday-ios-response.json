@@ -1,0 +1,69 @@
+{
+  "screens": [
+    {
+      "id": "1",
+      "screenProperties": {
+        "type": "FULL"
+      },
+      "layout": {
+        "wide": {
+          "type": "SingleColumnLayout",
+          "nav": {
+            "type": "EmptyPlacement"
+          },
+          "main": {
+            "type": "MultipleSectionsPlacement",
+            "sectionDetails": [
+              {
+                "sectionId": "gameday-section"
+              }
+            ]
+          },
+          "footer": {
+            "type": "EmptyPlacement"
+          }
+        },
+        "compact": {
+          "type": "SingleColumnLayout",
+          "nav": {
+            "type": "EmptyPlacement"
+          },
+          "main": {
+            "type": "MultipleSectionsPlacement",
+            "sectionDetails": [
+              {
+                "sectionId": "gameday-section"
+              }
+            ]
+          },
+          "footer": {
+            "type": "EmptyPlacement"
+          }
+        }
+      },
+      "screenLoadAction": {
+        "analyticsTrackingData": {
+          "pageTag": "gameday",
+          "actionTag": null,
+          "keyValuePairs": null
+        }
+      }
+    }
+  ],
+  "sections": [
+    {
+      "id": "gameday-section",
+      "sectionComponentType": "WEBVIEW",
+      "section": {
+        "type": "WebviewSection",
+        "url": "https://prod.gameday.mlb.com/app-ios/5.40.0-ios.0/install/index.html#gamepk=776580,game_view=live,lang=en&affiliateId=mlbapp-ios_webview&rsid=mlbdev.at.bat.ios.new",
+        "header": null,
+        "blockedDomain": [],
+        "allowScrolling": true,
+        "authentication": "COOKIE",
+        "pullToRefreshEnabled": true
+      }
+    }
+  ],
+  "metadata": {}
+}

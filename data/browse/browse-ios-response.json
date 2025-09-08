@@ -1,0 +1,917 @@
+{
+  "screens": [
+    {
+      "id": "1",
+      "screenProperties": {
+        "type": "FULL"
+      },
+      "layout": {
+        "wide": {
+          "type": "SingleColumnLayout",
+          "nav": {
+            "type": "EmptyPlacement"
+          },
+          "main": {
+            "type": "MultipleSectionsPlacement",
+            "sectionDetails": [
+              {
+                "sectionId": "0"
+              },
+              {
+                "sectionId": "1"
+              },
+              {
+                "sectionId": "2"
+              },
+              {
+                "sectionId": "4"
+              },
+              {
+                "sectionId": "5"
+              },
+              {
+                "sectionId": "6"
+              },
+              {
+                "sectionId": "7"
+              },
+              {
+                "sectionId": "8"
+              },
+              {
+                "sectionId": "9"
+              },
+              {
+                "sectionId": "10"
+              },
+              {
+                "sectionId": "11"
+              },
+              {
+                "sectionId": "12"
+              }
+            ]
+          },
+          "footer": {
+            "type": "EmptyPlacement"
+          }
+        },
+        "compact": {
+          "type": "SingleColumnLayout",
+          "nav": {
+            "type": "EmptyPlacement"
+          },
+          "main": {
+            "type": "MultipleSectionsPlacement",
+            "sectionDetails": [
+              {
+                "sectionId": "0"
+              },
+              {
+                "sectionId": "1"
+              },
+              {
+                "sectionId": "2"
+              },
+              {
+                "sectionId": "4"
+              },
+              {
+                "sectionId": "5"
+              },
+              {
+                "sectionId": "6"
+              },
+              {
+                "sectionId": "7"
+              },
+              {
+                "sectionId": "8"
+              },
+              {
+                "sectionId": "9"
+              },
+              {
+                "sectionId": "10"
+              },
+              {
+                "sectionId": "11"
+              },
+              {
+                "sectionId": "12"
+              }
+            ]
+          },
+          "footer": {
+            "type": "EmptyPlacement"
+          }
+        }
+      },
+      "screenLoadAction": {
+        "analyticsTrackingData": {
+          "pageTag": "Browse Menu",
+          "actionTag": null,
+          "keyValuePairs": null
+        }
+      }
+    }
+  ],
+  "sections": [
+    {
+      "id": "0",
+      "sectionComponentType": "PROMO_BANNER",
+      "section": {
+        "type": "PromoBannerSection",
+        "id": "fa815b41-d6ca-4da8-9f84-9f766a56f430",
+        "backgroundImageUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/MLBPlay_Browse.png",
+        "rightImageUrl": null,
+        "label": null,
+        "buttonText": null,
+        "a11yDisplayText": "MLB Play",
+        "action": {
+          "type": "DeeplinkAction",
+          "title": "",
+          "deeplinkURL": "mlbatbat://gaminghub",
+          "analyticsTrackingData": {
+            "pageTag": "Browse Menu",
+            "actionTag": "MLB Play Banner",
+            "keyValuePairs": {
+              "action.element.text": "",
+              "action.element.index": "0",
+              "action.element.sectionTitle": "Browse",
+              "action.element.sectionIndex": "0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "1",
+      "sectionComponentType": "PROMO_BANNER",
+      "section": {
+        "type": "PromoBannerSection",
+        "id": "e6cee125-77a1-4fdb-9d34-686c359dba74",
+        "backgroundImageUrl": "https://mlb-content.storage.googleapis.com/images/BrowseMenuAssets/1080x504_PickEm_MLB_App.jpg",
+        "rightImageUrl": null,
+        "label": null,
+        "buttonText": null,
+        "a11yDisplayText": null,
+        "action": {
+          "type": "DeeplinkAction",
+          "title": "",
+          "deeplinkURL": "mlbatbat://webview?url=https://www.mlb.com/moments/experiences/konami-league-leaders-pick-em&authenticate=true",
+          "passwordAuthCredentials": true,
+          "analyticsTrackingData": {
+            "pageTag": "Browse Menu",
+            "actionTag": "Konami PickEm Browse Click",
+            "keyValuePairs": {
+              "action.element.text": "",
+              "action.element.index": "0",
+              "action.element.sectionTitle": "Browse",
+              "action.element.sectionIndex": "1"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "2",
+      "sectionComponentType": "TILE_GRID",
+      "section": {
+        "type": "TileGridSection",
+        "id": "9c4d722e-daa4-49f5-a381-1102780045d7",
+        "header": {
+          "id": "07f28fa3-ec1e-46d4-ad7a-10675cf9b2b5",
+          "headerText": "Quick Hits",
+          "a11yHeaderText": "Quick Hits",
+          "textButton": null
+        },
+        "items": [
+          {
+            "id": "4b34bf01-2985-4082-8d92-da1212c95f6c",
+            "label": " My Daily Story",
+            "a11yDisplayText": " My Daily Story",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/stories-md.png",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": " My Daily Story",
+              "deeplinkURL": "mlbatbat://tapstory?url=https://www.mlb.com/stories/{OKTAID}/my/{DATE}?storylocal=browse_my-daily-story",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": " My Daily Story Click",
+                "keyValuePairs": {
+                  "action.element.text": " My Daily Story",
+                  "action.element.index": "2",
+                  "action.element.sectionTitle": "Quick Hits",
+                  "action.element.sectionIndex": "0"
+                }
+              }
+            }
+          },
+          {
+            "id": "cc53d7a1-3826-4026-8f7a-55898240c445",
+            "label": "CLE Schedule",
+            "a11yDisplayText": "CLE's Schedule",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/calendar-md.png",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "CLE Schedule",
+              "deeplinkURL": "mlbatbat://schedule?date=20250201&scrollToYear=2025&team_id=114",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "CLE's Schedule Click",
+                "keyValuePairs": {
+                  "action.element.text": "CLE Schedule",
+                  "action.element.index": "2",
+                  "action.element.sectionTitle": "Quick Hits",
+                  "action.element.sectionIndex": "1"
+                }
+              }
+            }
+          },
+          {
+            "id": "b5c65b28-c239-485e-9335-c435c8b8cb6a",
+            "label": "CLE Roster",
+            "a11yDisplayText": "CLE Roster",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/person-multi-md.png",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "CLE Roster",
+              "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fwww.mlb.com%2Fapp%2Fatbat%2Fen%2Fguardians%2Froster",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "CLE Roster Click",
+                "keyValuePairs": {
+                  "action.element.text": "CLE Roster",
+                  "action.element.index": "2",
+                  "action.element.sectionTitle": "Quick Hits",
+                  "action.element.sectionIndex": "2"
+                }
+              }
+            }
+          },
+          {
+            "id": "2dc79868-d75b-46d9-b316-7e0383f2d5b1",
+            "label": "CLE Stats",
+            "a11yDisplayText": "CLE Stats",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/bargraph-md.png",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "CLE Stats",
+              "deeplinkURL": "mlbatbat://stats?teamId=114",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "CLE Stats Click",
+                "keyValuePairs": {
+                  "action.element.text": "CLE Stats",
+                  "action.element.index": "2",
+                  "action.element.sectionTitle": "Quick Hits",
+                  "action.element.sectionIndex": "3"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "4",
+      "sectionComponentType": "TEXT_LIST",
+      "section": {
+        "type": "TextListSection",
+        "id": "c721ae94-8ec4-4e50-a140-f33f35b19a15",
+        "header": {
+          "id": "4e052137-2180-4694-b62a-0b31a1d1bd01",
+          "headerText": "Popular",
+          "a11yHeaderText": "Popular",
+          "textButton": null
+        },
+        "items": [
+          {
+            "id": "68419ad8-2fd6-405d-b7e3-208244b601a6",
+            "displayText": "Stats",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/bargraph-md.png",
+            "a11yDisplayText": "Stats",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Stats",
+              "deeplinkURL": "mlbatbat://stats",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Stats Click",
+                "keyValuePairs": {
+                  "action.element.text": "Stats",
+                  "action.element.index": "0",
+                  "action.element.sectionTitle": "Popular",
+                  "action.element.sectionIndex": "4"
+                }
+              }
+            }
+          },
+          {
+            "id": "5d8e278b-0424-45f5-8f75-c627a31e9a25",
+            "displayText": "Teams",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/teams-jersey-md.png",
+            "a11yDisplayText": "Teams",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Teams",
+              "deeplinkURL": "mlbatbat://teampicker",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Teams Click",
+                "keyValuePairs": {
+                  "action.element.text": "Teams",
+                  "action.element.index": "1",
+                  "action.element.sectionTitle": "Popular",
+                  "action.element.sectionIndex": "4"
+                }
+              }
+            }
+          },
+          {
+            "id": "8676cf92-023d-4a79-aa66-fec0c0e16eca",
+            "displayText": "Audio",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/headphones-md.png",
+            "a11yDisplayText": "Audio",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Audio",
+              "deeplinkURL": "mlbatbat://audio",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Audio Click",
+                "keyValuePairs": {
+                  "action.element.text": "Audio",
+                  "action.element.index": "2",
+                  "action.element.sectionTitle": "Popular",
+                  "action.element.sectionIndex": "4"
+                }
+              }
+            }
+          },
+          {
+            "id": "9bf0bc49-1517-414e-ba4d-57ed131eabf1",
+            "displayText": "MLB Play",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/mlb-play-md.png",
+            "a11yDisplayText": "MLB Play",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "MLB Play",
+              "deeplinkURL": "mlbatbat://gaminghub",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "MLB Play",
+                "keyValuePairs": {
+                  "action.element.text": "MLB Play",
+                  "action.element.index": "3",
+                  "action.element.sectionTitle": "Popular",
+                  "action.element.sectionIndex": "4"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "5",
+      "sectionComponentType": "TEXT_LIST",
+      "section": {
+        "type": "TextListSection",
+        "id": "c64f4a7d-257d-4cdd-8ac0-52cc995b5ab7",
+        "header": {
+          "id": "2be826bd-e602-41a8-a63e-7e7a9be9faec",
+          "headerText": "Shop & Tickets",
+          "a11yHeaderText": "Shop & Tickets",
+          "textButton": null
+        },
+        "items": [
+          {
+            "id": "7168a330-a56e-4305-af92-6f78e5d4606a",
+            "displayText": "Shop",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/shop-md.png",
+            "a11yDisplayText": "Shop",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Shop",
+              "deeplinkURL": "mlbatbat://webview?url=https://www.mlbshop.com/",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Shop Click",
+                "keyValuePairs": {
+                  "action.element.text": "Shop",
+                  "action.element.index": "0",
+                  "action.element.sectionTitle": "Shop & Tickets",
+                  "action.element.sectionIndex": "5"
+                }
+              }
+            }
+          },
+          {
+            "id": "c2dc0a10-dae9-4a3e-a518-c085b0ab41eb",
+            "displayText": "Tickets",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/ticket-multi-md.png",
+            "a11yDisplayText": "Tickets",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Tickets",
+              "deeplinkURL": "mlbatbat://webview?url=https://www.mlb.com/app/atbat/tickets",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Tickets Click",
+                "keyValuePairs": {
+                  "action.element.text": "Tickets",
+                  "action.element.index": "1",
+                  "action.element.sectionTitle": "Shop & Tickets",
+                  "action.element.sectionIndex": "5"
+                }
+              }
+            }
+          },
+          {
+            "id": "d6e9d1c8-d046-4103-933c-4eceb673d7f2",
+            "displayText": "Auction",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/gavel-md.png",
+            "a11yDisplayText": "Auction",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Auction",
+              "deeplinkURL": "mlbatbat://webview?url=https://auctions.mlb.com/",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Auction Click",
+                "keyValuePairs": {
+                  "action.element.text": "Auction",
+                  "action.element.index": "2",
+                  "action.element.sectionTitle": "Shop & Tickets",
+                  "action.element.sectionIndex": "5"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "6",
+      "sectionComponentType": "TEXT_LIST",
+      "section": {
+        "type": "TextListSection",
+        "id": "72b8421d-8c3b-4dec-b1ef-fa0fa0f296ae",
+        "header": {
+          "id": "9893a93c-f416-4f59-91a8-1cc4252f727d",
+          "headerText": "Rankings & Advanced Stats",
+          "a11yHeaderText": "Rankings & Advanced Stats",
+          "textButton": null
+        },
+        "items": [
+          {
+            "id": "547eda48-03de-4918-9080-a414ff6fae08",
+            "displayText": "Prospect Rankings",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/prospect-md.png",
+            "a11yDisplayText": "Prospect Rankings",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Prospect Rankings",
+              "deeplinkURL": "mlbatbat://webview?url=https://www.mlb.com/app/atbat/prospects",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Prospect Rankings Click",
+                "keyValuePairs": {
+                  "action.element.text": "Prospect Rankings",
+                  "action.element.index": "0",
+                  "action.element.sectionTitle": "Rankings & Advanced Stats",
+                  "action.element.sectionIndex": "6"
+                }
+              }
+            }
+          },
+          {
+            "id": "30cd38a2-7592-40eb-948a-762c6da86eb2",
+            "displayText": "Baseball Savant",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/savant-md.png",
+            "a11yDisplayText": "Baseball Savant",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Baseball Savant",
+              "deeplinkURL": "mlbatbat://webview?url=https://baseballsavant.mlb.com",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Baseball Savant Click",
+                "keyValuePairs": {
+                  "action.element.text": "Baseball Savant",
+                  "action.element.index": "1",
+                  "action.element.sectionTitle": "Rankings & Advanced Stats",
+                  "action.element.sectionIndex": "6"
+                }
+              }
+            }
+          },
+          {
+            "id": "cd56c280-7168-449b-b7ed-a6eaf46471a1",
+            "displayText": "Player of the Game",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/ribbon-md.png",
+            "a11yDisplayText": "Player of the Game",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Player of the Game",
+              "deeplinkURL": "mlbatbat://webview?url=https://www.mlb.com/apps/player-of-the-game/game",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Player of The Game Click",
+                "keyValuePairs": {
+                  "action.element.text": "Player of the Game",
+                  "action.element.index": "2",
+                  "action.element.sectionTitle": "Rankings & Advanced Stats",
+                  "action.element.sectionIndex": "6"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "sectionComponentType": "TEXT_LIST",
+      "section": {
+        "type": "TextListSection",
+        "id": "f18c4b14-0b52-4485-bd78-e6ffc7e221b1",
+        "header": {
+          "id": "8778be85-0296-4384-ac0a-5351aa5ea1a9",
+          "headerText": "Listen & Watch",
+          "a11yHeaderText": "Listen & Watch",
+          "textButton": null
+        },
+        "items": [
+          {
+            "id": "1236c882-c97d-4642-aa13-9d23e16dda5d",
+            "displayText": "Watch MLB Network",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/mlb-network-logo-md.png",
+            "a11yDisplayText": "MLB Network",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Watch MLB Network",
+              "deeplinkURL": "mlbatbat://network",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "MLB Network Click",
+                "keyValuePairs": {
+                  "action.element.text": "Watch MLB Network",
+                  "action.element.index": "0",
+                  "action.element.sectionTitle": "Listen & Watch",
+                  "action.element.sectionIndex": "7"
+                }
+              }
+            }
+          },
+          {
+            "id": "517ab3d6-3411-4b37-92ac-cf13dfeb1d9d",
+            "displayText": "Podcasts",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/podcast-md.png",
+            "a11yDisplayText": "Podcasts",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Podcasts",
+              "deeplinkURL": "mlbatbat://webview?url=https://www.mlb.com/app/atbat/fans/podcasts",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Podcasts Click",
+                "keyValuePairs": {
+                  "action.element.text": "Podcasts",
+                  "action.element.index": "1",
+                  "action.element.sectionTitle": "Listen & Watch",
+                  "action.element.sectionIndex": "7"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "8",
+      "sectionComponentType": "TEXT_LIST",
+      "section": {
+        "type": "TextListSection",
+        "id": "698b498b-6ddf-47c6-8006-e34ba4145e5a",
+        "header": {
+          "id": "3fc006e0-2065-4e9b-b5d8-38f08e9345a6",
+          "headerText": "More Apps from MLB",
+          "a11yHeaderText": "More Apps from MLB",
+          "textButton": null
+        },
+        "items": [
+          {
+            "id": "7fd23267-4b3c-4bf8-ac5d-d8effff08c8c",
+            "displayText": "Ballpark App",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/stadium-md.png",
+            "a11yDisplayText": "Ballpark App",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Ballpark App",
+              "deeplinkURL": "mlbatbat://externalWebview?url=https://bp.mlb.com/6bzIdHVYAyb",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Ballpark App Click",
+                "keyValuePairs": {
+                  "action.element.text": "Ballpark App",
+                  "action.element.index": "0",
+                  "action.element.sectionTitle": "More Apps from MLB",
+                  "action.element.sectionIndex": "8"
+                }
+              }
+            }
+          },
+          {
+            "id": "5e438d2c-dad2-401b-9e8c-e04b9e909e62",
+            "displayText": "MiLB App",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/SDUIBrowse/milb-logo-md.png",
+            "a11yDisplayText": "MiLB App",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "MiLB App",
+              "deeplinkURL": "mlbatbat://externalWebview?url=https://8a570.app.link/9pw38l9QPJb",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "MiLB App Click",
+                "keyValuePairs": {
+                  "action.element.text": "MiLB App",
+                  "action.element.index": "1",
+                  "action.element.sectionTitle": "More Apps from MLB",
+                  "action.element.sectionIndex": "8"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "9",
+      "sectionComponentType": "TEXT_LIST",
+      "section": {
+        "type": "TextListSection",
+        "id": "901d230f-7653-4446-97f3-05f59cd1de84",
+        "header": {
+          "id": "37d37d5f-b623-4de1-b1d4-8030b8a0e90d",
+          "headerText": "Your Account",
+          "a11yHeaderText": "Your Account",
+          "textButton": null
+        },
+        "items": [
+          {
+            "id": "67937d16-972f-4031-8db3-4c5c015c510c",
+            "displayText": "Account Settings",
+            "a11yDisplayText": "Account Settings",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Account Settings",
+              "deeplinkURL": "mlbatbat://settings",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Account Settings Click",
+                "keyValuePairs": {
+                  "action.element.text": "Account Settings",
+                  "action.element.index": "0",
+                  "action.element.sectionTitle": "Your Account",
+                  "action.element.sectionIndex": "9"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "10",
+      "sectionComponentType": "TEXT_LIST",
+      "section": {
+        "type": "TextListSection",
+        "id": "0296ea26-ee17-4e1d-8b3f-f939bc8298a4",
+        "header": {
+          "id": "06a5faeb-1d90-4de6-976c-d9297ec92095",
+          "headerText": "Help",
+          "a11yHeaderText": "Help",
+          "textButton": null
+        },
+        "items": [
+          {
+            "id": "a858ad24-a086-4f7a-a8f8-a7c94d34f90d",
+            "displayText": "FAQs",
+            "a11yDisplayText": "FAQs",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "FAQs",
+              "deeplinkURL": "mlbatbat://webview?url=https://support.mlb.com/s/topic/0TOQP000000JmSL4A0/mlb-app",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "FAQs Click",
+                "keyValuePairs": {
+                  "action.element.text": "FAQs",
+                  "action.element.index": "0",
+                  "action.element.sectionTitle": "Help",
+                  "action.element.sectionIndex": "10"
+                }
+              }
+            }
+          },
+          {
+            "id": "d23163cf-bb3a-4d63-9bad-5af591d323ba",
+            "displayText": "Virtual Assistant",
+            "a11yDisplayText": "Virtual Assistant",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Virtual Assistant",
+              "deeplinkURL": "mlbatbat://webview?url=https://chat.satis.fi/?pageID=25888",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Virtual Assistant",
+                "keyValuePairs": {
+                  "action.element.text": "Virtual Assistant",
+                  "action.element.index": "1",
+                  "action.element.sectionTitle": "Help",
+                  "action.element.sectionIndex": "10"
+                }
+              }
+            }
+          },
+          {
+            "id": "3bc120b1-529b-4051-b25d-93a6602a7715",
+            "displayText": "Restore Account",
+            "a11yDisplayText": "Restore Account",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Restore Account",
+              "deeplinkURL": "mlbatbat://paywall?featureType=mobile.tvAccess",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Restore Account Click",
+                "keyValuePairs": {
+                  "action.element.text": "Restore Account",
+                  "action.element.index": "2",
+                  "action.element.sectionTitle": "Help",
+                  "action.element.sectionIndex": "10"
+                }
+              }
+            }
+          },
+          {
+            "id": "4dced0c7-d1db-4fc7-bd9a-3d7bf3959196",
+            "displayText": "Subscription Management",
+            "a11yDisplayText": "Subscription Management",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Subscription Management",
+              "deeplinkURL": "mlbatbat://webview?url=https://support.mlb.com/s/topic/0TOQP000000JmSL4A0/mlb-app",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Subscription Management Click",
+                "keyValuePairs": {
+                  "action.element.text": "Subscription Management",
+                  "action.element.index": "3",
+                  "action.element.sectionTitle": "Help",
+                  "action.element.sectionIndex": "10"
+                }
+              }
+            }
+          },
+          {
+            "id": "4c8eb856-a66d-4720-b7c8-ac528c527d99",
+            "displayText": "Contact Us",
+            "a11yDisplayText": "Contact Us",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Contact Us",
+              "deeplinkURL": "mlbatbat://webview?url=https://support.mlb.com/s/contact-us",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Contact Us Click",
+                "keyValuePairs": {
+                  "action.element.text": "Contact Us",
+                  "action.element.index": "4",
+                  "action.element.sectionTitle": "Help",
+                  "action.element.sectionIndex": "10"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "11",
+      "sectionComponentType": "TEXT_LIST",
+      "section": {
+        "type": "TextListSection",
+        "id": "7baaae8d-3581-4d39-be81-6b2ffea8e4eb",
+        "header": {
+          "id": "325a32ce-0687-4a1f-a8a0-3261e4232f71",
+          "headerText": "About",
+          "a11yHeaderText": "About",
+          "textButton": null
+        },
+        "items": [
+          {
+            "id": "9da1fe2e-06a6-46d1-a68e-5b10c254be81",
+            "displayText": "Blackout Restrictions",
+            "a11yDisplayText": "Blackout Restrictions",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Blackout Restrictions",
+              "deeplinkURL": "mlbatbat://webview?url=https://support.mlb.com/s/article/MLBTV-Blackout-Policy",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Blackout Restrictions Click",
+                "keyValuePairs": {
+                  "action.element.text": "Blackout Restrictions",
+                  "action.element.index": "0",
+                  "action.element.sectionTitle": "About",
+                  "action.element.sectionIndex": "11"
+                }
+              }
+            }
+          },
+          {
+            "id": "e1b4da85-e8c6-414f-9baa-faad86e467ad",
+            "displayText": "Privacy Policy",
+            "a11yDisplayText": "Privacy Policy",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Privacy Policy",
+              "deeplinkURL": "mlbatbat://webview?url=https://www.mlb.com/official-information/privacy-policy",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Privacy Policy Click",
+                "keyValuePairs": {
+                  "action.element.text": "Privacy Policy",
+                  "action.element.index": "1",
+                  "action.element.sectionTitle": "About",
+                  "action.element.sectionIndex": "11"
+                }
+              }
+            }
+          },
+          {
+            "id": "5a7618b2-7142-4524-b7af-99f0bbeb8c48",
+            "displayText": "Terms of Use",
+            "a11yDisplayText": "Terms of Use",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Terms of Use",
+              "deeplinkURL": "mlbatbat://webview?url=https://www.mlb.com/official-information/terms-of-use",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Terms of Use Click",
+                "keyValuePairs": {
+                  "action.element.text": "Terms of Use",
+                  "action.element.index": "2",
+                  "action.element.sectionTitle": "About",
+                  "action.element.sectionIndex": "11"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "12",
+      "sectionComponentType": "TEXT_LIST",
+      "section": {
+        "type": "TextListSection",
+        "id": "1eaeab52-bd91-4d81-8dd8-615c78c6545d",
+        "header": {
+          "id": "864fd2e6-bb70-4c11-8c99-f97325bf9e94",
+          "headerText": "MLB Privacy Settings",
+          "a11yHeaderText": "MLB Privacy Settings",
+          "textButton": null
+        },
+        "items": [
+          {
+            "id": "a15a6718-fd0b-459a-8f53-7da496d16ccc",
+            "displayText": "Do Not Sell or Share My Personal Data ",
+            "a11yDisplayText": "Do Not Sell or Share My Personal Data",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Do Not Sell or Share My Personal Data ",
+              "deeplinkURL": "mlbatbat://webview?url=https://privacyportal.onetrust.com/webform/53a301ae-6882-46f9-af93-24f64f792aee/3251a424-8286-4725-9313-603f12c85a49",
+              "analyticsTrackingData": {
+                "pageTag": "Browse Menu",
+                "actionTag": "Do Not Sell or Share My Personal Data Click",
+                "keyValuePairs": {
+                  "action.element.text": "Do Not Sell or Share My Personal Data ",
+                  "action.element.index": "0",
+                  "action.element.sectionTitle": "MLB Privacy Settings",
+                  "action.element.sectionIndex": "12"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {}
+}

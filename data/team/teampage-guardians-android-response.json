@@ -1,0 +1,2082 @@
+{
+  "screens": [
+    {
+      "id": "b1aee157-cf9c-41b9-875e-d6fee9f45050",
+      "screenProperties": {
+        "type": "FULL"
+      },
+      "layout": {
+        "wide": {
+          "type": "SingleColumnLayout",
+          "nav": {
+            "type": "EmptyPlacement"
+          },
+          "main": {
+            "type": "MultipleSectionsPlacement",
+            "sectionDetails": [
+              {
+                "sectionId": "prod:primary:teammigcarusecase:teamid:114:language:en:timezoneamerica-chicago:hidescores:false"
+              },
+              {
+                "sectionId": "prod:primary:editorialfeedsection:teamid:114:language:en:isPhone:true:isAndroid:true"
+              },
+              {
+                "sectionId": "prod:primary:videocarouselsection:teamid:114:language:en"
+              },
+              {
+                "sectionId": "prod:primary:teaminfotextlistsection:teamid:114:language:en"
+              },
+              {
+                "sectionId": "prod:primary:ticketingmenusection:teamid:114:language:en"
+              },
+              {
+                "sectionId": "prod:primary:insidercarouselsection:teamid:114:language:en"
+              },
+              {
+                "sectionId": "prod:primary:googleadsection:teamid:114:language:en:isTablet:true"
+              },
+              {
+                "sectionId": "prod:primary:morefromtextlistsection:teamid:114:language:en"
+              }
+            ]
+          },
+          "footer": {
+            "type": "EmptyPlacement"
+          }
+        },
+        "compact": {
+          "type": "SingleColumnLayout",
+          "nav": {
+            "type": "EmptyPlacement"
+          },
+          "main": {
+            "type": "MultipleSectionsPlacement",
+            "sectionDetails": [
+              {
+                "sectionId": "prod:primary:teammigusecase:teamid:114:language:en:timezone:america-chicago:hidescores:false"
+              },
+              {
+                "sectionId": "prod:primary:editorialfeedsection:teamid:114:language:en:isPhone:true:isAndroid:true"
+              },
+              {
+                "sectionId": "prod:primary:videocarouselsection:teamid:114:language:en"
+              },
+              {
+                "sectionId": "prod:primary:ticketingmenusection:teamid:114:language:en"
+              },
+              {
+                "sectionId": "prod:primary:insidercarouselsection:teamid:114:language:en"
+              },
+              {
+                "sectionId": "prod:primary:googleadsection:teamid:114:language:en:isTablet:false"
+              },
+              {
+                "sectionId": "prod:primary:teaminfotextlistsection:teamid:114:language:en"
+              },
+              {
+                "sectionId": "prod:primary:morefromtextlistsection:teamid:114:language:en"
+              }
+            ]
+          },
+          "footer": {
+            "type": "EmptyPlacement"
+          }
+        }
+      },
+      "screenLoadAction": {
+        "analyticsTrackingData": {
+          "pageTag": "Team : CLE",
+          "actionTag": null,
+          "keyValuePairs": null
+        }
+      }
+    }
+  ],
+  "sections": [
+    {
+      "id": "prod:primary:teammigusecase:teamid:114:language:en:timezone:america-chicago:hidescores:false",
+      "sectionComponentType": "MIG",
+      "section": {
+        "type": "MIGSection",
+        "id": "prod:primary:teammigusecase:teamid:114:language:en:timezone:america-chicago:hidescores:false",
+        "calendarBar": {
+          "items": [
+            {
+              "selected": false,
+              "day": "Tue",
+              "date": "26",
+              "teamAbbreviation": "TB",
+              "venue": "TB",
+              "highlightedInfo": null,
+              "info": "W 3-0",
+              "a11yLabel": "August 26 versus Tampa Bay Rays. Tampa Bay Rays 0, Cleveland Guardians 3.  Click for more info.",
+              "tapAction": {
+                "type": "DeeplinkAction",
+                "deeplinkURL": "mlbatbat://game?gamepk=776584&game_tab=&selectedTab=&game_state=",
+                "analyticsTrackingData": {
+                  "pageTag": "Team : CLE",
+                  "actionTag": "Game Click",
+                  "keyValuePairs": {
+                    "game.state": "Final",
+                    "game.matchup": "TB @ CLE @ 2025-08-26",
+                    "game.pk": "776584",
+                    "action.element.moduleType": "MIG"
+                  }
+                }
+              }
+            },
+            {
+              "selected": true,
+              "day": "Wed",
+              "date": "27",
+              "teamAbbreviation": "TB",
+              "venue": "TB",
+              "highlightedInfo": "Live",
+              "info": null,
+              "a11yLabel": "August 27 versus Tampa Bay Rays. Game is live. Click for more info.",
+              "tapAction": {
+                "type": "DeeplinkAction",
+                "deeplinkURL": "mlbatbat://game?gamepk=776580&game_tab=&selectedTab=&game_state=",
+                "analyticsTrackingData": {
+                  "pageTag": "Team : CLE",
+                  "actionTag": "Game Click",
+                  "keyValuePairs": {
+                    "game.state": "Live",
+                    "game.matchup": "TB @ CLE @ 2025-08-27",
+                    "game.pk": "776580",
+                    "action.element.moduleType": "MIG"
+                  }
+                }
+              }
+            },
+            {
+              "selected": false,
+              "day": "Fri",
+              "date": "29",
+              "teamAbbreviation": "SEA",
+              "venue": "SEA",
+              "highlightedInfo": null,
+              "info": "6:10 PM",
+              "a11yLabel": "August 29 versus Seattle Mariners at 6:10 PM. Click for more info.",
+              "tapAction": {
+                "type": "DeeplinkAction",
+                "deeplinkURL": "mlbatbat://game?gamepk=776547&game_tab=&selectedTab=&game_state=",
+                "analyticsTrackingData": {
+                  "pageTag": "Team : CLE",
+                  "actionTag": "Game Click",
+                  "keyValuePairs": {
+                    "game.state": "Preview",
+                    "game.matchup": "SEA @ CLE @ 2025-08-29",
+                    "game.pk": "776547",
+                    "action.element.moduleType": "MIG"
+                  }
+                }
+              }
+            },
+            {
+              "selected": false,
+              "day": "Sat",
+              "date": "30",
+              "teamAbbreviation": "SEA",
+              "venue": "SEA",
+              "highlightedInfo": null,
+              "info": "6:15 PM",
+              "a11yLabel": "August 30 versus Seattle Mariners at 6:15 PM. Click for more info.",
+              "tapAction": {
+                "type": "DeeplinkAction",
+                "deeplinkURL": "mlbatbat://game?gamepk=776537&game_tab=&selectedTab=&game_state=",
+                "analyticsTrackingData": {
+                  "pageTag": "Team : CLE",
+                  "actionTag": "Game Click",
+                  "keyValuePairs": {
+                    "game.state": "Preview",
+                    "game.matchup": "SEA @ CLE @ 2025-08-30",
+                    "game.pk": "776537",
+                    "action.element.moduleType": "MIG"
+                  }
+                }
+              }
+            }
+          ],
+          "teamLogo": null,
+          "schedule": {
+            "a11yLabel": "\"team schedule\"",
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://schedule?team_id=114",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Schedule Click",
+                "keyValuePairs": {
+                  "action.click.text": "Schedule",
+                  "action.element.moduleType": "MIG"
+                }
+              }
+            }
+          }
+        },
+        "cards": [
+          {
+            "id": "mig-card-776580-114",
+            "teamMatchup": {
+              "situation": {
+                "onFirst": false,
+                "onSecond": false,
+                "onThird": false,
+                "topText": "TOP 7",
+                "statusText": null,
+                "subText": "0 - 0, 1 out",
+                "outs": 1,
+                "a11yLabel": "Tampa Bay Rays 3, Cleveland Guardians 2. . Top 7,  Click to follow in Gameday.",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "deeplinkURL": "mlbatbat://game?gamepk=776580&game_tab=&selectedTab=&game_state=",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Matchup Click",
+                    "keyValuePairs": {
+                      "game.state": "Live",
+                      "game.matchup": "TB @ CLE @ 2025-08-27",
+                      "game.pk": "776580",
+                      "action.element.moduleType": "MIG",
+                      "action.click.text": "776580"
+                    }
+                  }
+                }
+              },
+              "metaInfo": null,
+              "score": {
+                "home": "2",
+                "away": "3"
+              },
+              "teamsInfo": {
+                "home": {
+                  "logoUrl": "https://img.mlbstatic.com/mlb-photos/image/upload/w_144,h_144,c_pad/u_team:114:fill:spot,ar_1:1,w_240/r_max,f_png,q_auto:best/v1/team/114/logo/spot/current",
+                  "subText": "65-66",
+                  "tapAction": null,
+                  "a11yLabel": "Cleveland Guardians"
+                },
+                "away": {
+                  "logoUrl": "https://img.mlbstatic.com/mlb-photos/image/upload/w_144,h_144,c_pad/u_team:139:fill:spot,ar_1:1,w_240/r_max,f_png,q_auto:best/v1/team/139/logo/spot/current",
+                  "subText": "64-68",
+                  "tapAction": null,
+                  "a11yLabel": "Tampa Bay Rays"
+                }
+              },
+              "tapAction": {
+                "type": "DeeplinkAction",
+                "deeplinkURL": "mlbatbat://game?gamepk=776580&game_tab=&selectedTab=&game_state=",
+                "analyticsTrackingData": {
+                  "pageTag": "Team : CLE",
+                  "actionTag": "Matchup Click",
+                  "keyValuePairs": {
+                    "game.state": "Live",
+                    "game.matchup": "TB @ CLE @ 2025-08-27",
+                    "game.pk": "776580",
+                    "action.element.moduleType": "MIG",
+                    "action.click.text": "776580"
+                  }
+                }
+              },
+              "a11yLabel": "Tampa Bay Rays 3, Cleveland Guardians 2. . Top 7,  Click to follow in Gameday."
+            },
+            "metaInfo": {
+              "metaInfo": "Watch on: CLEG, MLBN",
+              "a11yText": "",
+              "tapAction": null
+            },
+            "productLinks": [
+              {
+                "title": "Watch",
+                "a11yText": "Watch",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Watch",
+                  "deeplinkURL": "mlbatbat://mlbtv?gamepk=776580&date=20250827&context=TeamPage",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Watch",
+                    "keyValuePairs": {
+                      "action.click.text": "Watch",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              },
+              {
+                "title": "Audio",
+                "a11yText": "Audio",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Audio",
+                  "deeplinkURL": "mlbatbat://audio?gamepk=776580&date=20250827&team=CLE&teamId=114",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Audio",
+                    "keyValuePairs": {
+                      "action.click.text": "Audio",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              },
+              {
+                "title": "Gameday",
+                "a11yText": "Gameday",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Gameday",
+                  "deeplinkURL": "mlbatbat://game?gamepk=776580&game_tab=box&selectedTab=box&game_state=live",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Gameday",
+                    "keyValuePairs": {
+                      "action.click.text": "Gameday",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              },
+              {
+                "title": "Story",
+                "a11yText": "Story",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Story",
+                  "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fwww.mlb.com%2Fen%2Fstories%2Fgame%2F776580",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Story",
+                    "keyValuePairs": {
+                      "action.click.text": "Story",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              }
+            ],
+            "linescore": null,
+            "probablePitchers": null,
+            "decisionPitchers": null,
+            "playerMatchup": {
+              "players": [
+                {
+                  "imageUrl": "https://midfield.mlbstatic.com/v1/people/670036/spots/60?zoom=1.2",
+                  "playerInfoLine1Prefix": "Festa",
+                  "playerInfoLine1": "P",
+                  "playerInfoLine1Suffix": null,
+                  "playerInfoLine2Prefix": null,
+                  "playerInfoLine2": "0.1 IP, 0 ER, K, 0 BB",
+                  "playerInfoLine2Suffix": null,
+                  "playerInfoSupplemental": "P:",
+                  "a11yLabel": "currently pitching Festa P 0.1 IP, 0 ER, K, 0 BB",
+                  "tapAction": {
+                    "type": "DeeplinkAction",
+                    "deeplinkURL": "mlbatbat://athlete?player_id=670036",
+                    "analyticsTrackingData": {
+                      "pageTag": "Team : CLE",
+                      "actionTag": "Player Click",
+                      "keyValuePairs": {
+                        "player.id": "670036",
+                        "action.element.moduleType": "MIG",
+                        "game.state": "Live",
+                        "game.matchup": "TB @ CLE @ 2025-08-27",
+                        "game.pk": "776580"
+                      }
+                    }
+                  }
+                },
+                {
+                  "imageUrl": "https://midfield.mlbstatic.com/v1/people/663968/spots/60?zoom=1.2",
+                  "playerInfoLine1Prefix": "Mangum",
+                  "playerInfoLine1": "RF",
+                  "playerInfoLine1Suffix": null,
+                  "playerInfoLine2Prefix": null,
+                  "playerInfoLine2": "1-2",
+                  "playerInfoLine2Suffix": null,
+                  "playerInfoSupplemental": "AB:",
+                  "a11yLabel": "currently batting Mangum RF 1-2",
+                  "tapAction": {
+                    "type": "DeeplinkAction",
+                    "deeplinkURL": "mlbatbat://athlete?player_id=663968",
+                    "analyticsTrackingData": {
+                      "pageTag": "Team : CLE",
+                      "actionTag": "Player Click",
+                      "keyValuePairs": {
+                        "player.id": "663968",
+                        "action.element.moduleType": "MIG",
+                        "game.state": "Live",
+                        "game.matchup": "TB @ CLE @ 2025-08-27",
+                        "game.pk": "776580"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "focused": null
+          }
+        ],
+        "refreshComponentAction": {
+          "url": "https://bullpen-gateway-svc.mlbinfra.com/api/teamPage/v1/mig?teamId=114&time=1756320600169",
+          "sectionId": "prod:primary:teammigusecase:teamid:114:language:en:timezone:america-chicago:hidescores:false",
+          "delayMs": 15000
+        }
+      }
+    },
+    {
+      "id": "prod:primary:teammigcarusecase:teamid:114:language:en:timezoneamerica-chicago:hidescores:false",
+      "sectionComponentType": "MIG_CAROUSEL",
+      "section": {
+        "type": "MIGCarouselSection",
+        "id": "prod:primary:teammigcarusecase:teamid:114:language:en:timezoneamerica-chicago:hidescores:false",
+        "cards": [
+          {
+            "id": "mig-card-776584-114",
+            "teamMatchup": {
+              "situation": null,
+              "metaInfo": {
+                "topText": "FINAL",
+                "bottomText": "",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "deeplinkURL": "mlbatbat://game?gamepk=776584&game_tab=&selectedTab=&game_state=",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Matchup Click",
+                    "keyValuePairs": {
+                      "game.state": "Final",
+                      "game.matchup": "TB @ CLE @ 2025-08-26",
+                      "game.pk": "776584",
+                      "action.element.moduleType": "MIG",
+                      "action.click.text": "776584"
+                    }
+                  }
+                },
+                "a11yLabel": "Tampa Bay Rays 0, Cleveland Guardians 3. . Tuesday August 26. FINAL. Click to view game wrap."
+              },
+              "score": {
+                "home": "3",
+                "away": "0"
+              },
+              "teamsInfo": {
+                "home": {
+                  "logoUrl": "https://img.mlbstatic.com/mlb-photos/image/upload/w_144,h_144,c_pad/u_team:114:fill:spot,ar_1:1,w_240/r_max,f_png,q_auto:best/v1/team/114/logo/spot/current",
+                  "subText": "65-66",
+                  "tapAction": null,
+                  "a11yLabel": "Cleveland Guardians"
+                },
+                "away": {
+                  "logoUrl": "https://img.mlbstatic.com/mlb-photos/image/upload/w_144,h_144,c_pad/u_team:139:fill:spot,ar_1:1,w_240/r_max,f_png,q_auto:best/v1/team/139/logo/spot/current",
+                  "subText": "64-68",
+                  "tapAction": null,
+                  "a11yLabel": "Tampa Bay Rays"
+                }
+              },
+              "tapAction": {
+                "type": "DeeplinkAction",
+                "deeplinkURL": "mlbatbat://game?gamepk=776584&game_tab=&selectedTab=&game_state=",
+                "analyticsTrackingData": {
+                  "pageTag": "Team : CLE",
+                  "actionTag": "Matchup Click",
+                  "keyValuePairs": {
+                    "game.state": "Final",
+                    "game.matchup": "TB @ CLE @ 2025-08-26",
+                    "game.pk": "776584",
+                    "action.element.moduleType": "MIG",
+                    "action.click.text": "776584"
+                  }
+                }
+              },
+              "a11yLabel": "Tampa Bay Rays 0, Cleveland Guardians 3. . Tuesday August 26. FINAL. Click to view game wrap."
+            },
+            "metaInfo": {
+              "metaInfo": "Watch on: CLEG, WKYC 3",
+              "a11yText": "",
+              "tapAction": null
+            },
+            "productLinks": [
+              {
+                "title": "Wrap",
+                "a11yText": "Wrap",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Wrap",
+                  "deeplinkURL": "mlbatbat://game?gamepk=776584&game_tab=wrap&selectedTab=wrap&game_state=final",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Wrap",
+                    "keyValuePairs": {
+                      "action.click.text": "Wrap",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              },
+              {
+                "title": "Box",
+                "a11yText": "Box",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Box",
+                  "deeplinkURL": "mlbatbat://game?gamepk=776584&game_tab=box&selectedTab=box&game_state=",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Box",
+                    "keyValuePairs": {
+                      "action.click.text": "Box",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              },
+              {
+                "title": "Videos",
+                "a11yText": "Videos",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Videos",
+                  "deeplinkURL": "mlbatbat://game?gamepk=776584&game_tab=videos&selectedTab=videos&game_state=final",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Videos",
+                    "keyValuePairs": {
+                      "action.click.text": "Videos",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              },
+              {
+                "title": "Story",
+                "a11yText": "Story",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Story",
+                  "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fwww.mlb.com%2Fen%2Fstories%2Fgame%2F776584",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Story",
+                    "keyValuePairs": {
+                      "action.click.text": "Story",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              }
+            ],
+            "linescore": null,
+            "probablePitchers": null,
+            "decisionPitchers": {
+              "players": [
+                {
+                  "imageUrl": null,
+                  "playerInfoLine1Prefix": "Messick",
+                  "playerInfoLine1": "LHP",
+                  "playerInfoLine1Suffix": null,
+                  "playerInfoLine2Prefix": null,
+                  "playerInfoLine2": "1 - 0, 0.66 ERA",
+                  "playerInfoLine2Suffix": null,
+                  "playerInfoSupplemental": "W:",
+                  "a11yLabel": "winning pitcher Messick LHP 1 - 0, 0.66 ERA",
+                  "tapAction": {
+                    "type": "DeeplinkAction",
+                    "deeplinkURL": "mlbatbat://athlete?player_id=800048",
+                    "analyticsTrackingData": {
+                      "pageTag": "Team : CLE",
+                      "actionTag": "Player Click",
+                      "keyValuePairs": {
+                        "player.id": "800048",
+                        "action.element.moduleType": "MIG",
+                        "game.state": "Final",
+                        "game.matchup": "TB @ CLE @ 2025-08-26",
+                        "game.pk": "776584"
+                      }
+                    }
+                  }
+                },
+                {
+                  "imageUrl": null,
+                  "playerInfoLine1Prefix": "Baz",
+                  "playerInfoLine1": "RHP",
+                  "playerInfoLine1Suffix": null,
+                  "playerInfoLine2Prefix": null,
+                  "playerInfoLine2": "8 - 11, 5.19 ERA",
+                  "playerInfoLine2Suffix": null,
+                  "playerInfoSupplemental": "L:",
+                  "a11yLabel": "losing pitcher Baz RHP 8 - 11, 5.19 ERA",
+                  "tapAction": {
+                    "type": "DeeplinkAction",
+                    "deeplinkURL": "mlbatbat://athlete?player_id=669358",
+                    "analyticsTrackingData": {
+                      "pageTag": "Team : CLE",
+                      "actionTag": "Player Click",
+                      "keyValuePairs": {
+                        "player.id": "669358",
+                        "action.element.moduleType": "MIG",
+                        "game.state": "Final",
+                        "game.matchup": "TB @ CLE @ 2025-08-26",
+                        "game.pk": "776584"
+                      }
+                    }
+                  }
+                },
+                {
+                  "imageUrl": null,
+                  "playerInfoLine1Prefix": "Smith",
+                  "playerInfoLine1": "RHP",
+                  "playerInfoLine1Suffix": null,
+                  "playerInfoLine2Prefix": null,
+                  "playerInfoLine2": "5 - 5, 3.09 ERA",
+                  "playerInfoLine2Suffix": null,
+                  "playerInfoSupplemental": "S:",
+                  "a11yLabel": "saved by Smith RHP 5 - 5, 3.09 ERA",
+                  "tapAction": {
+                    "type": "DeeplinkAction",
+                    "deeplinkURL": "mlbatbat://athlete?player_id=671922",
+                    "analyticsTrackingData": {
+                      "pageTag": "Team : CLE",
+                      "actionTag": "Player Click",
+                      "keyValuePairs": {
+                        "player.id": "671922",
+                        "action.element.moduleType": "MIG",
+                        "game.state": "Final",
+                        "game.matchup": "TB @ CLE @ 2025-08-26",
+                        "game.pk": "776584"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "playerMatchup": null
+          },
+          {
+            "id": "mig-card-776580-114",
+            "teamMatchup": {
+              "situation": {
+                "onFirst": false,
+                "onSecond": false,
+                "onThird": false,
+                "topText": "TOP 7",
+                "statusText": null,
+                "subText": "0 - 0, 1 out",
+                "outs": 1,
+                "a11yLabel": "Tampa Bay Rays 3, Cleveland Guardians 2. . Top 7,  Click to follow in Gameday.",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "deeplinkURL": "mlbatbat://game?gamepk=776580&game_tab=&selectedTab=&game_state=",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Matchup Click",
+                    "keyValuePairs": {
+                      "game.state": "Live",
+                      "game.matchup": "TB @ CLE @ 2025-08-27",
+                      "game.pk": "776580",
+                      "action.element.moduleType": "MIG",
+                      "action.click.text": "776580"
+                    }
+                  }
+                }
+              },
+              "metaInfo": null,
+              "score": {
+                "home": "2",
+                "away": "3"
+              },
+              "teamsInfo": {
+                "home": {
+                  "logoUrl": "https://img.mlbstatic.com/mlb-photos/image/upload/w_144,h_144,c_pad/u_team:114:fill:spot,ar_1:1,w_240/r_max,f_png,q_auto:best/v1/team/114/logo/spot/current",
+                  "subText": "65-66",
+                  "tapAction": null,
+                  "a11yLabel": "Cleveland Guardians"
+                },
+                "away": {
+                  "logoUrl": "https://img.mlbstatic.com/mlb-photos/image/upload/w_144,h_144,c_pad/u_team:139:fill:spot,ar_1:1,w_240/r_max,f_png,q_auto:best/v1/team/139/logo/spot/current",
+                  "subText": "64-68",
+                  "tapAction": null,
+                  "a11yLabel": "Tampa Bay Rays"
+                }
+              },
+              "tapAction": {
+                "type": "DeeplinkAction",
+                "deeplinkURL": "mlbatbat://game?gamepk=776580&game_tab=&selectedTab=&game_state=",
+                "analyticsTrackingData": {
+                  "pageTag": "Team : CLE",
+                  "actionTag": "Matchup Click",
+                  "keyValuePairs": {
+                    "game.state": "Live",
+                    "game.matchup": "TB @ CLE @ 2025-08-27",
+                    "game.pk": "776580",
+                    "action.element.moduleType": "MIG",
+                    "action.click.text": "776580"
+                  }
+                }
+              },
+              "a11yLabel": "Tampa Bay Rays 3, Cleveland Guardians 2. . Top 7,  Click to follow in Gameday."
+            },
+            "metaInfo": {
+              "metaInfo": "Watch on: CLEG, MLBN",
+              "a11yText": "",
+              "tapAction": null
+            },
+            "productLinks": [
+              {
+                "title": "Watch",
+                "a11yText": "Watch",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Watch",
+                  "deeplinkURL": "mlbatbat://mlbtv?gamepk=776580&date=20250827&context=TeamPage",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Watch",
+                    "keyValuePairs": {
+                      "action.click.text": "Watch",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              },
+              {
+                "title": "Audio",
+                "a11yText": "Audio",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Audio",
+                  "deeplinkURL": "mlbatbat://audio?gamepk=776580&date=20250827&team=CLE&teamId=114",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Audio",
+                    "keyValuePairs": {
+                      "action.click.text": "Audio",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              },
+              {
+                "title": "Gameday",
+                "a11yText": "Gameday",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Gameday",
+                  "deeplinkURL": "mlbatbat://game?gamepk=776580&game_tab=box&selectedTab=box&game_state=live",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Gameday",
+                    "keyValuePairs": {
+                      "action.click.text": "Gameday",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              },
+              {
+                "title": "Story",
+                "a11yText": "Story",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Story",
+                  "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fwww.mlb.com%2Fen%2Fstories%2Fgame%2F776580",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Story",
+                    "keyValuePairs": {
+                      "action.click.text": "Story",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              }
+            ],
+            "linescore": null,
+            "probablePitchers": null,
+            "decisionPitchers": null,
+            "playerMatchup": {
+              "players": [
+                {
+                  "imageUrl": "https://midfield.mlbstatic.com/v1/people/670036/spots/60?zoom=1.2",
+                  "playerInfoLine1Prefix": "Festa",
+                  "playerInfoLine1": "P",
+                  "playerInfoLine1Suffix": null,
+                  "playerInfoLine2Prefix": null,
+                  "playerInfoLine2": "0.1 IP, 0 ER, K, 0 BB",
+                  "playerInfoLine2Suffix": null,
+                  "playerInfoSupplemental": "P:",
+                  "a11yLabel": "currently pitching Festa P 0.1 IP, 0 ER, K, 0 BB",
+                  "tapAction": {
+                    "type": "DeeplinkAction",
+                    "deeplinkURL": "mlbatbat://athlete?player_id=670036",
+                    "analyticsTrackingData": {
+                      "pageTag": "Team : CLE",
+                      "actionTag": "Player Click",
+                      "keyValuePairs": {
+                        "player.id": "670036",
+                        "action.element.moduleType": "MIG",
+                        "game.state": "Live",
+                        "game.matchup": "TB @ CLE @ 2025-08-27",
+                        "game.pk": "776580"
+                      }
+                    }
+                  }
+                },
+                {
+                  "imageUrl": "https://midfield.mlbstatic.com/v1/people/663968/spots/60?zoom=1.2",
+                  "playerInfoLine1Prefix": "Mangum",
+                  "playerInfoLine1": "RF",
+                  "playerInfoLine1Suffix": null,
+                  "playerInfoLine2Prefix": null,
+                  "playerInfoLine2": "1-2",
+                  "playerInfoLine2Suffix": null,
+                  "playerInfoSupplemental": "AB:",
+                  "a11yLabel": "currently batting Mangum RF 1-2",
+                  "tapAction": {
+                    "type": "DeeplinkAction",
+                    "deeplinkURL": "mlbatbat://athlete?player_id=663968",
+                    "analyticsTrackingData": {
+                      "pageTag": "Team : CLE",
+                      "actionTag": "Player Click",
+                      "keyValuePairs": {
+                        "player.id": "663968",
+                        "action.element.moduleType": "MIG",
+                        "game.state": "Live",
+                        "game.matchup": "TB @ CLE @ 2025-08-27",
+                        "game.pk": "776580"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "focused": true
+          },
+          {
+            "id": "mig-card-776547-114",
+            "teamMatchup": {
+              "situation": null,
+              "metaInfo": {
+                "topText": "Fri 8/29\n6:10 PM",
+                "bottomText": "",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "deeplinkURL": "mlbatbat://game?gamepk=776547&game_tab=&selectedTab=&game_state=",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Matchup Click",
+                    "keyValuePairs": {
+                      "game.state": "Preview",
+                      "game.matchup": "SEA @ CLE @ 2025-08-29",
+                      "game.pk": "776547",
+                      "action.element.moduleType": "MIG",
+                      "action.click.text": "776547"
+                    }
+                  }
+                },
+                "a11yLabel": "Seattle Mariners at Cleveland Guardians. Friday August 29 6:10 PM CDT. Click to view game preview."
+              },
+              "score": null,
+              "teamsInfo": {
+                "home": {
+                  "logoUrl": "https://img.mlbstatic.com/mlb-photos/image/upload/w_144,h_144,c_pad/u_team:114:fill:spot,ar_1:1,w_240/r_max,f_png,q_auto:best/v1/team/114/logo/spot/current",
+                  "subText": "65-66",
+                  "tapAction": null,
+                  "a11yLabel": "Cleveland Guardians"
+                },
+                "away": {
+                  "logoUrl": "https://img.mlbstatic.com/mlb-photos/image/upload/w_144,h_144,c_pad/u_team:136:fill:spot,ar_1:1,w_240/r_max,f_png,q_auto:best/v1/team/136/logo/spot/current",
+                  "subText": "71-62",
+                  "tapAction": null,
+                  "a11yLabel": "Seattle Mariners"
+                }
+              },
+              "tapAction": {
+                "type": "DeeplinkAction",
+                "deeplinkURL": "mlbatbat://game?gamepk=776547&game_tab=&selectedTab=&game_state=",
+                "analyticsTrackingData": {
+                  "pageTag": "Team : CLE",
+                  "actionTag": "Matchup Click",
+                  "keyValuePairs": {
+                    "game.state": "Preview",
+                    "game.matchup": "SEA @ CLE @ 2025-08-29",
+                    "game.pk": "776547",
+                    "action.element.moduleType": "MIG",
+                    "action.click.text": "776547"
+                  }
+                }
+              },
+              "a11yLabel": "Seattle Mariners at Cleveland Guardians. Friday August 29 6:10 PM CDT. Click to view game preview."
+            },
+            "metaInfo": {
+              "metaInfo": "Watch on: CLEG, MLBN",
+              "a11yText": "",
+              "tapAction": null
+            },
+            "productLinks": [
+              {
+                "title": "Preview",
+                "a11yText": "Preview",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Preview",
+                  "deeplinkURL": "mlbatbat://game?gamepk=776547&game_tab=preview&selectedTab=preview&game_state=preview",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Preview",
+                    "keyValuePairs": {
+                      "action.click.text": "Preview",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              },
+              {
+                "title": "Tickets",
+                "a11yText": "Tickets",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Tickets",
+                  "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fmlb.tickets.com%2F%3Fagency%3DMLB_MPV%26orgid%3D27%26pid%3D9499223",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Tickets",
+                    "keyValuePairs": {
+                      "action.click.text": "Tickets",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              },
+              {
+                "title": "Story",
+                "a11yText": "Story",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Story",
+                  "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fwww.mlb.com%2Fstories%2Fgame-preview%2F776547",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Story",
+                    "keyValuePairs": {
+                      "action.click.text": "Story",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              }
+            ],
+            "linescore": null,
+            "probablePitchers": {
+              "players": [
+                {
+                  "imageUrl": "https://midfield.mlbstatic.com/v1/people/0/spots/60?zoom=1.2",
+                  "playerInfoLine1Prefix": "TBD",
+                  "playerInfoLine1": "",
+                  "playerInfoLine1Suffix": null,
+                  "playerInfoLine2Prefix": null,
+                  "playerInfoLine2": "-",
+                  "playerInfoLine2Suffix": null,
+                  "playerInfoSupplemental": null,
+                  "a11yLabel": "probable starter to be determined",
+                  "tapAction": {
+                    "type": "DeeplinkAction",
+                    "deeplinkURL": "mlbatbat://athlete?player_id=0",
+                    "analyticsTrackingData": {
+                      "pageTag": "Team : CLE",
+                      "actionTag": "Player Click",
+                      "keyValuePairs": {
+                        "player.id": "0",
+                        "action.element.moduleType": "MIG",
+                        "game.state": "Preview",
+                        "game.matchup": "SEA @ CLE @ 2025-08-29",
+                        "game.pk": "776547"
+                      }
+                    }
+                  }
+                },
+                {
+                  "imageUrl": "https://midfield.mlbstatic.com/v1/people/671106/spots/60?zoom=1.2",
+                  "playerInfoLine1Prefix": "Allen",
+                  "playerInfoLine1": "LHP",
+                  "playerInfoLine1Suffix": null,
+                  "playerInfoLine2Prefix": null,
+                  "playerInfoLine2": "7-10 | 4.35 ERA",
+                  "playerInfoLine2Suffix": null,
+                  "playerInfoSupplemental": null,
+                  "a11yLabel": "probable starter Allen LHP 7-10 | 4.35 ERA",
+                  "tapAction": {
+                    "type": "DeeplinkAction",
+                    "deeplinkURL": "mlbatbat://athlete?player_id=671106",
+                    "analyticsTrackingData": {
+                      "pageTag": "Team : CLE",
+                      "actionTag": "Player Click",
+                      "keyValuePairs": {
+                        "player.id": "671106",
+                        "action.element.moduleType": "MIG",
+                        "game.state": "Preview",
+                        "game.matchup": "SEA @ CLE @ 2025-08-29",
+                        "game.pk": "776547"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "decisionPitchers": null,
+            "playerMatchup": null
+          },
+          {
+            "id": "mig-card-776537-114",
+            "teamMatchup": {
+              "situation": null,
+              "metaInfo": {
+                "topText": "Sat 8/30\n6:15 PM",
+                "bottomText": "",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "deeplinkURL": "mlbatbat://game?gamepk=776537&game_tab=&selectedTab=&game_state=",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Matchup Click",
+                    "keyValuePairs": {
+                      "game.state": "Preview",
+                      "game.matchup": "SEA @ CLE @ 2025-08-30",
+                      "game.pk": "776537",
+                      "action.element.moduleType": "MIG",
+                      "action.click.text": "776537"
+                    }
+                  }
+                },
+                "a11yLabel": "Seattle Mariners at Cleveland Guardians. Saturday August 30 6:15 PM CDT. Click to view game preview."
+              },
+              "score": null,
+              "teamsInfo": {
+                "home": {
+                  "logoUrl": "https://img.mlbstatic.com/mlb-photos/image/upload/w_144,h_144,c_pad/u_team:114:fill:spot,ar_1:1,w_240/r_max,f_png,q_auto:best/v1/team/114/logo/spot/current",
+                  "subText": "65-66",
+                  "tapAction": null,
+                  "a11yLabel": "Cleveland Guardians"
+                },
+                "away": {
+                  "logoUrl": "https://img.mlbstatic.com/mlb-photos/image/upload/w_144,h_144,c_pad/u_team:136:fill:spot,ar_1:1,w_240/r_max,f_png,q_auto:best/v1/team/136/logo/spot/current",
+                  "subText": "71-62",
+                  "tapAction": null,
+                  "a11yLabel": "Seattle Mariners"
+                }
+              },
+              "tapAction": {
+                "type": "DeeplinkAction",
+                "deeplinkURL": "mlbatbat://game?gamepk=776537&game_tab=&selectedTab=&game_state=",
+                "analyticsTrackingData": {
+                  "pageTag": "Team : CLE",
+                  "actionTag": "Matchup Click",
+                  "keyValuePairs": {
+                    "game.state": "Preview",
+                    "game.matchup": "SEA @ CLE @ 2025-08-30",
+                    "game.pk": "776537",
+                    "action.element.moduleType": "MIG",
+                    "action.click.text": "776537"
+                  }
+                }
+              },
+              "a11yLabel": "Seattle Mariners at Cleveland Guardians. Saturday August 30 6:15 PM CDT. Click to view game preview."
+            },
+            "metaInfo": {
+              "metaInfo": "Watch on: FOX",
+              "a11yText": "",
+              "tapAction": null
+            },
+            "productLinks": [
+              {
+                "title": "Preview",
+                "a11yText": "Preview",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Preview",
+                  "deeplinkURL": "mlbatbat://game?gamepk=776537&game_tab=preview&selectedTab=preview&game_state=preview",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Preview",
+                    "keyValuePairs": {
+                      "action.click.text": "Preview",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              },
+              {
+                "title": "Tickets",
+                "a11yText": "Tickets",
+                "tapAction": {
+                  "type": "DeeplinkAction",
+                  "title": "Tickets",
+                  "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fmlb.tickets.com%2F%3Fagency%3DMLB_MPV%26orgid%3D27%26pid%3D9499224",
+                  "analyticsTrackingData": {
+                    "pageTag": "Team : CLE",
+                    "actionTag": "Tickets",
+                    "keyValuePairs": {
+                      "action.click.text": "Tickets",
+                      "action.element.moduleType": "MIG"
+                    }
+                  }
+                }
+              }
+            ],
+            "linescore": null,
+            "probablePitchers": {
+              "players": [
+                {
+                  "imageUrl": "https://midfield.mlbstatic.com/v1/people/0/spots/60?zoom=1.2",
+                  "playerInfoLine1Prefix": "TBD",
+                  "playerInfoLine1": "",
+                  "playerInfoLine1Suffix": null,
+                  "playerInfoLine2Prefix": null,
+                  "playerInfoLine2": "-",
+                  "playerInfoLine2Suffix": null,
+                  "playerInfoSupplemental": null,
+                  "a11yLabel": "probable starter to be determined",
+                  "tapAction": {
+                    "type": "DeeplinkAction",
+                    "deeplinkURL": "mlbatbat://athlete?player_id=0",
+                    "analyticsTrackingData": {
+                      "pageTag": "Team : CLE",
+                      "actionTag": "Player Click",
+                      "keyValuePairs": {
+                        "player.id": "0",
+                        "action.element.moduleType": "MIG",
+                        "game.state": "Preview",
+                        "game.matchup": "SEA @ CLE @ 2025-08-30",
+                        "game.pk": "776537"
+                      }
+                    }
+                  }
+                },
+                {
+                  "imageUrl": "https://midfield.mlbstatic.com/v1/people/668909/spots/60?zoom=1.2",
+                  "playerInfoLine1Prefix": "Williams",
+                  "playerInfoLine1": "RHP",
+                  "playerInfoLine1Suffix": null,
+                  "playerInfoLine2Prefix": null,
+                  "playerInfoLine2": "8-5 | 3.36 ERA",
+                  "playerInfoLine2Suffix": null,
+                  "playerInfoSupplemental": null,
+                  "a11yLabel": "probable starter Williams RHP 8-5 | 3.36 ERA",
+                  "tapAction": {
+                    "type": "DeeplinkAction",
+                    "deeplinkURL": "mlbatbat://athlete?player_id=668909",
+                    "analyticsTrackingData": {
+                      "pageTag": "Team : CLE",
+                      "actionTag": "Player Click",
+                      "keyValuePairs": {
+                        "player.id": "668909",
+                        "action.element.moduleType": "MIG",
+                        "game.state": "Preview",
+                        "game.matchup": "SEA @ CLE @ 2025-08-30",
+                        "game.pk": "776537"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "decisionPitchers": null,
+            "playerMatchup": null
+          }
+        ],
+        "refreshComponentAction": {
+          "url": "https://bullpen-gateway-svc.mlbinfra.com/api/teamPage/v1/migcarousel?teamId=114&time=1756320600363",
+          "sectionId": "prod:primary:teammigcarusecase:teamid:114:language:en:timezoneamerica-chicago:hidescores:false",
+          "delayMs": 15000
+        }
+      }
+    },
+    {
+      "id": "prod:primary:editorialfeedsection:teamid:114:language:en:isPhone:true:isAndroid:true",
+      "sectionComponentType": "TOP_STORIES",
+      "section": {
+        "type": "EditorialFeedSection",
+        "id": "prod:primary:editorialfeedsection:teamid:114:language:en:isPhone:true:isAndroid:true",
+        "header": {
+          "id": "prod:primary:editorialfeedsection:teamid:114:language:en:isPhone:true:isAndroid:true:EditorialFeedHeaderMapper",
+          "headerText": "Top Stories",
+          "a11yHeaderText": "Top Stories",
+          "textButton": null
+        },
+        "items": [
+          {
+            "id": "prod:primary:editorialfeedsection:teamid:114:language:en:isPhone:true:isAndroid:true:guardians-2026-regular-season-schedule-breakdown",
+            "title": "Breaking down the Guardians' 2026 regular-season schedule",
+            "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/w_640,h_360,g_auto,c_fill/mlb/q87ucytkwaefrfzsfgl1",
+            "displayDate": "AUGUST 27, 2025",
+            "contentType": "ARTICLE",
+            "a11yLabel": "Breaking down the Guardians' 2026 regular-season schedule",
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://news?article=guardians-2026-regular-season-schedule-breakdown",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Breaking down the Guardians' 2026 regular-season schedule",
+                "keyValuePairs": {
+                  "action.click.text": "Breaking down the Guardians' 2026 regular-season schedule",
+                  "action.element.moduleType": "Top Stories"
+                }
+              }
+            },
+            "compactStyle": "LARGE",
+            "largeStyle": "LARGE"
+          },
+          {
+            "id": "prod:primary:editorialfeedsection:teamid:114:language:en:isPhone:true:isAndroid:true:parker-messick-1st-mlb-win-guardians",
+            "title": "Messick deals 7 scoreless for 1st MLB win in 2nd career start",
+            "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/w_640,h_360,g_auto,c_fill/v1756262507/mlb/z3lxgfipbwmkwhef4gvq",
+            "displayDate": "AUGUST 27, 2025",
+            "contentType": "ARTICLE",
+            "a11yLabel": "Messick deals 7 scoreless for 1st MLB win in 2nd career start",
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://news?article=parker-messick-1st-mlb-win-guardians",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Messick deals 7 scoreless for 1st MLB win in 2nd career start",
+                "keyValuePairs": {
+                  "action.click.text": "Messick deals 7 scoreless for 1st MLB win in 2nd career start",
+                  "action.element.moduleType": "Top Stories"
+                }
+              }
+            },
+            "compactStyle": "SMALLHORIZONTAL",
+            "largeStyle": "SMALL"
+          },
+          {
+            "id": "prod:primary:editorialfeedsection:teamid:114:language:en:isPhone:true:isAndroid:true:cleguardians-tv-2025-subscription",
+            "title": "How to stream, watch games in Guardians territory for $34.99",
+            "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/w_640,h_360,g_auto,c_fill/mlb/gxlihxfg8gyl09x6c8ky",
+            "displayDate": "AUGUST 08, 2025",
+            "contentType": "ARTICLE",
+            "a11yLabel": "How to stream, watch games in Guardians territory for $34.99",
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://news?article=cleguardians-tv-2025-subscription",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "How to stream, watch games in Guardians territory for $34.99",
+                "keyValuePairs": {
+                  "action.click.text": "How to stream, watch games in Guardians territory for $34.99",
+                  "action.element.moduleType": "Top Stories"
+                }
+              }
+            },
+            "compactStyle": "SMALLHORIZONTAL",
+            "largeStyle": "SMALL"
+          },
+          {
+            "id": "prod:primary:editorialfeedsection:teamid:114:language:en:isPhone:true:isAndroid:true:guardians-2026-regular-season-schedule-is-here",
+            "title": "Guardians' 2026 regular-season schedule is here",
+            "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/w_640,h_360,g_auto,c_fill/mlb/oc7lmkulhtixrhjhaflp",
+            "displayDate": "AUGUST 26, 2025",
+            "contentType": "ARTICLE",
+            "a11yLabel": "Guardians' 2026 regular-season schedule is here",
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fwww.mlb.com%2Fguardians%2Fschedule%2F2026-03",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Guardians' 2026 regular-season schedule is here",
+                "keyValuePairs": {
+                  "action.click.text": "Guardians' 2026 regular-season schedule is here",
+                  "action.element.moduleType": "Top Stories"
+                }
+              }
+            },
+            "compactStyle": "SMALLHORIZONTAL",
+            "largeStyle": "SMALL"
+          },
+          {
+            "id": "prod:primary:editorialfeedsection:teamid:114:language:en:isPhone:true:isAndroid:true:guardians-injuries-and-roster-moves",
+            "title": "Latest Guardians injuries and transactions",
+            "imageUrl": "https://img.mlbstatic.com/mlb-images/image/private/w_640,h_360,g_auto,c_fill/mlb/maw5nsnvqcufuhis8s5z",
+            "displayDate": "AUGUST 27, 2025",
+            "contentType": "ARTICLE",
+            "a11yLabel": "Latest Guardians injuries and transactions",
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://news?article=guardians-injuries-and-roster-moves",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Latest Guardians injuries and transactions",
+                "keyValuePairs": {
+                  "action.click.text": "Latest Guardians injuries and transactions",
+                  "action.element.moduleType": "Top Stories"
+                }
+              }
+            },
+            "compactStyle": "SMALLHORIZONTAL",
+            "largeStyle": "SMALL"
+          }
+        ],
+        "style": "QUAD"
+      }
+    },
+    {
+      "id": "prod:primary:videocarouselsection:teamid:114:language:en",
+      "sectionComponentType": "VIDEO_CONTENT_CAROUSEL",
+      "section": {
+        "type": "VideoContentCarouselSection",
+        "id": "prod:primary:videocarouselsection:teamid:114:language:en",
+        "header": {
+          "id": "prod:primary:videocarouselsection:teamid:114:language:en:VideoHeaderMapper",
+          "headerText": "Videos",
+          "a11yHeaderText": "Videos",
+          "textButton": null
+        },
+        "items": [
+          {
+            "type": "SmallVideoContentItem",
+            "id": "prod:primary:videocarouselsection:teamid:114:language:en:drew-rasmussen-in-play-run-s-to-steven-kwan",
+            "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/w_444,h_250,g_auto,c_fill/mlb/tlc4zj5qcqwrp79puisl",
+            "title": "Steven Kwan's RBI single",
+            "allyText": "Steven Kwan's RBI single AUGUST 27, 2025",
+            "dateText": "AUGUST 27, 2025",
+            "autoPlayVideo": true,
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "title": "Steven Kwan's RBI single",
+              "deeplinkURL": "mlbatbat://video?article=drew-rasmussen-in-play-run-s-to-steven-kwan",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Steven Kwan's RBI single",
+                "keyValuePairs": {
+                  "action.click.text": "Steven Kwan's RBI single",
+                  "action.element.moduleType": "Videos"
+                }
+              }
+            },
+            "videoPlaybackUrl": "https://bdata-producedclips.mlb.com/538c4348-cab9-46d0-8557-fcda083da47c.m3u8",
+            "analyticsTrackingData": {
+              "pageTag": "Team : CLE",
+              "actionTag": null,
+              "keyValuePairs": {
+                "action.element.text": "Steven Kwan's RBI single",
+                "action.element.moduleType": "Videos",
+                "action.element.index": "0",
+                "action.element.contentType": "video",
+                "action.element.video.slug": "drew-rasmussen-in-play-run-s-to-steven-kwan",
+                "video.slug": "drew-rasmussen-in-play-run-s-to-steven-kwan",
+                "video.title": "Steven Kwan's RBI single",
+                "video.contentId": "538c4348-cab9-46d0-8557-fcda083da47c",
+                "video.contentType": "VOD",
+                "video.autoplay": "true",
+                "video.categoryType": "Season 2025, 2025/08/27 tb@cle, Steven Kwan, Cleveland Guardians, hitting, highlight, in-game highlight, game action tracking, vod, Game story highlight",
+                "video.context": "Team : CLE"
+              }
+            }
+          },
+          {
+            "type": "SmallVideoContentItem",
+            "id": "prod:primary:videocarouselsection:teamid:114:language:en:will-wilson-singles-on-a-soft-bunt-ground-ball-to-first-baseman-yandy-diaz-gabri",
+            "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/w_444,h_250,g_auto,c_fill/mlb/yknpuxjw5sdvspcuqq8g",
+            "title": "Will Wilson's RBI bunt single",
+            "allyText": "Will Wilson's RBI bunt single AUGUST 27, 2025",
+            "dateText": "AUGUST 27, 2025",
+            "autoPlayVideo": true,
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "title": "Will Wilson's RBI bunt single",
+              "deeplinkURL": "mlbatbat://video?article=will-wilson-singles-on-a-soft-bunt-ground-ball-to-first-baseman-yandy-diaz-gabri",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Will Wilson's RBI bunt single",
+                "keyValuePairs": {
+                  "action.click.text": "Will Wilson's RBI bunt single",
+                  "action.element.moduleType": "Videos"
+                }
+              }
+            },
+            "videoPlaybackUrl": "https://mlb-cuts-diamond.mlb.com/FORGE/2025/2025-08/27/35b25c2d-c465543d-27f93f9d-csvm-diamondgcp-asset.m3u8",
+            "analyticsTrackingData": {
+              "pageTag": "Team : CLE",
+              "actionTag": null,
+              "keyValuePairs": {
+                "action.element.text": "Will Wilson's RBI bunt single",
+                "action.element.moduleType": "Videos",
+                "action.element.index": "1",
+                "action.element.contentType": "video",
+                "action.element.video.slug": "will-wilson-singles-on-a-soft-bunt-ground-ball-to-first-baseman-yandy-diaz-gabri",
+                "video.slug": "will-wilson-singles-on-a-soft-bunt-ground-ball-to-first-baseman-yandy-diaz-gabri",
+                "video.title": "Will Wilson's RBI bunt single",
+                "video.contentId": "674eff25-c19f-43a3-b39f-c94b205e50e7",
+                "video.contentType": "VOD",
+                "video.autoplay": "true",
+                "video.categoryType": "Season 2025, 2025/08/27 tb@cle, Will Wilson, Cleveland Guardians, hitting, highlight, in-game highlight, game action tracking, vod, Game story highlight, Sporty CC, Yahoo In-Game, 2-Yahoo MLB Ads Feed, Imagen feed, Send To News MLB feed",
+                "video.context": "Team : CLE"
+              }
+            }
+          },
+          {
+            "type": "SmallVideoContentItem",
+            "id": "prod:primary:videocarouselsection:teamid:114:language:en:brandon-lowe-grounds-out-first-baseman-c-j-kayfus-to-pitcher-slade-ceccon",
+            "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/w_444,h_250,g_auto,c_fill/mlb/rzein8gs0wzivuez2d6a",
+            "title": "C.J. Kayfus' fantastic diving stop",
+            "allyText": "C.J. Kayfus' fantastic diving stop AUGUST 27, 2025",
+            "dateText": "AUGUST 27, 2025",
+            "autoPlayVideo": true,
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "title": "C.J. Kayfus' fantastic diving stop",
+              "deeplinkURL": "mlbatbat://video?article=brandon-lowe-grounds-out-first-baseman-c-j-kayfus-to-pitcher-slade-ceccon",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "C.J. Kayfus' fantastic diving stop",
+                "keyValuePairs": {
+                  "action.click.text": "C.J. Kayfus' fantastic diving stop",
+                  "action.element.moduleType": "Videos"
+                }
+              }
+            },
+            "videoPlaybackUrl": "https://bdata-producedclips.mlb.com/c970ced0-ed4e-48d5-92c1-e38805182ec9.m3u8",
+            "analyticsTrackingData": {
+              "pageTag": "Team : CLE",
+              "actionTag": null,
+              "keyValuePairs": {
+                "action.element.text": "C.J. Kayfus' fantastic diving stop",
+                "action.element.moduleType": "Videos",
+                "action.element.index": "2",
+                "action.element.contentType": "video",
+                "action.element.video.slug": "brandon-lowe-grounds-out-first-baseman-c-j-kayfus-to-pitcher-slade-ceccon",
+                "video.slug": "brandon-lowe-grounds-out-first-baseman-c-j-kayfus-to-pitcher-slade-ceccon",
+                "video.title": "C.J. Kayfus' fantastic diving stop",
+                "video.contentId": "c970ced0-ed4e-48d5-92c1-e38805182ec9",
+                "video.contentType": "VOD",
+                "video.autoplay": "true",
+                "video.categoryType": "Season 2025, 2025/08/27 tb@cle, C.J. Kayfus, in-game highlight, highlight, defense, omg, Cleveland Guardians, game action tracking, Game story highlight",
+                "video.context": "Team : CLE"
+              }
+            }
+          },
+          {
+            "type": "SmallVideoContentItem",
+            "id": "prod:primary:videocarouselsection:teamid:114:language:en:carson-williams-grounds-out-shortstop-gabriel-arias-to-first-baseman-c-j",
+            "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/w_444,h_250,g_auto,c_fill/mlb/gsmgxdgqfuaiyk7x1gls",
+            "title": "Gabriel Arias' strong throw nabs Carson Williams",
+            "allyText": "Gabriel Arias' strong throw nabs Carson Williams AUGUST 27, 2025",
+            "dateText": "AUGUST 27, 2025",
+            "autoPlayVideo": true,
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "title": "Gabriel Arias' strong throw nabs Carson Williams",
+              "deeplinkURL": "mlbatbat://video?article=carson-williams-grounds-out-shortstop-gabriel-arias-to-first-baseman-c-j",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Gabriel Arias' strong throw nabs Carson Williams",
+                "keyValuePairs": {
+                  "action.click.text": "Gabriel Arias' strong throw nabs Carson Williams",
+                  "action.element.moduleType": "Videos"
+                }
+              }
+            },
+            "videoPlaybackUrl": "https://mlb-cuts-diamond.mlb.com/FORGE/2025/2025-08/27/1f546bf2-12d064f8-31c8e7c3-csvm-diamondgcp-asset.m3u8",
+            "analyticsTrackingData": {
+              "pageTag": "Team : CLE",
+              "actionTag": null,
+              "keyValuePairs": {
+                "action.element.text": "Gabriel Arias' strong throw nabs Carson Williams",
+                "action.element.moduleType": "Videos",
+                "action.element.index": "3",
+                "action.element.contentType": "video",
+                "action.element.video.slug": "carson-williams-grounds-out-shortstop-gabriel-arias-to-first-baseman-c-j",
+                "video.slug": "carson-williams-grounds-out-shortstop-gabriel-arias-to-first-baseman-c-j",
+                "video.title": "Gabriel Arias' strong throw nabs Carson Williams",
+                "video.contentId": "1f546bf2-12d064f8-31c8e7c3-csvm-diamondgcp-asset",
+                "video.contentType": "VOD",
+                "video.autoplay": "true",
+                "video.categoryType": "Season 2025, 2025/08/27 tb@cle, Gabriel Arias, defense, in-game highlight, Cleveland Guardians, highlight, game action tracking, Game story highlight",
+                "video.context": "Team : CLE"
+              }
+            }
+          },
+          {
+            "type": "SmallVideoContentItem",
+            "id": "prod:primary:videocarouselsection:teamid:114:language:en:drew-rasmussen-ball-in-dirt-to-steven-kwan",
+            "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/w_444,h_250,g_auto,c_fill/mlb/bsurtilc24ude6oaii9g",
+            "title": "Will Wilson picks up his second stolen base",
+            "allyText": "Will Wilson picks up his second stolen base AUGUST 27, 2025",
+            "dateText": "AUGUST 27, 2025",
+            "autoPlayVideo": true,
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "title": "Will Wilson picks up his second stolen base",
+              "deeplinkURL": "mlbatbat://video?article=drew-rasmussen-ball-in-dirt-to-steven-kwan",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Will Wilson picks up his second stolen base",
+                "keyValuePairs": {
+                  "action.click.text": "Will Wilson picks up his second stolen base",
+                  "action.element.moduleType": "Videos"
+                }
+              }
+            },
+            "videoPlaybackUrl": "https://bdata-producedclips.mlb.com/c2052ef6-cc03-4804-aa29-d7cef743bac1.m3u8",
+            "analyticsTrackingData": {
+              "pageTag": "Team : CLE",
+              "actionTag": null,
+              "keyValuePairs": {
+                "action.element.text": "Will Wilson picks up his second stolen base",
+                "action.element.moduleType": "Videos",
+                "action.element.index": "4",
+                "action.element.contentType": "video",
+                "action.element.video.slug": "drew-rasmussen-ball-in-dirt-to-steven-kwan",
+                "video.slug": "drew-rasmussen-ball-in-dirt-to-steven-kwan",
+                "video.title": "Will Wilson picks up his second stolen base",
+                "video.contentId": "c2052ef6-cc03-4804-aa29-d7cef743bac1",
+                "video.contentType": "VOD",
+                "video.autoplay": "true",
+                "video.categoryType": "Season 2025, 2025/08/27 tb@cle, Will Wilson, in-game highlight, highlight, stolen base, Cleveland Guardians, game action tracking, Game story highlight",
+                "video.context": "Team : CLE"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "prod:primary:articlecarouselsection:teamid:114:language:en",
+      "sectionComponentType": "ARTICLE_CONTENT_CAROUSEL",
+      "section": {
+        "type": "ArticleContentCarouselSection",
+        "id": "prod:primary:articlecarouselsection:teamid:114:language:en",
+        "header": {
+          "id": "prod:primary:articlecarouselsection:teamid:114:language:en:ArticleHeaderMapper",
+          "headerText": "Top Stories",
+          "a11yHeaderText": "Top Stories",
+          "textButton": {
+            "text": "See All",
+            "a11yText": "Navigate to News Index",
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://news?team_id=114"
+            }
+          }
+        },
+        "items": [
+          {
+            "type": "SmallArticleContentItem",
+            "id": "prod:primary:articlecarouselsection:teamid:114:language:en:guardians-2026-regular-season-schedule-breakdown",
+            "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/w_640,h_360,g_auto,c_fill/mlb/q87ucytkwaefrfzsfgl1",
+            "title": "Breaking down the Guardians' 2026 regular-season schedule",
+            "dateText": "AUGUST 27, 2025",
+            "allyText": "Breaking down the Guardians' 2026 regular-season schedule",
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://news?article=guardians-2026-regular-season-schedule-breakdown",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Breaking down the Guardians' 2026 regular-season schedule",
+                "keyValuePairs": {
+                  "action.click.text": "Breaking down the Guardians' 2026 regular-season schedule",
+                  "action.element.moduleType": "Top Stories"
+                }
+              }
+            }
+          },
+          {
+            "type": "SmallArticleContentItem",
+            "id": "prod:primary:articlecarouselsection:teamid:114:language:en:parker-messick-1st-mlb-win-guardians",
+            "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/w_640,h_360,g_auto,c_fill/v1756262507/mlb/z3lxgfipbwmkwhef4gvq",
+            "title": "Messick deals 7 scoreless for 1st MLB win in 2nd career start",
+            "dateText": "AUGUST 27, 2025",
+            "allyText": "Messick deals 7 scoreless for 1st MLB win in 2nd career start",
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://news?article=parker-messick-1st-mlb-win-guardians",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Messick deals 7 scoreless for 1st MLB win in 2nd career start",
+                "keyValuePairs": {
+                  "action.click.text": "Messick deals 7 scoreless for 1st MLB win in 2nd career start",
+                  "action.element.moduleType": "Top Stories"
+                }
+              }
+            }
+          },
+          {
+            "type": "SmallArticleContentItem",
+            "id": "prod:primary:articlecarouselsection:teamid:114:language:en:cleguardians-tv-2025-subscription",
+            "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/w_640,h_360,g_auto,c_fill/mlb/gxlihxfg8gyl09x6c8ky",
+            "title": "How to stream, watch games in Guardians territory for $34.99",
+            "dateText": "AUGUST 08, 2025",
+            "allyText": "How to stream, watch games in Guardians territory for $34.99",
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://news?article=cleguardians-tv-2025-subscription",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "How to stream, watch games in Guardians territory for $34.99",
+                "keyValuePairs": {
+                  "action.click.text": "How to stream, watch games in Guardians territory for $34.99",
+                  "action.element.moduleType": "Top Stories"
+                }
+              }
+            }
+          },
+          {
+            "type": "SmallArticleContentItem",
+            "id": "prod:primary:articlecarouselsection:teamid:114:language:en:guardians-2026-regular-season-schedule-is-here",
+            "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/w_640,h_360,g_auto,c_fill/mlb/oc7lmkulhtixrhjhaflp",
+            "title": "Guardians' 2026 regular-season schedule is here",
+            "dateText": "AUGUST 26, 2025",
+            "allyText": "Guardians' 2026 regular-season schedule is here",
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fwww.mlb.com%2Fguardians%2Fschedule%2F2026-03",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Guardians' 2026 regular-season schedule is here",
+                "keyValuePairs": {
+                  "action.click.text": "Guardians' 2026 regular-season schedule is here",
+                  "action.element.moduleType": "Top Stories"
+                }
+              }
+            }
+          },
+          {
+            "type": "SmallArticleContentItem",
+            "id": "prod:primary:articlecarouselsection:teamid:114:language:en:guardians-injuries-and-roster-moves",
+            "imageUrl": "https://img.mlbstatic.com/mlb-images/image/private/w_640,h_360,g_auto,c_fill/mlb/maw5nsnvqcufuhis8s5z",
+            "title": "Latest Guardians injuries and transactions",
+            "dateText": "AUGUST 27, 2025",
+            "allyText": "Latest Guardians injuries and transactions",
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://news?article=guardians-injuries-and-roster-moves",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Latest Guardians injuries and transactions",
+                "keyValuePairs": {
+                  "action.click.text": "Latest Guardians injuries and transactions",
+                  "action.element.moduleType": "Top Stories"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "prod:primary:ticketingmenusection:teamid:114:language:en",
+      "sectionComponentType": "TICKETING_MENU",
+      "section": {
+        "type": "TicketingMenuSection",
+        "id": "prod:primary:ticketingmenusection:teamid:114:language:en",
+        "items": [
+          {
+            "id": "prod:primary:ticketingmenusection:teamid:114:language:en:776580",
+            "primaryText": "Aug 27 • 1:10 PM EDT",
+            "secondaryText": "vs. Rays",
+            "iconUrl": "https://img.mlbstatic.com/mlb-photos/image/upload/w_144,h_144,c_pad/u_team:139:fill:spot,ar_1:1,w_240/r_max,f_png,q_auto:best/v1/team/139/logo/spot/current",
+            "allyLabel": "Buy Tickets for Aug 27 • 1:10 PM EDT game",
+            "supplementText": "Find Seats",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "776580",
+              "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fmlb.tickets.com%2F%3Fagency%3DMLB_MPV%26orgid%3D27%26pid%3D9499222",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Find Seats",
+                "keyValuePairs": {
+                  "game.pk": "776580",
+                  "action.click.text": "Find Seats",
+                  "action.element.moduleType": "Ticketing List"
+                }
+              }
+            }
+          },
+          {
+            "id": "prod:primary:ticketingmenusection:teamid:114:language:en:776547",
+            "primaryText": "Aug 29 • 7:10 PM EDT",
+            "secondaryText": "vs. Mariners",
+            "iconUrl": "https://img.mlbstatic.com/mlb-photos/image/upload/w_144,h_144,c_pad/u_team:136:fill:spot,ar_1:1,w_240/r_max,f_png,q_auto:best/v1/team/136/logo/spot/current",
+            "allyLabel": "Buy Tickets for Aug 29 • 7:10 PM EDT game",
+            "supplementText": "Find Seats",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "776547",
+              "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fmlb.tickets.com%2F%3Fagency%3DMLB_MPV%26orgid%3D27%26pid%3D9499223",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Find Seats",
+                "keyValuePairs": {
+                  "game.pk": "776547",
+                  "action.click.text": "Find Seats",
+                  "action.element.moduleType": "Ticketing List"
+                }
+              }
+            }
+          },
+          {
+            "id": "prod:primary:ticketingmenusection:teamid:114:language:en:776537",
+            "primaryText": "Aug 30 • 7:15 PM EDT",
+            "secondaryText": "vs. Mariners",
+            "iconUrl": "https://img.mlbstatic.com/mlb-photos/image/upload/w_144,h_144,c_pad/u_team:136:fill:spot,ar_1:1,w_240/r_max,f_png,q_auto:best/v1/team/136/logo/spot/current",
+            "allyLabel": "Buy Tickets for Aug 30 • 7:15 PM EDT game",
+            "supplementText": "Find Seats",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "776537",
+              "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fmlb.tickets.com%2F%3Fagency%3DMLB_MPV%26orgid%3D27%26pid%3D9499224",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Find Seats",
+                "keyValuePairs": {
+                  "game.pk": "776537",
+                  "action.click.text": "Find Seats",
+                  "action.element.moduleType": "Ticketing List"
+                }
+              }
+            }
+          }
+        ],
+        "header": {
+          "id": "prod:primary:ticketingmenusection:teamid:114:language:en:Header",
+          "headerText": "Tickets",
+          "a11yHeaderText": "Tickets",
+          "textButton": {
+            "text": "See All",
+            "a11yText": "See All",
+            "tapAction": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://externalWebview?url=https%3A%2F%2Fwww.mlb.com%2Fapp%2Fatbat%2Fguardians%2Ftickets%2Fsingle-game-tickets"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "prod:primary:teaminfotextlistsection:teamid:114:language:en",
+      "sectionComponentType": "TEXT_LIST",
+      "section": {
+        "type": "TextListSection",
+        "id": "prod:primary:teaminfotextlistsection:teamid:114:language:en",
+        "header": {
+          "id": "78589bf4-a180-47e2-ab60-056b2812544f",
+          "headerText": "Guardians Info",
+          "a11yHeaderText": "Guardians Info",
+          "textButton": null
+        },
+        "items": [
+          {
+            "id": "prod:primary:teaminfotextlistsection:teamid:114:language:en:standings",
+            "displayText": "Standings",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/textListMenuIcons/pennant.png",
+            "a11yDisplayText": "Standings",
+            "action": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://standings",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "STANDINGS",
+                "keyValuePairs": {
+                  "action.click.text": "STANDINGS",
+                  "action.element.moduleType": "Text List"
+                }
+              }
+            }
+          },
+          {
+            "id": "prod:primary:teaminfotextlistsection:teamid:114:language:en:transactions",
+            "displayText": "Transactions",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/textListMenuIcons/transaction.png",
+            "a11yDisplayText": "Transactions",
+            "action": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fwww.mlb.com%2Fapp%2Fatbat%2Fen%2Fguardians%2Froster%2Ftransactions",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "TRANSACTIONS",
+                "keyValuePairs": {
+                  "action.click.text": "TRANSACTIONS",
+                  "action.element.moduleType": "Text List"
+                }
+              }
+            }
+          },
+          {
+            "id": "prod:primary:teaminfotextlistsection:teamid:114:language:en:roster",
+            "displayText": "Roster",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/textListMenuIcons/person-multi.png",
+            "a11yDisplayText": "Roster",
+            "action": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fwww.mlb.com%2Fapp%2Fatbat%2Fen%2Fguardians%2Froster",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "ROSTER",
+                "keyValuePairs": {
+                  "action.click.text": "ROSTER",
+                  "action.element.moduleType": "Text List"
+                }
+              }
+            }
+          },
+          {
+            "id": "prod:primary:teaminfotextlistsection:teamid:114:language:en:coaches",
+            "displayText": "Coaches",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/textListMenuIcons/clipboard.png",
+            "a11yDisplayText": "Coaches",
+            "action": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fwww.mlb.com%2Fapp%2Fatbat%2Fen%2Fguardians%2Froster%2Fcoaches",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "COACHES",
+                "keyValuePairs": {
+                  "action.click.text": "COACHES",
+                  "action.element.moduleType": "Text List"
+                }
+              }
+            }
+          },
+          {
+            "id": "prod:primary:teaminfotextlistsection:teamid:114:language:en:stats",
+            "displayText": "Stats",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/textListMenuIcons/bar-graph.png",
+            "a11yDisplayText": "Stats",
+            "action": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://stats?teamName=cleveland-guardians&team_id=114&season=2025",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "STATS",
+                "keyValuePairs": {
+                  "action.click.text": "STATS",
+                  "action.element.moduleType": "Text List"
+                }
+              }
+            }
+          },
+          {
+            "id": "prod:primary:teaminfotextlistsection:teamid:114:language:en:2025-schedule",
+            "displayText": "2025 Schedule",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/textListMenuIcons/calendar.png",
+            "a11yDisplayText": "2025 Schedule",
+            "action": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://schedule?team_id=114&date=20250201&scrollToYear=2025",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "SCHEDULE",
+                "keyValuePairs": {
+                  "action.click.text": "SCHEDULE",
+                  "action.element.moduleType": "Text List"
+                }
+              }
+            }
+          },
+          {
+            "id": "prod:primary:teaminfotextlistsection:teamid:114:language:en:progressive-field",
+            "displayText": "Progressive Field",
+            "iconUrl": "https://mlb-content.storage.googleapis.com/images/textListMenuIcons/stadium.png",
+            "a11yDisplayText": "Progressive Field",
+            "action": {
+              "type": "DeeplinkAction",
+              "deeplinkURL": "mlbatbat://externalWebview?url=https%3A%2F%2Fbp.mlb.com%2F6bzIdHVYAyb",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "BALLPARK",
+                "keyValuePairs": {
+                  "action.click.text": "BALLPARK",
+                  "action.element.moduleType": "Text List"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "prod:primary:insidercarouselsection:teamid:114:language:en",
+      "sectionComponentType": "IMAGE_CAROUSEL",
+      "section": {
+        "type": "ImageCarouselSection",
+        "id": "prod:primary:insidercarouselsection:teamid:114:language:en",
+        "moduleIndex": 0,
+        "header": {
+          "id": "25c545ed-8135-4a01-a8c0-d857df23485a",
+          "headerText": "Guardians Insider",
+          "a11yHeaderText": "Guardians Insider",
+          "textButton": null
+        },
+        "items": [
+          {
+            "id": "prod:primary:insidercarouselsection:teamid:114:language:en:108546594",
+            "imageUrl": "https://img.mlbstatic.com/mlb-mobile/t_320X180/oms/CLE_Shop_Insider_Module_Guardians_Cap_ymnnhq",
+            "a11yText": "Shop",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Shop",
+              "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fwww.mlbshop.com%2Fcleveland-guardians%2Ft-14110825%2Bz-9676808-2952955263",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Shop",
+                "keyValuePairs": {
+                  "action.click.text": "Shop",
+                  "action.element.moduleType": "Insider"
+                }
+              }
+            }
+          },
+          {
+            "id": "prod:primary:insidercarouselsection:teamid:114:language:en:8e51cc36-4434-4587-b2f2-410c79be6d42",
+            "imageUrl": "https://img.mlbstatic.com/mlb-mobile/t_320X180/oms/CLE_Tickets_Insider_Module_Guardians_EN_v2_hugykm",
+            "a11yText": "Tickets",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Tickets",
+              "deeplinkURL": "mlbatbat://webview?url=https%3A%2F%2Fwww.mlb.com%2Fapp%2Fatbat%2Fguardians%2Ftickets",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Tickets",
+                "keyValuePairs": {
+                  "action.click.text": "Tickets",
+                  "action.element.moduleType": "Insider"
+                }
+              }
+            }
+          },
+          {
+            "id": "prod:primary:insidercarouselsection:teamid:114:language:en:108545440",
+            "imageUrl": "https://img.mlbstatic.com/mlb-mobile/t_320X180/oms/CLE_Ballpark_Insider_Module_Guardians_v2_mavumv",
+            "a11yText": "Progressive Field",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Progressive Field",
+              "deeplinkURL": "mlbatbat://externalWebview?url=https%3A%2F%2Fbp.mlb.com%2F6bzIdHVYAyb",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Progressive Field",
+                "keyValuePairs": {
+                  "action.click.text": "Progressive Field",
+                  "action.element.moduleType": "Insider"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "prod:primary:googleadsection:teamid:114:language:en:isTablet:true",
+      "sectionComponentType": "GOOGLE_BANNER_AD",
+      "section": {
+        "type": "GoogleAdSection",
+        "id": "prod:primary:googleadsection:teamid:114:language:en:isTablet:true",
+        "unitId": "/2605/atbat.{account}/cle/team/{platform}",
+        "url": "https://www.mlb.com/guardians",
+        "maxHeight": 90
+      }
+    },
+    {
+      "id": "prod:primary:googleadsection:teamid:114:language:en:isTablet:false",
+      "sectionComponentType": "GOOGLE_BANNER_AD",
+      "section": {
+        "type": "GoogleAdSection",
+        "id": "prod:primary:googleadsection:teamid:114:language:en:isTablet:false",
+        "unitId": "/2605/atbat.{account}/cle/team/{platform}",
+        "url": "https://www.mlb.com/guardians",
+        "maxHeight": 50
+      }
+    },
+    {
+      "id": "prod:primary:morefromtextlistsection:teamid:114:language:en",
+      "sectionComponentType": "TEXT_LIST",
+      "section": {
+        "type": "TextListSection",
+        "id": "prod:primary:morefromtextlistsection:teamid:114:language:en",
+        "header": {
+          "id": "prod:primary:morefromtextlistsection:teamid:114:language:en:MoreFromTextListUseCase",
+          "headerText": "More from the Guardians",
+          "a11yHeaderText": "More from the Guardians",
+          "textButton": null
+        },
+        "items": [
+          {
+            "id": "prod:primary:morefromtextlistsection:teamid:114:language:en:cb78be91-e43b-416e-9e3f-d4cfb05614a4",
+            "displayText": "Depth Chart",
+            "iconUrl": "https://img.mlbstatic.com/mlb-mobile/t_90X90/oms/depthchart_prllmc",
+            "a11yDisplayText": "Depth Chart",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Depth Chart",
+              "deeplinkURL": "mlbatbat://externalWebview?url=https%3A%2F%2Fwww.mlb.com%2Fapp%2Fatbat%2Fguardians%2Froster%2Fdepth-chart",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Depth Chart",
+                "keyValuePairs": {
+                  "action.click.text": "Depth Chart",
+                  "action.element.moduleType": "Text List"
+                }
+              }
+            }
+          },
+          {
+            "id": "prod:primary:morefromtextlistsection:teamid:114:language:en:704e8b78-e1f1-4a6d-8a3c-90be3e310004",
+            "displayText": "Top 30 Prospects",
+            "iconUrl": "https://img.mlbstatic.com/mlb-mobile/t_90X90/oms/top30prospects_am7ptg",
+            "a11yDisplayText": "Top 30 Prospects",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Top 30 Prospects",
+              "deeplinkURL": "mlbatbat://externalWebview?url=https%3A%2F%2Fwww.mlb.com%2Fapp%2Fatbat%2Fprospects%2Fguardians",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Top 30 Prospects",
+                "keyValuePairs": {
+                  "action.click.text": "Top 30 Prospects",
+                  "action.element.moduleType": "Text List"
+                }
+              }
+            }
+          },
+          {
+            "id": "prod:primary:morefromtextlistsection:teamid:114:language:en:296975818",
+            "displayText": "Connect",
+            "iconUrl": "https://img.mlbstatic.com/mlb-mobile/t_90X90/oms/connect_m3cfjn",
+            "a11yDisplayText": "Connect",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Connect",
+              "deeplinkURL": "mlbatbat://externalWebview?url=https%3A%2F%2Fwww.mlb.com%2Fguardians%2Fsocial",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Connect",
+                "keyValuePairs": {
+                  "action.click.text": "Connect",
+                  "action.element.moduleType": "Text List"
+                }
+              }
+            }
+          },
+          {
+            "id": "prod:primary:morefromtextlistsection:teamid:114:language:en:108546750",
+            "displayText": "Auctions",
+            "iconUrl": "https://img.mlbstatic.com/mlb-mobile/t_90X90/oms/auctions_yah6ez",
+            "a11yDisplayText": "Auctions",
+            "action": {
+              "type": "DeeplinkAction",
+              "title": "Auctions",
+              "deeplinkURL": "mlbatbat://externalWebview?url=https%3A%2F%2Fguardians.auctions.mlb.com%2F",
+              "analyticsTrackingData": {
+                "pageTag": "Team : CLE",
+                "actionTag": "Auctions",
+                "keyValuePairs": {
+                  "action.click.text": "Auctions",
+                  "action.element.moduleType": "Text List"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": null
+}
