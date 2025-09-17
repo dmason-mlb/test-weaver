@@ -181,6 +181,109 @@ class ServerDrivenUIVectorStore:
             logger.error(f"Search failed: {e}. Using fallback.")
             return self._get_fallback_patterns(query, limit)
 
+    def search_similar_patterns(self, feature_text: str, limit: int = 20, threshold: float = 0.8) -> List[Dict[str, Any]]:
+        """Search for similar patterns using feature text and similarity threshold.
+        
+        Args:
+            feature_text: Text representation of component features
+            limit: Maximum number of results to return
+            threshold: Minimum similarity threshold
+            
+        Returns:
+            List of similar patterns with similarity scores
+        """
+        if not self.client:
+            logger.warning("No Qdrant client - using fallback patterns")
+            return self._get_fallback_similarity_patterns(feature_text, limit, threshold)
+
+        try:
+            # Get embedding for feature text
+            query_embedding = self._get_embedding(feature_text)
+
+            # Search for similar patterns
+            search_result = self.client.search(
+                collection_name=self.collection_name,
+                query_vector=query_embedding,
+                limit=limit,
+                with_payload=True,
+                score_threshold=threshold  # Apply similarity threshold
+            )
+
+            results = []
+            for hit in search_result:
+                if hit.score >= threshold:  # Double-check threshold
+                    result = {
+                        'pattern': hit.payload.copy(),
+                        'similarity': hit.score,
+                        'id': str(hit.id)
+                    }
+                    results.append(result)
+
+            logger.info(f"Found {len(results)} similar patterns (threshold={threshold}) for features: {feature_text}")
+            return results
+
+        except Exception as e:
+            logger.error(f"Similarity search failed: {e}. Using fallback.")
+            return self._get_fallback_similarity_patterns(feature_text, limit, threshold)
+
+    def _get_fallback_similarity_patterns(self, feature_text: str, limit: int, threshold: float) -> List[Dict[str, Any]]:
+        """Fallback similarity search using static patterns."""
+        fallback_patterns = []
+        
+        # Extract component type from feature text
+        component_type = 'unknown'
+        if 'type:' in feature_text:
+            type_part = feature_text.split('type:')[1].split()[0]
+            component_type = type_part
+        
+        # Create fallback patterns based on component type
+        base_patterns = {
+            'button': {
+                'pattern_type': 'base',
+                'component_type': 'button',
+                'test_strategy': 'button_basic_testing',
+                'test_steps': ['Verify button is visible', 'Click button', 'Verify expected action'],
+                'expected_assertions': ['Button is clickable', 'Action is triggered']
+            },
+            'list': {
+                'pattern_type': 'base', 
+                'component_type': 'list',
+                'test_strategy': 'list_basic_testing',
+                'test_steps': ['Verify list loads', 'Check item count', 'Test scrolling'],
+                'expected_assertions': ['List contains items', 'Items are accessible']
+            },
+            'form': {
+                'pattern_type': 'base',
+                'component_type': 'form', 
+                'test_strategy': 'form_basic_testing',
+                'test_steps': ['Verify form fields', 'Fill valid data', 'Submit form'],
+                'expected_assertions': ['Form accepts input', 'Validation works']
+            }
+        }
+        
+        if component_type in base_patterns:
+            fallback_patterns.append({
+                'pattern': base_patterns[component_type],
+                'similarity': 0.9,  # High similarity for exact type match
+                'id': f'fallback_{component_type}'
+            })
+        
+        # Add generic pattern if no specific match
+        if not fallback_patterns:
+            fallback_patterns.append({
+                'pattern': {
+                    'pattern_type': 'generic',
+                    'component_type': component_type,
+                    'test_strategy': f'{component_type}_basic_testing',
+                    'test_steps': ['Verify component exists', 'Test basic functionality'],
+                    'expected_assertions': ['Component is functional']
+                },
+                'similarity': 0.8,
+                'id': f'fallback_generic_{component_type}'
+            })
+        
+        return fallback_patterns[:limit]
+
     def _get_fallback_patterns(self, query: str, limit: int) -> List[Dict[str, Any]]:
         """Fallback patterns when Qdrant is unavailable."""
         fallback_patterns = [

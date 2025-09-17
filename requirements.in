@@ -20,6 +20,7 @@ streamlit
 # External Search
 linkup-sdk
 requests
+redis
 
 # Testing
 pytest

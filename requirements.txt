@@ -651,6 +651,8 @@ qdrant-client==1.15.1
     # via
     #   -r requirements.in
     #   mem0ai
+redis==6.4.0
+    # via -r requirements.in
 referencing==0.36.2
     # via
     #   jsonschema
