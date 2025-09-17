@@ -1,0 +1,36 @@
+{
+  "screen": "gameday",
+  "platform": "ios",
+  "endpoint": "/api/gameday/v1",
+  "components": [
+    {
+      "type": "webview",
+      "id": "gameday_webview",
+      "url": "https://www.mlb.com/gameday/embed",
+      "requires_auth": true,
+      "refresh_enabled": true
+    },
+    {
+      "type": "button",
+      "id": "refresh_button",
+      "action": "refresh_gameday",
+      "label": "Refresh"
+    },
+    {
+      "type": "list",
+      "id": "plays_list",
+      "refresh_enabled": true,
+      "max_items": 50,
+      "scroll_direction": "vertical"
+    },
+    {
+      "type": "api_endpoint",
+      "id": "gameday_api",
+      "url": "/api/gameday/v1",
+      "params": {
+        "gamepk": "776580",
+        "game_view": "live"
+      }
+    }
+  ]
+}

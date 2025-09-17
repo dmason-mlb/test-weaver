@@ -1,0 +1,14 @@
+{
+  "screen": "team",
+  "platform": "ios",
+  "endpoint": "/api/team/v1",
+  "components": [
+    {
+      "type": "api_endpoint",
+      "url": "/api/team/v1",
+      "params": {
+        "teamId": "147"
+      }
+    }
+  ]
+}

@@ -14,7 +14,7 @@ MLB_COLORS = {
 }
 
 st.set_page_config(
-    page_title="MLB SDUI Test Generator - Qdrant Hackathon",
+    page_title="MLB Intelligent Test Generator",
     page_icon="⚾",
     layout="wide"
 )

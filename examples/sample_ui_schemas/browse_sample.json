@@ -1,0 +1,14 @@
+{
+  "screen": "browse",
+  "platform": "ios",
+  "endpoint": "/api/browse/v1",
+  "components": [
+    {
+      "type": "api_endpoint",
+      "url": "/api/browse/v1",
+      "params": {
+        "category": "video"
+      }
+    }
+  ]
+}

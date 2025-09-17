@@ -1,0 +1,14 @@
+{
+  "screen": "scoreboard",
+  "platform": "ios",
+  "endpoint": "/api/scoreboard/v1",
+  "components": [
+    {
+      "type": "api_endpoint",
+      "url": "/api/scoreboard/v1",
+      "params": {
+        "date": "2025-01-27"
+      }
+    }
+  ]
+}

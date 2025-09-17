@@ -48,7 +48,6 @@ pytest tests/ --lf
 # Run tests by marker
 pytest -m unit        # Unit tests only
 pytest -m integration # Integration tests only
-pytest -m hackathon   # Hackathon demo tests
 
 # Run tests with short output
 pytest tests/ -v --tb=short

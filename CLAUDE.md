@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the Intelligent Test Case Generator for Server-Driven UI, built for the Qdrant Hackathon 2025. The project generates intelligent test cases for MLB's server-driven UI components using vector similarity search and multi-agent orchestration.
+This is the MLB Intelligent Test Generator, an internal tool for automatically generating comprehensive test suites for MLB's server-driven UI components. The system uses AI-powered vector similarity search, OpenAI embeddings, and Mistral AI to create intelligent, context-aware test cases.
 
 ## Key Technologies
 
@@ -63,7 +63,6 @@ pytest tests/ --lf
 # Run by test markers
 pytest -m unit        # Unit tests
 pytest -m integration # Integration tests
-pytest -m hackathon   # Hackathon demo tests
 
 # Development tools
 black src/ tests/     # Format code
@@ -137,3 +136,63 @@ test-gen  # CLI entry point -> src.pipeline:main
 ```
 
 Dependencies managed via `requirements.in` -> `requirements.txt` (pip-compiled)
+
+## Implementation Status Tracking
+
+**IMPORTANT**: Always maintain the `IMPLEMENTATION_STATUS.md` document when making code changes.
+
+### Status Document Requirements
+- `IMPLEMENTATION_STATUS.md` tracks real-time implementation progress
+- Must be updated immediately after completing any significant task
+- Contains critical metrics: files modified, NotImplementedErrors fixed, test coverage
+- Includes detailed timeline with specific timestamps and descriptions
+
+### When to Update Status Document
+1. **After fixing any NotImplementedError or placeholder code**
+2. **After completing any major feature or component**
+3. **After making architectural changes**
+4. **After achieving significant milestones**
+5. **When starting or completing implementation phases**
+
+### Required Updates
+When updating `IMPLEMENTATION_STATUS.md`:
+
+1. **Update Metrics Table**:
+   - Files Modified count
+   - NotImplementedErrors remaining
+   - Test coverage percentage
+   - Overall progress percentage
+
+2. **Update Status Tables**:
+   - Mark fixed issues as ✅ **FIXED**
+   - Update component status indicators
+   - Change priority levels if needed
+
+3. **Add Recent Updates Entry**:
+   - Include timestamp (e.g., "12:45 PM")
+   - Describe what was fixed/implemented
+   - List specific changes made
+   - Use ✅ **FIXED** for completed items
+
+4. **Update "Next" Item**:
+   - Point to the next priority task
+   - Clear indication of what to work on next
+
+### Status Document Format
+```markdown
+- **[TIME]**: ✅ **FIXED** [file] [issue description] - [brief summary]
+  - [detailed bullet point of changes made]
+  - [additional context or technical details]
+- **Next**: [next priority task]
+```
+
+### Example Status Update
+```markdown
+- **12:45 PM**: ✅ **FIXED** ai_test_generator.py integration placeholder - Added comprehensive fallback test generator
+  - Replaced placeholder pass statement with full Selenium WebDriver integration tests
+  - Added component-specific testing based on UI schema analysis
+  - Includes responsiveness testing, error handling, and performance validation
+- **Next**: Begin Phase 2 implementation
+```
+
+**Note**: The implementation status document serves as the single source of truth for project progress and must always reflect the current state of the codebase.

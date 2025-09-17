@@ -1,0 +1,15 @@
+{
+  "screen": "gameday",
+  "platform": "ios",
+  "endpoint": "/api/gameday/v1",
+  "components": [
+    {
+      "type": "api_endpoint",
+      "url": "/api/gameday/v1",
+      "params": {
+        "gamepk": "776580",
+        "game_view": "live"
+      }
+    }
+  ]
+}

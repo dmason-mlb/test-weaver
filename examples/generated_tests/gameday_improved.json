@@ -1,0 +1,27 @@
+{
+  "schema_file": "examples/sample_ui_schemas/gameday_demo.json",
+  "generated_tests": [
+    {
+      "test_name": "test_gameday_functionality",
+      "test_code": "def test_gameday_webview_loading():\n    webview = find_element('gameday_webview')\n    assert webview.url is not None\n    assert webview.is_loaded()\n    assert webview.content_height > 0",
+      "coverage_type": "integration",
+      "scenario": "happy_path",
+      "test_type": "happy_path"
+    },
+    {
+      "test_name": "test_gameday_edge_cases",
+      "test_code": "def test_gameday_edge_cases():\n    \"\"\"Test edge case scenarios\"\"\"\n    # Test empty data scenarios\n    assert handle_empty_data() is not None",
+      "coverage_type": "edge_case",
+      "scenario": "edge_case",
+      "test_type": "edge_case"
+    },
+    {
+      "test_name": "test_gameday_error_handling",
+      "test_code": "def test_gameday_error_handling():\n    \"\"\"Test error handling scenarios\"\"\"\n    # Test error conditions\n    assert handle_network_error() is not None",
+      "coverage_type": "error_handling",
+      "scenario": "error_handling",
+      "test_type": "error_handling"
+    }
+  ],
+  "total_scenarios": 3
+}
