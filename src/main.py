@@ -118,6 +118,28 @@ async def generate_tests_for_mlb_sdui(screen_name: str, screen_config: dict) -> 
 
     return tests
 
+def has_webview_sections(structure):
+    """Check if UI structure contains webview sections."""
+    if not structure:
+        return False
+
+    # Check for webview components
+    if 'components' in structure:
+        for component in structure['components']:
+            if component.get('type') == 'webview':
+                return True
+
+    # Check for URL fields indicating webview content
+    if 'navigation' in structure and 'url' in structure['navigation']:
+        return True
+
+    # Check for webViews array
+    if 'webViews' in structure and structure['webViews']:
+        return True
+
+    return False
+
+
 def parse_request_file(content: str):
     """Parse the request file format into structured data."""
     lines = content.strip().split('\n')
