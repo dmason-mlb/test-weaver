@@ -7,21 +7,61 @@ import pytest
 from unittest.mock import Mock, patch
 
 
-def test_scoreboard_component_response():
-    response = requests.get('/api/scoreboard/v1')
-    assert response.status_code == 200
-    assert response.json() is not None
-    assert 'data' in response.json()
+def test_screen_1_wide_layout():
+    """Test wide layout rendering for screen 1."""
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
 
-def test_scoreboard_edge_cases():
-    """Test edge case scenarios"""
-    # Test empty data scenarios
-    assert handle_empty_data() is not None
+    driver = webdriver.Chrome()
 
-def test_scoreboard_error_handling():
-    """Test error handling scenarios"""
-    # Test error conditions
-    assert handle_network_error() is not None
+    try:
+        # Set viewport for wide layout
+        if "wide" == "wide":
+            driver.set_window_size(1024, 768)  # Wide layout viewport
+        else:
+            driver.set_window_size(375, 667)   # Compact layout viewport
+
+        # Navigate to screen
+        driver.get("http://localhost:8000/screen/1")
+
+        # Verify layout type is applied
+        layout_element = driver.find_element(By.CSS_SELECTOR, "[data-layout-type='wide']")
+        assert layout_element.is_displayed(), "Wide layout should be visible"
+
+        # Verify main content area
+        main_content = driver.find_element(By.CSS_SELECTOR, "[data-placement='main']")
+        assert main_content.is_displayed(), "Main content area should be visible"
+
+    finally:
+        driver.quit()
+
+def test_screen_1_compact_layout():
+    """Test compact layout rendering for screen 1."""
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+
+    driver = webdriver.Chrome()
+
+    try:
+        # Set viewport for compact layout
+        if "compact" == "wide":
+            driver.set_window_size(1024, 768)  # Wide layout viewport
+        else:
+            driver.set_window_size(375, 667)   # Compact layout viewport
+
+        # Navigate to screen
+        driver.get("http://localhost:8000/screen/1")
+
+        # Verify layout type is applied
+        layout_element = driver.find_element(By.CSS_SELECTOR, "[data-layout-type='compact']")
+        assert layout_element.is_displayed(), "Compact layout should be visible"
+
+        # Verify main content area
+        main_content = driver.find_element(By.CSS_SELECTOR, "[data-placement='main']")
+        assert main_content.is_displayed(), "Main content area should be visible"
+
+    finally:
+        driver.quit()
 
 
 

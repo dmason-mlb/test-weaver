@@ -112,6 +112,61 @@ class ServerDrivenUIVectorStore:
                 embedding.append(((hash_int >> (i % 32)) & 1) * 2.0 - 1.0)
             return embedding
 
+    def _calculate_pattern_score(self, pattern: Dict[str, Any], base_score: float) -> float:
+        """Calculate enhanced pattern score based on quality indicators.
+        
+        Args:
+            pattern: The pattern to score
+            base_score: Original similarity score from vector search
+            
+        Returns:
+            Enhanced score with quality bonuses applied
+        """
+        enhanced_score = base_score
+        
+        # Completeness bonus (40% weight)
+        if pattern.get('test_pattern') or pattern.get('test_template'):
+            enhanced_score *= 1.5  # 50% bonus for having actual test code
+            
+            # Additional bonus for comprehensive test patterns
+            test_code = pattern.get('test_pattern', '') or pattern.get('test_template', '')
+            if 'assert' in test_code and 'selenium' in test_code.lower():
+                enhanced_score *= 1.2  # 20% bonus for comprehensive patterns
+        
+        # Relevance bonus (30% weight)
+        if pattern.get('component_type'):
+            # Patterns with specific component types are more valuable
+            enhanced_score *= 1.1  # 10% bonus for typed patterns
+        
+        # Recency bonus (20% weight)
+        if pattern.get('created_at') or pattern.get('updated_at'):
+            # Could implement time-based scoring here
+            # For now, just a small bonus for having timestamps
+            enhanced_score *= 1.05  # 5% bonus for timestamped patterns
+        
+        # Usage history bonus (10% weight)
+        usage_count = pattern.get('usage_count', 0)
+        if usage_count > 0:
+            # Logarithmic scaling to avoid over-weighting popular patterns
+            import math
+            usage_bonus = 1 + (math.log(usage_count + 1) * 0.1)
+            enhanced_score *= min(usage_bonus, 1.5)  # Cap at 50% bonus
+        
+        # Quality indicators
+        if pattern.get('tags'):
+            tag_count = len(pattern['tags']) if isinstance(pattern['tags'], list) else 1
+            if tag_count >= 3:
+                enhanced_score *= 1.1  # 10% bonus for well-tagged patterns
+        
+        # Penalty for incomplete patterns
+        if not pattern.get('description'):
+            enhanced_score *= 0.9  # 10% penalty for missing description
+            
+        if pattern.get('test_pattern') == '' or pattern.get('test_template') == '':
+            enhanced_score *= 0.8  # 20% penalty for empty test code
+        
+        return enhanced_score
+
     def health_check(self) -> bool:
         """Check if Qdrant connection is healthy."""
         if not self.client:
@@ -153,7 +208,11 @@ class ServerDrivenUIVectorStore:
             return "error_id"
 
     def search_patterns(self, query: str, limit: int = 5) -> List[Dict[str, Any]]:
-        """Search for similar UI patterns."""
+        """Search for similar UI patterns with two-stage ranking optimization.
+        
+        Stage 1: Prioritize patterns with test_pattern field
+        Stage 2: Fallback to similarity search with enhanced scoring
+        """
         if not self.client:
             # Fallback mode - return hardcoded patterns
             return self._get_fallback_patterns(query, limit)
@@ -161,21 +220,59 @@ class ServerDrivenUIVectorStore:
         try:
             query_embedding = self._get_embedding(query)
 
+            # Stage 1: Search for patterns with test_pattern field
+            # Use a larger limit to get more candidates for filtering
+            expanded_limit = min(limit * 3, 50)
+            
             search_result = self.client.search(
                 collection_name=self.collection_name,
                 query_vector=query_embedding,
-                limit=limit,
+                limit=expanded_limit,
                 with_payload=True
             )
 
-            results = []
+            all_results = []
+            patterns_with_templates = []
+            regular_patterns = []
+
+            # Separate patterns by quality and completeness
             for hit in search_result:
                 result = hit.payload.copy()
-                result['score'] = hit.score
-                results.append(result)
+                base_score = hit.score
+                
+                # Calculate enhanced pattern score
+                enhanced_score = self._calculate_pattern_score(result, base_score)
+                result['score'] = enhanced_score
+                result['base_score'] = base_score
+                
+                # Categorize patterns for two-stage processing
+                if result.get('test_pattern') or result.get('test_template'):
+                    patterns_with_templates.append(result)
+                else:
+                    regular_patterns.append(result)
+                
+                all_results.append(result)
 
-            logger.info(f"Found {len(results)} patterns for query: {query}")
-            return results
+            # Stage 1: If we have patterns with templates, prioritize them
+            if patterns_with_templates:
+                # Sort by enhanced score
+                patterns_with_templates.sort(key=lambda x: x['score'], reverse=True)
+                final_results = patterns_with_templates[:limit]
+                
+                # If we don't have enough template patterns, fill with regular patterns
+                if len(final_results) < limit:
+                    regular_patterns.sort(key=lambda x: x['score'], reverse=True)
+                    remaining_slots = limit - len(final_results)
+                    final_results.extend(regular_patterns[:remaining_slots])
+                
+                logger.info(f"Found {len(patterns_with_templates)} template patterns and {len(regular_patterns)} regular patterns for query: {query}")
+            else:
+                # Stage 2: No template patterns, use enhanced scoring on all results
+                all_results.sort(key=lambda x: x['score'], reverse=True)
+                final_results = all_results[:limit]
+                logger.info(f"Found {len(final_results)} patterns (no templates) for query: {query}")
+
+            return final_results
 
         except Exception as e:
             logger.error(f"Search failed: {e}. Using fallback.")

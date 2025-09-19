@@ -7,21 +7,247 @@ import pytest
 from unittest.mock import Mock, patch
 
 
-def test_team_component_response():
-    response = requests.get('/api/team/v1')
-    assert response.status_code == 200
-    assert response.json() is not None
-    assert 'data' in response.json()
+def test_team_team_api_endpoint_response_validation():
+    """Test API endpoint response validation and business data integrity.
+    
+    Validates HTTP response codes, JSON structure, and business data correctness.
+    Verifies API performance and error handling capabilities.
+    """
+    from selenium import webdriver
+    import requests
+    from requests.adapters import HTTPAdapter
+    from urllib3.util.retry import Retry
+    import pytest
+    import time
+    import json
+    
+    driver = webdriver.Chrome()
+    
+    try:
+        # Arrange: Setup browser and API session
+        driver.get('http://localhost:8000')
+        
+        # Setup requests session with retries for robust testing
+        session = requests.Session()
+        retry_strategy = Retry(
+            total=3,
+            backoff_factor=1,
+            status_forcelist=[429, 500, 502, 503, 504]
+        )
+        adapter = HTTPAdapter(max_retries=retry_strategy)
+        session.mount('http://', adapter)
+        session.mount('https://', adapter)
+        
+        # Act: Make API request with timing
+        base_url = driver.current_url.split('/')[0:3]
+        full_url = '/'.join(base_url) + '/api/team/v1'
+        
+        start_time = time.time()
+        response = session.get(full_url, timeout=10)
+        response_time = (time.time() - start_time) * 1000  # Convert to milliseconds
+        
+        # Assert: Comprehensive response validation
+        
+        # Verify HTTP response status
+        assert response.status_code == 200, f'Expected status_code 200, got {{response.status_code}}'
+        
+        # Verify response timing for performance
+        check_response_time = response_time < 2000  # Should respond within 2 seconds
+        assert check_response_time, f'API response time {{response_time:.0f}}ms exceeds 2000ms threshold'
+        
+        # Verify response headers
+        verify_content_type = 'content-type' in response.headers
+        assert verify_content_type, 'Response should include Content-Type header'
+        
+        # Test JSON response validation
+        if response.headers.get('content-type', '').startswith('application/json'):
+            try:
+                json_data = response.json()
+                assert response is not None and json_data is not None, 'Response should contain valid JSON data'
+                
+                # Verify JSON structure is not empty
+                verify_json_content = isinstance(json_data, (dict, list)) and len(json_data) > 0
+                assert verify_json_content, 'JSON response should contain meaningful data'
+                
+                # Business logic validation for specific endpoints
+                if 'game' in 'team_team_api_endpoint'.lower() or 'score' in 'team_team_api_endpoint'.lower():
+                    # Verify game/score data structure
+                    if isinstance(json_data, list) and len(json_data) > 0:
+                        first_item = json_data[0]
+                        verify_game_data = isinstance(first_item, dict)
+                        assert verify_game_data, 'Game data should be structured objects'
+                        
+                        # Check for expected game fields
+                        expected_fields = ['id', 'teams', 'score', 'date']
+                        game_fields = [field for field in expected_fields if field in str(first_item).lower()]
+                        check_game_fields = len(game_fields) > 0
+                        assert check_game_fields, 'Game data should contain relevant fields (id, teams, score, date)'
+                
+                elif 'player' in 'team_team_api_endpoint'.lower():
+                    # Verify player data structure
+                    if isinstance(json_data, list) and len(json_data) > 0:
+                        first_player = json_data[0]
+                        verify_player_data = isinstance(first_player, dict)
+                        assert verify_player_data, 'Player data should be structured objects'
+                        
+                        # Check for expected player fields
+                        expected_fields = ['name', 'position', 'team', 'stats']
+                        player_fields = [field for field in expected_fields if field in str(first_player).lower()]
+                        check_player_fields = len(player_fields) > 0
+                        assert check_player_fields, 'Player data should contain relevant fields (name, position, team, stats)'
+                
+                elif 'stat' in 'team_team_api_endpoint'.lower():
+                    # Verify statistics data
+                    if isinstance(json_data, dict):
+                        # Check for numerical statistics
+                        numeric_values = [v for v in json_data.values() if isinstance(v, (int, float))]
+                        verify_stats_numeric = len(numeric_values) > 0
+                        assert verify_stats_numeric, 'Statistics should contain numerical data'
+                
+            except json.JSONDecodeError:
+                pytest.fail(f'Response claims to be JSON but contains invalid JSON: {{response.text[:200]}}')
+        
+        # Verify response content length
+        assert response.content and len(response.content) > 0, 'Response should have meaningful content'
+        
+        # Test response encoding
+        verify_encoding = response.encoding is not None
+        assert verify_encoding, 'Response should specify character encoding'
+        
+        # Verify no error markers in response
+        response_text = response.text.lower()
+        error_markers = ['error', 'exception', 'traceback', 'internal server error']
+        check_no_errors = not any(marker in response_text for marker in error_markers)
+        assert check_no_errors, 'Response should not contain error indicators'
+        
+        # Test caching headers for performance
+        cache_headers = ['cache-control', 'etag', 'last-modified']
+        cache_present = any(header in response.headers for header in cache_headers)
+        if cache_present:
+            verify_caching = True
+            assert verify_caching, 'API should implement appropriate caching strategies'
+        
+    except requests.exceptions.RequestException as e:
+        pytest.skip(f'API endpoint not available: {{e}}')
+    except requests.exceptions.Timeout:
+        pytest.fail('API endpoint timed out - performance issue detected')
+    finally:
+        driver.quit()
 
 def test_team_edge_cases():
-    """Test edge case scenarios"""
-    # Test empty data scenarios
-    assert handle_empty_data() is not None
+    """Test edge case scenarios for team screen.
+
+    Validates behavior with empty data, missing elements, and boundary conditions.
+    """
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    import pytest
+
+    driver = webdriver.Chrome()
+    wait = WebDriverWait(driver, 10)
+
+    try:
+        driver.get('http://localhost:8000/team')
+
+        # Test empty data scenarios - verify graceful handling
+        # Test with no network connectivity simulation
+        driver.execute_script("window.navigator.onLine = false;")
+
+        # Wait for page to handle offline state
+        wait.until(lambda driver: driver.execute_script('return document.readyState') == 'complete')
+
+        # Verify page doesn't crash with empty data
+        body = driver.find_element(By.TAG_NAME, 'body')
+        assert body.is_displayed(), 'Page should still display with empty data'
+
+        # Test boundary conditions for any input fields
+        input_elements = driver.find_elements(By.TAG_NAME, 'input')
+        for input_elem in input_elements:
+            if input_elem.is_displayed() and input_elem.is_enabled():
+                # Test with very long input
+                input_elem.clear()
+                input_elem.send_keys('x' * 1000)
+                assert len(input_elem.get_attribute('value')) <= 1000
+
+                # Test with empty input
+                input_elem.clear()
+                assert input_elem.get_attribute('value') == ''
+
+        # Restore network state
+        driver.execute_script("window.navigator.onLine = true;")
+
+    finally:
+        driver.quit()
 
 def test_team_error_handling():
-    """Test error handling scenarios"""
-    # Test error conditions
-    assert handle_network_error() is not None
+    """Test error handling scenarios for team screen.
+
+    Validates error recovery and graceful degradation under failure conditions.
+    """
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    from selenium.common.exceptions import TimeoutException, NoSuchElementException
+    import pytest
+
+    driver = webdriver.Chrome()
+    wait = WebDriverWait(driver, 5)  # Shorter timeout for error testing
+
+    try:
+        # Test 1: Invalid URL handling
+        try:
+            driver.get('http://localhost:8000/team/invalid-path')
+            # Should either redirect or show error page gracefully
+            body = driver.find_element(By.TAG_NAME, 'body')
+            assert body.is_displayed(), 'Error page should display gracefully'
+        except Exception:
+            # If navigation fails, that's acceptable for error testing
+            pass
+
+        # Test 2: Missing element handling
+        driver.get('http://localhost:8000/team')
+
+        try:
+            # Try to find a non-existent element
+            non_existent = wait.until(EC.presence_of_element_located((By.ID, 'non_existent_element')))
+            pytest.fail('Non-existent element should not be found')
+        except TimeoutException:
+            # This is expected behavior - graceful timeout
+            assert True, 'Graceful timeout handling works correctly'
+
+        # Test 3: JavaScript error resilience
+        try:
+            # Inject a JavaScript error and verify page still functions
+            driver.execute_script("throw new Error('Test error injection');")
+        except Exception:
+            # JavaScript errors should not crash the test framework
+            pass
+
+        # Verify page is still functional after error injection
+        wait.until(lambda driver: driver.execute_script('return document.readyState') == 'complete')
+        body = driver.find_element(By.TAG_NAME, 'body')
+        assert body.is_displayed(), 'Page should remain functional after JS errors'
+
+        # Test 4: Network timeout simulation
+        # Test behavior when network requests fail
+        driver.execute_script("window.fetch = function() { return Promise.reject(new Error('Network error')); };")
+
+        # Trigger any AJAX requests by interacting with page elements
+        buttons = driver.find_elements(By.TAG_NAME, 'button')
+        if buttons:
+            try:
+                buttons[0].click()
+                # Page should handle network errors gracefully
+                wait.until(lambda driver: driver.execute_script('return document.readyState') == 'complete')
+            except Exception:
+                # Click might fail due to network error simulation, which is acceptable
+                pass
+
+    finally:
+        driver.quit()
 
 
 

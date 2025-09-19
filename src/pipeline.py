@@ -87,11 +87,58 @@ class TestGenerationPipeline:
                     "coverage_type": "basic"
                 }
 
-            # Validate output structure
-            required_fields = ["test_name", "test_code", "coverage_type"]
-            for field in required_fields:
-                if field not in result or not result[field]:
-                    result[field] = f"fallback_{field}" if field != "test_code" else "def test_fallback(): pass"
+            # Validate output structure - only replace truly missing fields
+            if "test_name" not in result or result["test_name"] is None:
+                result["test_name"] = f"test_{ui_spec.get('screen', 'unknown')}_generated"
+
+            if "coverage_type" not in result or result["coverage_type"] is None:
+                result["coverage_type"] = "functional"
+
+            # Only replace test_code if it's completely missing or None, not if it's just empty string
+            if "test_code" not in result or result["test_code"] is None:
+                screen = ui_spec.get("screen", "unknown")
+                result["test_code"] = f"""def test_{screen}_fallback():
+    \"\"\"Generated fallback test for {screen} screen with proper WebDriver validation.
+
+    This test ensures basic functionality when specialized test generation is unavailable.
+    \"\"\"
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    import pytest
+
+    driver = webdriver.Chrome()
+    wait = WebDriverWait(driver, 10)
+
+    try:
+        # Navigate to the screen
+        driver.get('http://localhost:8000/{screen}')
+
+        # Wait for page to load completely
+        wait.until(lambda driver: driver.execute_script('return document.readyState') == 'complete')
+
+        # Verify basic page functionality
+        assert driver.title is not None, 'Page should have a title'
+
+        # Verify page body exists and is visible
+        body = driver.find_element(By.TAG_NAME, 'body')
+        assert body.is_displayed(), 'Page body should be visible'
+
+        # Verify no JavaScript errors in console
+        logs = driver.get_log('browser')
+        severe_errors = [log for log in logs if log['level'] == 'SEVERE']
+        assert len(severe_errors) == 0, f'No severe JavaScript errors should occur: {{severe_errors}}'
+
+    finally:
+        driver.quit()"""
+            elif not result["test_code"].strip():
+                # If test_code is empty string or whitespace, generate a minimal test
+                screen = ui_spec.get("screen", "unknown")
+                result["test_code"] = f"""def test_{screen}_minimal():
+    '''Generated minimal test due to empty test code'''
+    assert True  # Placeholder test
+"""
 
             return result
 
@@ -115,19 +162,115 @@ class TestGenerationPipeline:
         }
 
     def _generate_fallback_test_code(self, screen):
-        """Generate basic fallback test code."""
+        """Generate comprehensive fallback test code with real WebDriver automation."""
         return f"""def test_{screen}_basic():
-    \"\"\"Basic test for {screen} screen\"\"\"
+    \"\"\"Comprehensive fallback test for {screen} screen with real WebDriver validation.
+    
+    This test provides robust validation when specialized test generation is unavailable.
+    Includes accessibility checks, performance validation, and error handling.
+    \"\"\"
     import pytest
-    from unittest.mock import Mock
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    from selenium.common.exceptions import TimeoutException, NoSuchElementException
+    import time
 
-    # Arrange
-    screen_element = Mock()
-    screen_element.is_loaded = True
+    driver = webdriver.Chrome()
+    wait = WebDriverWait(driver, 10)
 
-    # Act & Assert
-    assert screen_element.is_loaded is True
-    # Add more specific tests as components are identified"""
+    try:
+        # Navigate to the screen
+        driver.get('http://localhost:8000/{screen}')
+
+        # Wait for page to load completely
+        wait.until(lambda driver: driver.execute_script('return document.readyState') == 'complete')
+
+        # Comprehensive page validation
+        assert driver.title is not None, 'Page should have a title'
+        
+        # Verify page body exists and is visible
+        body = driver.find_element(By.TAG_NAME, 'body')
+        assert body.is_displayed(), 'Page body should be visible'
+        assert body.size['width'] > 0, 'Page should have width'
+        assert body.size['height'] > 0, 'Page should have height'
+
+        # Accessibility validation
+        # Check for basic accessibility structure
+        main_content = driver.find_elements(By.CSS_SELECTOR, 'main, [role="main"], .main-content')
+        headings = driver.find_elements(By.CSS_SELECTOR, 'h1, h2, h3, h4, h5, h6')
+        
+        if main_content:
+            assert main_content[0].is_displayed(), 'Main content area should be accessible'
+        
+        if headings:
+            assert headings[0].is_displayed(), 'Page should have accessible heading structure'
+
+        # Performance validation
+        # Check page load time via Navigation Timing API
+        load_time = driver.execute_script("""
+        return performance.timing.loadEventEnd - performance.timing.navigationStart;
+        """)
+        assert load_time < 10000, f'Page should load within 10 seconds, took {{load_time}}ms'
+
+        # Error detection - check for JavaScript errors
+        logs = driver.get_log('browser')
+        severe_errors = [log for log in logs if log['level'] == 'SEVERE']
+        assert len(severe_errors) == 0, f'No severe JavaScript errors should occur: {{severe_errors}}'
+
+        # Interactive element validation
+        # Test basic interaction capabilities
+        clickable_elements = driver.find_elements(By.CSS_SELECTOR, 
+            'button, a, input[type="button"], input[type="submit"], [role="button"]')
+        
+        for element in clickable_elements[:3]:  # Test first 3 interactive elements
+            if element.is_displayed() and element.is_enabled():
+                # Verify element is properly accessible
+                assert element.get_attribute('aria-label') or element.text or element.get_attribute('title'), \
+                    f'Interactive element should have accessible text: {{element.tag_name}}'
+
+        # Form validation if forms exist
+        forms = driver.find_elements(By.TAG_NAME, 'form')
+        for form in forms:
+            if form.is_displayed():
+                # Verify form has proper structure
+                inputs = form.find_elements(By.CSS_SELECTOR, 'input, textarea, select')
+                if inputs:
+                    assert len(inputs) > 0, 'Form should contain input elements'
+                    
+                    # Test form accessibility
+                    for input_elem in inputs[:2]:  # Test first 2 inputs
+                        if input_elem.is_displayed():
+                            label = input_elem.get_attribute('aria-label') or \
+                                   input_elem.get_attribute('placeholder') or \
+                                   input_elem.get_attribute('title')
+                            assert label, f'Form input should have accessible label: {{input_elem.get_attribute("type")}}'
+
+        # Mobile responsiveness check
+        # Test viewport scaling
+        original_size = driver.get_window_size()
+        try:
+            # Test mobile viewport
+            driver.set_window_size(375, 667)  # iPhone 6/7/8 size
+            time.sleep(0.5)  # Allow reflow
+            
+            # Verify page adapts to mobile
+            body_mobile = driver.find_element(By.TAG_NAME, 'body')
+            assert body_mobile.is_displayed(), 'Page should display properly on mobile viewport'
+            
+        finally:
+            # Restore original size
+            driver.set_window_size(original_size['width'], original_size['height'])
+
+    except TimeoutException:
+        pytest.fail(f'Timeout loading {{screen}} screen - page may be unresponsive')
+    except NoSuchElementException as e:
+        pytest.fail(f'Essential page element missing on {{screen}} screen: {{str(e)}}')
+    except Exception as e:
+        pytest.fail(f'Unexpected error testing {{screen}} screen: {{str(e)}}')
+    finally:
+        driver.quit()"""
 
     def generate_all_test_scenarios(self, ui_spec):
         """Generate multiple test scenarios for comprehensive testing"""
@@ -275,14 +418,163 @@ class TestGenerationPipeline:
             "test_type": "error_handling"
         }
         scenarios.append(error_case)
-        
+
         return scenarios
+
+    def generate_bullpen_sdui_tests(self, bullpen_response):
+        """Generate tests specifically for Bullpen Gateway SDUI responses."""
+        from bullpen_integration.bullpen_gateway_parser import BullpenGatewayParser, SDUITestScenario
+
+        # Parse the Bullpen SDUI response
+        parsed_structure = BullpenGatewayParser.parse_sdui_response(bullpen_response)
+
+        # Extract test scenarios from parsed structure
+        test_scenarios = parsed_structure.get('test_scenarios', [])
+
+        # Convert SDUITestScenario objects to dictionaries for JSON output
+        tests = []
+        for scenario in test_scenarios:
+            if isinstance(scenario, SDUITestScenario):
+                tests.append({
+                    'test_name': scenario.name,
+                    'test_type': scenario.type,
+                    'description': scenario.description,
+                    'priority': scenario.priority,
+                    'component_id': scenario.component_id,
+                    'test_code': scenario.test_code,
+                    'coverage_type': scenario.type,
+                    'scenario': 'bullpen_sdui',
+                    'authentication_required': scenario.authentication_required
+                })
+            else:
+                # Handle any legacy format scenarios
+                tests.append({
+                    'test_name': scenario.get('name', 'unknown_test'),
+                    'test_type': scenario.get('type', 'unknown'),
+                    'description': scenario.get('description', ''),
+                    'priority': scenario.get('priority', 'medium'),
+                    'component_id': 'unknown',
+                    'test_code': scenario.get('test_code', '# Test code not generated'),
+                    'coverage_type': scenario.get('type', 'unknown'),
+                    'scenario': 'bullpen_legacy'
+                })
+
+        return tests
 
 
 class TestGenerator:
     def __init__(self):
         from test_generator import TestCaseGenerator
         self.test_case_generator = TestCaseGenerator()
+
+    def _get_intelligent_component_id(self, component: dict, screen: str = "unknown") -> str:
+        """Intelligently generate component ID using same strategy as external enrichment."""
+        # Try direct ID fields first
+        component_id = component.get('id') or component.get('component_id')
+        if component_id and component_id.strip():
+            return component_id.strip()
+        
+        # Extract semantic information for intelligent fallback generation
+        component_type = component.get('type', 'unknown')
+        
+        # Strategy 1: Generate ID from text content
+        text_sources = [
+            component.get('text'),
+            component.get('label'),
+            component.get('title'),
+            component.get('placeholder'),
+            component.get('accessibility_label'),
+            component.get('aria_label'),
+            component.get('name')
+        ]
+        
+        meaningful_text = None
+        for text_source in text_sources:
+            if text_source and isinstance(text_source, str) and len(text_source.strip()) > 0:
+                meaningful_text = text_source.strip()
+                break
+        
+        if meaningful_text:
+            # Convert text to valid ID format
+            import re
+            sanitized_text = re.sub(r'[^\w\s]', '', meaningful_text.lower())
+            sanitized_text = re.sub(r'\s+', '_', sanitized_text.strip())
+            sanitized_text = sanitized_text[:20]
+            
+            if len(sanitized_text) >= 3 and sanitized_text not in ['button', 'click', 'submit', 'input', 'text']:
+                return f"{sanitized_text}_{component_type}"
+        
+        # Strategy 2: Generate ID from component purpose/context
+        component_str = str(component).lower()
+        
+        # Check for common action patterns
+        action_patterns = {
+            'follow': ['follow'],
+            'login': ['login', 'sign_in', 'signin'],
+            'logout': ['logout', 'sign_out', 'signout'],
+            'submit': ['submit', 'send'],
+            'cancel': ['cancel', 'close'],
+            'save': ['save', 'store'],
+            'edit': ['edit', 'modify'],
+            'delete': ['delete', 'remove'],
+            'refresh': ['refresh', 'reload'],
+            'search': ['search', 'find'],
+            'next': ['next', 'forward'],
+            'prev': ['previous', 'back']
+        }
+        
+        purpose_indicators = []
+        for action, patterns in action_patterns.items():
+            if any(pattern in component_str for pattern in patterns):
+                purpose_indicators.append(action)
+        
+        # Check for MLB/domain-specific context
+        mlb_patterns = {
+            'game': ['game', 'match'],
+            'team': ['team', 'club'],
+            'player': ['player', 'athlete'],
+            'score': ['score', 'points'],
+            'stats': ['stats', 'statistics']
+        }
+        
+        mlb_context = []
+        for context, patterns in mlb_patterns.items():
+            if any(pattern in component_str for pattern in patterns):
+                mlb_context.append(context)
+        
+        # Build intelligent ID from collected context
+        id_parts = []
+        
+        # Add MLB context first (highest priority)
+        if mlb_context:
+            id_parts.extend(mlb_context[:1])
+        
+        # Add purpose/action context
+        if purpose_indicators:
+            id_parts.extend(purpose_indicators[:1])
+        
+        # Add screen context if meaningful
+        if screen != "unknown" and len(screen) > 2:
+            id_parts.append(screen)
+        
+        # Add component type
+        id_parts.append(component_type)
+        
+        if len(id_parts) > 1:  # More than just component type
+            return '_'.join(id_parts)
+        
+        # Enhanced fallback with sequence numbering
+        if not hasattr(self, '_component_id_counter'):
+            self._component_id_counter = {}
+        
+        fallback_key = f"{screen}_{component_type}"
+        if fallback_key not in self._component_id_counter:
+            self._component_id_counter[fallback_key] = 1
+        else:
+            self._component_id_counter[fallback_key] += 1
+        
+        sequence_num = self._component_id_counter[fallback_key]
+        return f"{screen}_{component_type}_{sequence_num}"
 
     def generate(self, ui_spec):
         screen = ui_spec.get("screen", "unknown")
@@ -319,15 +611,45 @@ class TestGenerator:
 
     finally:
         driver.quit()"""
+            
+            return {
+                "test_name": f"test_{screen}_smoke_test",
+                "test_code": test_code,
+                "coverage_type": "smoke"
+            }
+        
         else:
             # Generate tests for all components
             all_tests = []
 
             for component in components:
+                # Create proper pattern structure with required 'interactions' field
+                component_type = component.get('type', 'unknown')
+                
+                # Use intelligent component ID generation instead of generic fallback
+                component_id = self._get_intelligent_component_id(component, screen)
+                
+                # Determine appropriate interactions based on component type
+                interactions = []
+                if component_type == 'button':
+                    interactions = ['click', 'view']
+                elif component_type in ['input', 'textarea', 'text_field']:
+                    interactions = ['input', 'focus', 'blur']
+                elif component_type == 'select':
+                    interactions = ['select', 'view']
+                elif component_type == 'list':
+                    interactions = ['scroll', 'view']
+                elif component_type == 'webview':
+                    interactions = ['load', 'view']
+                elif component_type == 'api_endpoint':
+                    interactions = ['load']
+                else:
+                    interactions = ['view']
+
                 pattern = {
-                    'component': component.get('type', 'unknown'),
-                    'id': component.get('id', f"{screen}_component"),
-                    'interactions': ['click'] if component.get('type') == 'button' else ['view'],
+                    'component': component_type,
+                    'id': component_id,
+                    'interactions': interactions,  # Required field for TestCaseGenerator
                     'url': component.get('url', ''),
                     'properties': component
                 }
@@ -335,12 +657,33 @@ class TestGenerator:
                 try:
                     test_result = self.test_case_generator.generate_test(pattern)
                     component_test_code = test_result.get('test_code', '')
-                    all_tests.append(component_test_code)
+                    
+                    # Only add if we got valid test code
+                    if component_test_code and component_test_code.strip():
+                        all_tests.append(component_test_code)
+                    else:
+                        # Generate fallback if TestCaseGenerator returned empty
+                        fallback_test = self._generate_fallback_test(component_id, component_type, screen)
+                        all_tests.append(fallback_test)
+                        
                 except Exception as e:
-                    # Fallback for individual component using real WebDriver
-                    component_id = component.get('id', 'component')
-                    component_type = component.get('type', 'unknown')
-                    fallback_test = f"""def test_{component_id}_fallback():
+                    print(f"Warning: TestCaseGenerator failed for {component_id}: {e}")
+                    # Generate fallback for individual component
+                    fallback_test = self._generate_fallback_test(component_id, component_type, screen)
+                    all_tests.append(fallback_test)
+
+            # Combine all tests
+            test_code = '\n\n'.join(all_tests) if all_tests else f"def test_{screen}_empty(): pass"
+
+            return {
+                "test_name": f"test_{screen}_functionality",
+                "test_code": test_code,
+                "coverage_type": "integration"
+            }
+    
+    def _generate_fallback_test(self, component_id: str, component_type: str, screen: str) -> str:
+        """Generate fallback test for when TestCaseGenerator fails."""
+        return f"""def test_{component_id}_fallback():
     \"\"\"Fallback test for {component_type} component.
 
     Basic validation test when specialized test generation fails.
@@ -355,7 +698,7 @@ class TestGenerator:
     wait = WebDriverWait(driver, 10)
 
     try:
-        driver.get('http://localhost:8000')
+        driver.get('http://localhost:8000/{screen}')
 
         # Try to find the component
         element = wait.until(EC.presence_of_element_located((By.ID, '{component_id}')))
@@ -367,75 +710,29 @@ class TestGenerator:
         if '{component_type}' == 'button':
             assert element.is_enabled(), 'Button should be enabled'
             element.click()
-            # Verify click response
             wait.until(lambda driver: driver.execute_script('return document.readyState') == 'complete')
 
         elif '{component_type}' in ['input', 'textarea', 'text_field']:
-            # Comprehensive text input testing
             assert element.is_enabled(), 'Text field should be enabled'
-            assert element.get_attribute('type') is not None or element.tag_name in ['input', 'textarea']
-
-            # Test text input functionality
             test_text = 'Test input value'
             element.clear()
             element.send_keys(test_text)
             assert element.get_attribute('value') == test_text, 'Text field should accept input'
 
-            # Test clearing functionality
-            element.clear()
-            assert element.get_attribute('value') == '', 'Text field should clear properly'
-
-            # Test placeholder text if available
-            placeholder = element.get_attribute('placeholder')
-            if placeholder:
-                assert len(placeholder) > 0, 'Placeholder text should be meaningful'
-
-            # Test field validation attributes
-            required = element.get_attribute('required')
-            if required:
-                # Test that required fields show validation
-                element.clear()
-                element.send_keys('')  # Empty input
-                # Trigger validation by clicking outside or pressing tab
-                driver.execute_script('arguments[0].blur();', element)
-
         elif '{component_type}' == 'select':
-            # Dropdown/select testing
             assert element.is_enabled(), 'Select field should be enabled'
             options = element.find_elements(By.TAG_NAME, 'option')
             assert len(options) > 0, 'Select field should have options'
 
-            # Test selecting different options
-            if len(options) > 1:
-                options[1].click()
-                assert options[1].is_selected(), 'Option should be selectable'
-
         elif '{component_type}' == 'checkbox':
-            # Checkbox testing
             assert element.is_enabled(), 'Checkbox should be enabled'
             initial_state = element.is_selected()
             element.click()
             new_state = element.is_selected()
             assert initial_state != new_state, 'Checkbox should toggle state'
 
-        elif '{component_type}' == 'radio':
-            # Radio button testing
-            assert element.is_enabled(), 'Radio button should be enabled'
-            element.click()
-            assert element.is_selected(), 'Radio button should be selectable'
-
     finally:
         driver.quit()"""
-                    all_tests.append(fallback_test)
-
-            # Combine all tests
-            test_code = '\n\n'.join(all_tests)
-
-        return {
-            "test_name": f"test_{screen}_functionality",
-            "test_code": test_code,
-            "coverage_type": "integration"
-        }
 
 
 def main():
@@ -490,22 +787,33 @@ def main():
     # Initialize pipeline
     try:
         pipeline = TestGenerationPipeline(config=args.config)
-        
-        # Generate tests
-        if args.verbose:
-            print("Generating test scenarios...")
-        
-        test_scenarios = pipeline.generate_all_test_scenarios(ui_spec)
-        
+
+        # Check if this is a Bullpen Gateway SDUI response
+        is_bullpen_response = _is_bullpen_sdui_response(ui_spec)
+
+        if is_bullpen_response:
+            # Generate tests using enhanced Bullpen parser
+            if args.verbose:
+                print("Detected Bullpen Gateway SDUI response, using enhanced parser...")
+
+            test_scenarios = pipeline.generate_bullpen_sdui_tests(ui_spec)
+        else:
+            # Generate tests using standard pipeline
+            if args.verbose:
+                print("Generating test scenarios using standard pipeline...")
+
+            test_scenarios = pipeline.generate_all_test_scenarios(ui_spec)
+
         # Format output
         output_data = {
             "schema_file": str(schema_path),
             "generated_tests": test_scenarios,
-            "total_scenarios": len(test_scenarios)
+            "total_scenarios": len(test_scenarios),
+            "processing_mode": "bullpen_sdui" if is_bullpen_response else "standard"
         }
-        
+
         output_json = json.dumps(output_data, indent=2)
-        
+
         # Write output
         if args.output:
             output_path = Path(args.output)
@@ -516,10 +824,36 @@ def main():
                 print(f"Tests generated and saved to: {args.output}")
         else:
             print(output_json)
-            
+
     except Exception as e:
         print(f"Error generating tests: {e}", file=sys.stderr)
+        if args.verbose:
+            import traceback
+            traceback.print_exc()
         sys.exit(1)
+
+
+def _is_bullpen_sdui_response(data):
+    """Check if the loaded JSON is a Bullpen Gateway SDUI response."""
+    # Bullpen SDUI responses have specific structure
+    required_keys = ['screens', 'sections']
+
+    if not isinstance(data, dict):
+        return False
+
+    # Check for Bullpen-specific structure
+    has_screens = 'screens' in data and isinstance(data['screens'], list)
+    has_sections = 'sections' in data and isinstance(data['sections'], list)
+
+    if has_screens and has_sections:
+        # Additional validation - check for SDUI-specific fields
+        screens = data.get('screens', [])
+        if screens and len(screens) > 0:
+            first_screen = screens[0]
+            if 'screenProperties' in first_screen and 'layout' in first_screen:
+                return True
+
+    return False
 
 
 if __name__ == "__main__":

@@ -7,21 +7,146 @@ import pytest
 from unittest.mock import Mock, patch
 
 
-def test_gameday_component_response():
-    response = requests.get('/api/gameday/v1')
-    assert response.status_code == 200
-    assert response.json() is not None
-    assert 'data' in response.json()
+def test_screen_1_wide_layout():
+    """Test wide layout rendering for screen 1."""
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
 
-def test_gameday_edge_cases():
-    """Test edge case scenarios"""
-    # Test empty data scenarios
-    assert handle_empty_data() is not None
+    driver = webdriver.Chrome()
 
-def test_gameday_error_handling():
-    """Test error handling scenarios"""
-    # Test error conditions
-    assert handle_network_error() is not None
+    try:
+        # Set viewport for wide layout
+        if "wide" == "wide":
+            driver.set_window_size(1024, 768)  # Wide layout viewport
+        else:
+            driver.set_window_size(375, 667)   # Compact layout viewport
+
+        # Navigate to screen
+        driver.get("http://localhost:8000/screen/1")
+
+        # Verify layout type is applied
+        layout_element = driver.find_element(By.CSS_SELECTOR, "[data-layout-type='wide']")
+        assert layout_element.is_displayed(), "Wide layout should be visible"
+
+        # Verify main content area
+        main_content = driver.find_element(By.CSS_SELECTOR, "[data-placement='main']")
+        assert main_content.is_displayed(), "Main content area should be visible"
+
+    finally:
+        driver.quit()
+
+def test_screen_1_compact_layout():
+    """Test compact layout rendering for screen 1."""
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+
+    driver = webdriver.Chrome()
+
+    try:
+        # Set viewport for compact layout
+        if "compact" == "wide":
+            driver.set_window_size(1024, 768)  # Wide layout viewport
+        else:
+            driver.set_window_size(375, 667)   # Compact layout viewport
+
+        # Navigate to screen
+        driver.get("http://localhost:8000/screen/1")
+
+        # Verify layout type is applied
+        layout_element = driver.find_element(By.CSS_SELECTOR, "[data-layout-type='compact']")
+        assert layout_element.is_displayed(), "Compact layout should be visible"
+
+        # Verify main content area
+        main_content = driver.find_element(By.CSS_SELECTOR, "[data-placement='main']")
+        assert main_content.is_displayed(), "Main content area should be visible"
+
+    finally:
+        driver.quit()
+
+def test_screen_1_analytics_tracking():
+    """Test analytics tracking for screen 1."""
+    from selenium import webdriver
+    from selenium.webdriver.support.ui import WebDriverWait
+    import json
+
+    driver = webdriver.Chrome()
+    wait = WebDriverWait(driver, 10)
+
+    try:
+        # Navigate to screen
+        driver.get("http://localhost:8000/screen/1")
+
+        # Wait for analytics to fire
+        wait.until(lambda driver: driver.execute_script(
+            "return window.analytics && window.analytics.queue.length > 0"
+        ))
+
+        # Check analytics data
+        analytics_data = driver.execute_script("return window.analytics.queue")
+
+        # Verify page tag is tracked
+        page_events = [event for event in analytics_data if event.get('pageTag') == 'gameday']
+        assert len(page_events) > 0, f"Analytics should track pageTag 'gameday'"
+
+    finally:
+        driver.quit()
+
+def test_webview_gameday-section_url_loading():
+    """Test WebView URL loading for component gameday-section."""
+    from selenium import webdriver
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    import pytest
+
+    driver = webdriver.Chrome()
+    wait = WebDriverWait(driver, 10)
+
+    try:
+        # Navigate to WebView URL
+        driver.get("https://prod.gameday.mlb.com/app-ios/5.40.0-ios.0/install/index.html#gamepk=776580,game_view=live,lang=en&affiliateId=mlbapp-ios_webview&rsid=mlbdev.at.bat.ios.new")
+
+        # Wait for page to load
+        wait.until(lambda driver: driver.execute_script('return document.readyState') == 'complete')
+
+        # Verify URL loaded successfully
+        assert driver.current_url == "https://prod.gameday.mlb.com/app-ios/5.40.0-ios.0/install/index.html#gamepk=776580,game_view=live,lang=en&affiliateId=mlbapp-ios_webview&rsid=mlbdev.at.bat.ios.new", "WebView should load correct URL"
+
+        # Verify page is not showing error
+        page_text = driver.page_source.lower()
+        assert "404" not in page_text, "WebView should not show 404 error"
+        assert "error" not in page_text, "WebView should not show error page"
+
+    finally:
+        driver.quit()
+
+def test_webview_gameday-section_pull_to_refresh():
+    """Test WebView pull-to-refresh functionality."""
+    from selenium import webdriver
+    from selenium.webdriver.common.action_chains import ActionChains
+    import time
+
+    driver = webdriver.Chrome()
+
+    try:
+        driver.get("https://prod.gameday.mlb.com/app-ios/5.40.0-ios.0/install/index.html#gamepk=776580,game_view=live,lang=en&affiliateId=mlbapp-ios_webview&rsid=mlbdev.at.bat.ios.new")
+        time.sleep(2)
+
+        # Simulate pull-to-refresh gesture
+        actions = ActionChains(driver)
+        actions.move_by_offset(0, 100)
+        actions.click_and_hold()
+        actions.move_by_offset(0, -200)
+        actions.release()
+        actions.perform()
+
+        # Wait for refresh to complete
+        time.sleep(3)
+
+        # Verify page still loads correctly after refresh
+        assert driver.current_url == "https://prod.gameday.mlb.com/app-ios/5.40.0-ios.0/install/index.html#gamepk=776580,game_view=live,lang=en&affiliateId=mlbapp-ios_webview&rsid=mlbdev.at.bat.ios.new", "URL should remain same after refresh"
+
+    finally:
+        driver.quit()
 
 
 

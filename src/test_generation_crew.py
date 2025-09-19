@@ -2,6 +2,10 @@ from typing import Dict, List, Any, Optional
 import logging
 from crewai import Agent, Task, Crew, Process
 from crewai.tools import BaseTool
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 try:
     from .agents import UIValidatorAgent, APIAnalyzerAgent, PatternDiscoveryAgent
     from .external_enrichment import ExternalTestEnrichment

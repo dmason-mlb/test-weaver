@@ -17,6 +17,10 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import redis
 from urllib.parse import urlencode
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +34,7 @@ class LinkupService:
 
     def __init__(self,
                  api_key: Optional[str] = None,
-                 base_url: str = "https://api.linkup.com",
+                 base_url: str = "https://api.linkup.so/v1",
                  cache_ttl: int = 3600,
                  max_retries: int = 3,
                  timeout: int = 30):
@@ -38,7 +42,7 @@ class LinkupService:
 
         Args:
             api_key: Linkup API key (or use LINKUP_API_KEY env var)
-            base_url: Base URL for Linkup API
+            base_url: Base URL for Linkup API (real endpoint: https://api.linkup.so/v1)
             cache_ttl: Cache TTL in seconds (default 1 hour)
             max_retries: Maximum number of retry attempts
             timeout: Request timeout in seconds
@@ -135,7 +139,7 @@ class LinkupService:
                            context: str = 'general',
                            limit: int = 20,
                            include_code: bool = True) -> List[Dict[str, Any]]:
-        """Search for external test patterns.
+        """Search for external test patterns using Linkup web search.
 
         Args:
             query: Search query for test patterns
@@ -161,14 +165,21 @@ class LinkupService:
             # Rate limiting
             self._enforce_rate_limit()
 
-            # Build search parameters
-            search_params = self._build_search_params(query, context, limit, include_code)
+            # Build web search query for test patterns
+            search_query = self._build_web_search_query(query, context, include_code)
 
-            # Make API request
-            response = self._make_api_request('/search/patterns', search_params)
+            # Build Linkup API parameters
+            search_params = {
+                "q": search_query,
+                "depth": "standard",
+                "outputType": "searchResults"
+            }
 
-            # Process and transform results
-            patterns = self._process_search_results(response, context)
+            # Make API request to real Linkup search endpoint
+            response = self._make_api_request('/search', search_params, method='POST')
+
+            # Process and transform web results to test patterns
+            patterns = self._process_web_search_results(response, context, limit)
 
             # Cache the results
             self._cache_result(cache_key, patterns)
@@ -180,35 +191,8 @@ class LinkupService:
             logger.error(f"Error searching external patterns: {e}")
             return []
 
-    def get_pattern_details(self, pattern_id: str) -> Optional[Dict[str, Any]]:
-        """Get detailed information about a specific pattern.
-
-        Args:
-            pattern_id: ID of the pattern to retrieve
-
-        Returns:
-            Detailed pattern information or None if not found
-        """
-        if not self.api_key:
-            return None
-
-        cache_key = f"pattern_detail:{pattern_id}"
-        cached_result = self._get_cached_result(cache_key)
-        if cached_result:
-            return cached_result
-
-        try:
-            self._enforce_rate_limit()
-
-            response = self._make_api_request(f'/patterns/{pattern_id}')
-            pattern_detail = self._process_pattern_detail(response)
-
-            self._cache_result(cache_key, pattern_detail)
-            return pattern_detail
-
-        except Exception as e:
-            logger.error(f"Error getting pattern details for {pattern_id}: {e}")
-            return None
+    # Note: get_pattern_details removed - was using fictional /patterns/{id} endpoint
+    # Linkup API doesn't support individual pattern retrieval, only web search
 
     def search_by_component_type(self,
                                 component_type: str,
@@ -238,14 +222,14 @@ class LinkupService:
     def get_trending_patterns(self,
                             time_period: str = 'week',
                             category: str = 'all') -> List[Dict[str, Any]]:
-        """Get trending test patterns.
+        """Get trending test patterns using web search.
 
         Args:
-            time_period: Time period for trends (day, week, month)
+            time_period: Time period for trends (day, week, month) - used to modify search query
             category: Pattern category filter
 
         Returns:
-            List of trending patterns
+            List of trending patterns from web search
         """
         if not self.api_key:
             return []
@@ -258,14 +242,29 @@ class LinkupService:
         try:
             self._enforce_rate_limit()
 
-            params = {
-                'period': time_period,
-                'category': category,
-                'limit': 10
+            # Build trending search query
+            time_modifiers = {
+                'day': 'latest',
+                'week': 'recent',
+                'month': 'current'
             }
 
-            response = self._make_api_request('/patterns/trending', params)
-            patterns = self._process_search_results(response, 'general')
+            time_modifier = time_modifiers.get(time_period, 'latest')
+
+            if category == 'all':
+                search_query = f"{time_modifier} testing trends best practices automation patterns 2024"
+            else:
+                search_query = f"{time_modifier} {category} testing trends patterns automation"
+
+            # Build Linkup API parameters
+            search_params = {
+                "q": search_query,
+                "depth": "standard",
+                "outputType": "searchResults"
+            }
+
+            response = self._make_api_request('/search', search_params, method='POST')
+            patterns = self._process_web_search_results(response, category if category != 'all' else 'general', 10)
 
             # Cache with shorter TTL for trending data
             self._cache_result(cache_key, patterns, ttl=1800)  # 30 minutes
@@ -317,66 +316,81 @@ class LinkupService:
 
         self.last_request_time = time.time()
 
-    def _build_search_params(self,
-                           query: str,
-                           context: str,
-                           limit: int,
-                           include_code: bool) -> Dict[str, Any]:
-        """Build search parameters for API request."""
-        params = {
-            'q': query,
-            'limit': limit,
-            'include_code': include_code,
-            'format': 'json'
-        }
+    # Note: _build_search_params removed - was for fictional pattern API
+    # Now using _build_web_search_query for real Linkup web search
 
-        # Add context-specific parameters
+    def _build_web_search_query(self, query: str, context: str, include_code: bool) -> str:
+        """Build web search query for finding test patterns online.
+
+        Args:
+            query: Base search query
+            context: Search context (mobile, web, api, etc.)
+            include_code: Whether to look for code examples
+
+        Returns:
+            Optimized search query for web search
+        """
+        # Start with base query
+        search_terms = [query, "testing patterns", "best practices"]
+
+        # Add context-specific keywords
         if context in self.search_contexts:
-            context_config = self.search_contexts[context]
-            params['keywords'] = ','.join(context_config['keywords'])
-            params['filters'] = ','.join(context_config['filters'])
+            context_keywords = self.search_contexts[context]['keywords']
+            search_terms.extend(context_keywords[:2])  # Add top 2 context keywords
 
-        return params
+        # Add code-specific terms if requested
+        if include_code:
+            search_terms.extend(["examples", "code snippets", "automation"])
 
-    def _make_api_request(self, endpoint: str, params: Optional[Dict] = None) -> Dict[str, Any]:
+        # Add quality and source indicators
+        search_terms.extend(["tutorial", "guide", "documentation"])
+
+        return " ".join(search_terms)
+
+    def _make_api_request(self, endpoint: str, params: Optional[Dict] = None, method: str = 'GET') -> Dict[str, Any]:
         """Make API request to Linkup service."""
         url = f"{self.base_url}{endpoint}"
 
-        if params:
-            # Use GET for search endpoints
+        if method.upper() == 'POST':
+            # POST request with JSON body
+            response = self.session.post(url, json=params, timeout=self.timeout)
+        elif params:
+            # GET request with query parameters
             response = self.session.get(url, params=params, timeout=self.timeout)
         else:
-            # Use GET for detail endpoints
+            # GET request without parameters
             response = self.session.get(url, timeout=self.timeout)
 
         response.raise_for_status()
         return response.json()
 
-    def _process_search_results(self, response: Dict[str, Any], context: str) -> List[Dict[str, Any]]:
-        """Process and transform search results."""
+    def _process_web_search_results(self, response: Dict[str, Any], context: str, limit: int) -> List[Dict[str, Any]]:
+        """Process and transform web search results to test patterns."""
         patterns = []
 
-        # Handle different response formats
-        results = response.get('results', response.get('patterns', []))
+        # Handle Linkup search response format
+        results = response.get('results', [])
 
-        for item in results:
+        for i, item in enumerate(results[:limit]):
+            # Extract relevant information from web search result
             pattern = {
-                'pattern_id': item.get('id', ''),
-                'title': item.get('title', ''),
-                'description': item.get('description', ''),
-                'source': 'linkup',
+                'pattern_id': f"linkup_web_{i}_{hash(item.get('url', '')) % 10000}",
+                'title': item.get('name', '').strip(),  # Linkup uses 'name' not 'title'
+                'description': item.get('content', '')[:500],  # Linkup uses 'content'
+                'source': 'linkup_web_search',
                 'context': context,
-                'quality_score': item.get('score', 0.0),
-                'created_at': item.get('created_at', ''),
-                'tags': item.get('tags', []),
-                'complexity': self._assess_pattern_complexity(item),
-                'code_example': item.get('code_example', ''),
-                'framework': item.get('framework', ''),
-                'language': item.get('language', 'python'),
+                'quality_score': self._calculate_web_relevance_score(item, context),
+                'created_at': '',  # Web results don't have creation dates
+                'tags': self._extract_tags_from_content(item, context),
+                'complexity': self._assess_web_content_complexity(item),
+                'code_example': self._extract_code_from_content(item),
+                'framework': self._infer_framework_from_content(item),
+                'language': self._infer_language_from_content(item),
                 'external_url': item.get('url', ''),
-                'author': item.get('author', ''),
-                'votes': item.get('votes', 0),
-                'usage_count': item.get('usage_count', 0)
+                'url': item.get('url', ''),  # Also include for test compatibility
+                'author': self._extract_author_from_url(item.get('url', '')),
+                'votes': 0,  # Web results don't have vote counts
+                'usage_count': 0
             }
 
             # Add MLB-specific scoring
@@ -389,23 +403,151 @@ class LinkupService:
 
         return patterns
 
-    def _process_pattern_detail(self, response: Dict[str, Any]) -> Dict[str, Any]:
-        """Process detailed pattern information."""
-        return {
-            'pattern_id': response.get('id', ''),
-            'title': response.get('title', ''),
-            'description': response.get('description', ''),
-            'full_code': response.get('full_code', ''),
-            'documentation': response.get('documentation', ''),
-            'dependencies': response.get('dependencies', []),
-            'test_cases': response.get('test_cases', []),
-            'performance_notes': response.get('performance_notes', ''),
-            'best_practices': response.get('best_practices', []),
-            'related_patterns': response.get('related_patterns', []),
-            'external_url': response.get('url', ''),
-            'last_updated': response.get('last_updated', ''),
-            'version': response.get('version', '1.0')
+    def _calculate_web_relevance_score(self, item: Dict[str, Any], context: str) -> float:
+        """Calculate relevance score for web search result."""
+        score = 0.5  # Base score
+
+        title = item.get('name', '').lower()  # Linkup uses 'name'
+        content = item.get('content', '').lower()  # Linkup uses 'content'
+        url = item.get('url', '').lower()
+
+        # Boost for testing-related terms
+        testing_terms = ['test', 'testing', 'automation', 'qa', 'quality']
+        for term in testing_terms:
+            if term in title:
+                score += 0.1
+            if term in content:
+                score += 0.05
+
+        # Context-specific boosts
+        if context in self.search_contexts:
+            for keyword in self.search_contexts[context]['keywords']:
+                if keyword.lower() in title:
+                    score += 0.15
+                if keyword.lower() in content:
+                    score += 0.1
+
+        # Authority site boost
+        authority_domains = ['github.com', 'stackoverflow.com', 'medium.com', 'dev.to', 'testing-', 'qa-']
+        for domain in authority_domains:
+            if domain in url:
+                score += 0.2
+                break
+
+        return min(score, 1.0)
+
+    def _extract_tags_from_content(self, item: Dict[str, Any], context: str) -> List[str]:
+        """Extract relevant tags from web content."""
+        tags = [context]
+
+        content = f"{item.get('name', '')} {item.get('content', '')}".lower()
+
+        # Common testing-related tags
+        tag_keywords = {
+            'selenium': 'selenium',
+            'cypress': 'cypress',
+            'playwright': 'playwright',
+            'jest': 'jest',
+            'pytest': 'pytest',
+            'junit': 'junit',
+            'automation': 'automation',
+            'ui': 'ui-testing',
+            'api': 'api-testing',
+            'unit': 'unit-testing',
+            'integration': 'integration-testing',
+            'e2e': 'e2e-testing'
         }
+
+        for keyword, tag in tag_keywords.items():
+            if keyword in content:
+                tags.append(tag)
+
+        return list(set(tags))  # Remove duplicates
+
+    def _assess_web_content_complexity(self, item: Dict[str, Any]) -> str:
+        """Assess complexity of testing content."""
+        content = f"{item.get('name', '')} {item.get('content', '')}".lower()
+
+        # Simple indicators
+        simple_terms = ['basic', 'simple', 'intro', 'beginner', 'getting started']
+        complex_terms = ['advanced', 'complex', 'enterprise', 'scalable', 'architecture']
+
+        simple_count = sum(1 for term in simple_terms if term in content)
+        complex_count = sum(1 for term in complex_terms if term in content)
+
+        if complex_count > simple_count:
+            return 'complex'
+        elif simple_count > 0:
+            return 'simple'
+        else:
+            return 'medium'
+
+    def _extract_code_from_content(self, item: Dict[str, Any]) -> str:
+        """Extract code examples from content if available."""
+        content = item.get('content', '')
+
+        # Look for code indicators
+        if any(indicator in content.lower() for indicator in ['```', 'def ', 'function', 'class ', 'test_']):
+            return content[:200]  # Return snippet that might contain code
+
+        return ''
+
+    def _infer_framework_from_content(self, item: Dict[str, Any]) -> str:
+        """Infer testing framework from content."""
+        content = f"{item.get('name', '')} {item.get('content', '')}".lower()
+
+        frameworks = {
+            'selenium': 'selenium',
+            'cypress': 'cypress',
+            'playwright': 'playwright',
+            'jest': 'jest',
+            'pytest': 'pytest',
+            'junit': 'junit',
+            'testng': 'testng',
+            'mocha': 'mocha',
+            'jasmine': 'jasmine'
+        }
+
+        for fw_name, fw_value in frameworks.items():
+            if fw_name in content:
+                return fw_value
+
+        return 'unknown'
+
+    def _infer_language_from_content(self, item: Dict[str, Any]) -> str:
+        """Infer programming language from content."""
+        content = f"{item.get('name', '')} {item.get('content', '')}".lower()
+        url = item.get('url', '').lower()
+
+        # Language indicators
+        if any(term in content for term in ['python', 'pytest', '.py']):
+            return 'python'
+        elif any(term in content for term in ['javascript', 'js', 'node', 'npm']):
+            return 'javascript'
+        elif any(term in content for term in ['java', 'junit', '.java']):
+            return 'java'
+        elif any(term in content for term in ['c#', 'csharp', '.net', 'nunit']):
+            return 'csharp'
+        elif any(term in content for term in ['ruby', 'rspec', '.rb']):
+            return 'ruby'
+
+        return 'unknown'
+
+    def _extract_author_from_url(self, url: str) -> str:
+        """Extract author/source from URL."""
+        if 'github.com' in url:
+            parts = url.split('/')
+            if len(parts) > 3:
+                return parts[3]  # GitHub username
+        elif 'stackoverflow.com' in url:
+            return 'Stack Overflow Community'
+        elif 'medium.com' in url:
+            return 'Medium Author'
+
+        return 'Unknown'
+
+    # Note: _process_pattern_detail removed - was for fictional pattern detail API
+    # Linkup only provides web search results, not detailed pattern objects
 
     def _assess_pattern_complexity(self, pattern: Dict[str, Any]) -> str:
         """Assess pattern complexity based on various factors."""
@@ -456,7 +598,7 @@ class LinkupService:
             return 'general'
 
     def get_health_status(self) -> Dict[str, Any]:
-        """Get health status of Linkup service."""
+        """Get health status of Linkup service using real API endpoint."""
         status = {
             'api_available': bool(self.api_key),
             'cache_available': self.cache is not None,
@@ -464,10 +606,10 @@ class LinkupService:
             'base_url': self.base_url
         }
 
-        # Test API connectivity if key is available
+        # Test API connectivity using real /credits/balance endpoint
         if self.api_key:
             try:
-                self._make_api_request('/health')
+                self._make_api_request('/credits/balance')
                 status['api_reachable'] = True
             except Exception:
                 status['api_reachable'] = False

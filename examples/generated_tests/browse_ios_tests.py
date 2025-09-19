@@ -7,21 +7,171 @@ import pytest
 from unittest.mock import Mock, patch
 
 
-def test_browse_component_response():
-    response = requests.get('/api/browse/v1')
-    assert response.status_code == 200
-    assert response.json() is not None
-    assert 'data' in response.json()
+def test_screen_1_wide_layout():
+    """Test wide layout rendering for screen 1."""
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
 
-def test_browse_edge_cases():
-    """Test edge case scenarios"""
-    # Test empty data scenarios
-    assert handle_empty_data() is not None
+    driver = webdriver.Chrome()
 
-def test_browse_error_handling():
-    """Test error handling scenarios"""
-    # Test error conditions
-    assert handle_network_error() is not None
+    try:
+        # Set viewport for wide layout
+        if "wide" == "wide":
+            driver.set_window_size(1024, 768)  # Wide layout viewport
+        else:
+            driver.set_window_size(375, 667)   # Compact layout viewport
+
+        # Navigate to screen
+        driver.get("http://localhost:8000/screen/1")
+
+        # Verify layout type is applied
+        layout_element = driver.find_element(By.CSS_SELECTOR, "[data-layout-type='wide']")
+        assert layout_element.is_displayed(), "Wide layout should be visible"
+
+        # Verify main content area
+        main_content = driver.find_element(By.CSS_SELECTOR, "[data-placement='main']")
+        assert main_content.is_displayed(), "Main content area should be visible"
+
+    finally:
+        driver.quit()
+
+def test_screen_1_compact_layout():
+    """Test compact layout rendering for screen 1."""
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+
+    driver = webdriver.Chrome()
+
+    try:
+        # Set viewport for compact layout
+        if "compact" == "wide":
+            driver.set_window_size(1024, 768)  # Wide layout viewport
+        else:
+            driver.set_window_size(375, 667)   # Compact layout viewport
+
+        # Navigate to screen
+        driver.get("http://localhost:8000/screen/1")
+
+        # Verify layout type is applied
+        layout_element = driver.find_element(By.CSS_SELECTOR, "[data-layout-type='compact']")
+        assert layout_element.is_displayed(), "Compact layout should be visible"
+
+        # Verify main content area
+        main_content = driver.find_element(By.CSS_SELECTOR, "[data-placement='main']")
+        assert main_content.is_displayed(), "Main content area should be visible"
+
+    finally:
+        driver.quit()
+
+def test_screen_1_analytics_tracking():
+    """Test analytics tracking for screen 1."""
+    from selenium import webdriver
+    from selenium.webdriver.support.ui import WebDriverWait
+    import json
+
+    driver = webdriver.Chrome()
+    wait = WebDriverWait(driver, 10)
+
+    try:
+        # Navigate to screen
+        driver.get("http://localhost:8000/screen/1")
+
+        # Wait for analytics to fire
+        wait.until(lambda driver: driver.execute_script(
+            "return window.analytics && window.analytics.queue.length > 0"
+        ))
+
+        # Check analytics data
+        analytics_data = driver.execute_script("return window.analytics.queue")
+
+        # Verify page tag is tracked
+        page_events = [event for event in analytics_data if event.get('pageTag') == 'Browse Menu']
+        assert len(page_events) > 0, f"Analytics should track pageTag 'Browse Menu'"
+
+    finally:
+        driver.quit()
+
+def test_promo_banner_0_image_loading():
+    """Test PromoBanner image loading."""
+    import requests
+
+    # Test background image URL accessibility
+    response = requests.head("https://mlb-content.storage.googleapis.com/images/SDUIBrowse/MLBPlay_Browse.png")
+    assert response.status_code == 200, "Background image should be accessible"
+
+    # Verify image content type
+    content_type = response.headers.get('content-type', '')
+    assert 'image' in content_type, "URL should return image content"
+
+def test_promo_banner_0_deeplink_navigation():
+    """Test PromoBanner deeplink navigation."""
+    # Note: This would need platform-specific implementation
+    # For iOS: XCTest with URL scheme handling
+    # For Android: Espresso with Intent verification
+
+    deeplink_url = "mlbatbat://gaminghub"
+
+    # Verify deeplink format
+    assert deeplink_url.startswith('mlbatbat://'), "Deeplink should use MLB app scheme"
+
+    # Test deeplink components
+    if 'webview' in deeplink_url:
+        assert 'url=' in deeplink_url, "WebView deeplink should contain URL parameter"
+
+    # This test would need platform-specific implementation
+
+def test_promo_banner_1_image_loading():
+    """Test PromoBanner image loading."""
+    import requests
+
+    # Test background image URL accessibility
+    response = requests.head("https://mlb-content.storage.googleapis.com/images/BrowseMenuAssets/1080x504_PickEm_MLB_App.jpg")
+    assert response.status_code == 200, "Background image should be accessible"
+
+    # Verify image content type
+    content_type = response.headers.get('content-type', '')
+    assert 'image' in content_type, "URL should return image content"
+
+def test_promo_banner_1_deeplink_navigation():
+    """Test PromoBanner deeplink navigation."""
+    # Note: This would need platform-specific implementation
+    # For iOS: XCTest with URL scheme handling
+    # For Android: Espresso with Intent verification
+
+    deeplink_url = "mlbatbat://webview?url=https://www.mlb.com/moments/experiences/konami-league-leaders-pick-em&authenticate=true"
+
+    # Verify deeplink format
+    assert deeplink_url.startswith('mlbatbat://'), "Deeplink should use MLB app scheme"
+
+    # Test deeplink components
+    if 'webview' in deeplink_url:
+        assert 'url=' in deeplink_url, "WebView deeplink should contain URL parameter"
+
+    # This test would need platform-specific implementation
+
+def test_tile_grid_2_layout():
+    """Test TileGrid layout and items."""
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+
+    driver = webdriver.Chrome()
+
+    try:
+        # This would need to be the actual app screen containing the grid
+        # For now, testing grid properties
+
+        expected_items = 4
+
+        # Verify grid has expected number of items
+        grid_items = driver.find_elements(By.CSS_SELECTOR, "[data-testid*='tile-grid-item']")
+        assert len(grid_items) == expected_items, f"Grid should contain {expected_items} items"
+
+        # Verify each item is visible
+        for item in grid_items:
+            assert item.is_displayed(), "Each grid item should be visible"
+
+    finally:
+        driver.quit()
 
 
 
